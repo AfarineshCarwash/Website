@@ -32,6 +32,16 @@
       "cars": []
     },
     {
+      "id": "ct_mwpa4cpot6y6",
+      "name": "تیپ 2",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
+    },
+    {
       "id": "ct_shasi",
       "name": "شاسی‌بلند",
       "prices": {
@@ -45,16 +55,6 @@
           "name": "سانتافه"
         }
       ]
-    },
-    {
-      "id": "ct_mwpa4cpot6y6",
-      "name": "تیپ 2",
-      "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
-      },
-      "cars": []
     },
     {
       "id": "ct_mwpa4gbemyqr",
