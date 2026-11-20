@@ -55,6 +55,16 @@
         "wax": 0
       },
       "cars": []
+    },
+    {
+      "id": "ct_mwpa4gbemyqr",
+      "name": "تیپ 3",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
     }
   ],
   "workers": [
