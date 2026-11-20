@@ -233,9 +233,9 @@ function viewTariff(typeId) {
 
   return layout(`تعرفه‌های ${type.name}`, `
     <form class="card" data-form="tariff" data-id="${type.id}">
-      <label class="field">روشویی (تومان)<input type="number" min="0" step="1000" name="wash" value="${Number(p.wash || 0)}"></label>
-      <label class="field">جارو (تومان)<input type="number" min="0" step="1000" name="vacuum" value="${Number(p.vacuum || 0)}"></label>
-      <label class="field">واکس داشبورد (تومان)<input type="number" min="0" step="1000" name="wax" value="${Number(p.wax || 0)}"></label>
+      <label class="field">روشویی (تومان)<input type="number" min="0" step="1" name="wash" value="${Number(p.wash || 0)}"></label>
+      <label class="field">جارو (تومان)<input type="number" min="0" step="1" name="vacuum" value="${Number(p.vacuum || 0)}"></label>
+      <label class="field">واکس داشبورد (تومان)<input type="number" min="0" step="1" name="wax" value="${Number(p.wax || 0)}"></label>
       <button class="btn primary block" type="submit">ذخیره تعرفه‌ها</button>
     </form>`, 'tariffs');
 }
@@ -344,7 +344,7 @@ function viewCashier() {
   const extras = d.extras.map((x, i) => `
     <div class="extra-row">
       <input placeholder="شرح" data-extra="desc" data-i="${i}" value="${esc(x.desc)}">
-      <input type="number" min="0" step="1000" placeholder="مبلغ" data-extra="amount" data-i="${i}" value="${x.amount || ''}">
+      <input type="number" min="0" step="1" placeholder="مبلغ" data-extra="amount" data-i="${i}" value="${x.amount || ''}">
       <button type="button" class="btn danger" data-action="remove-extra" data-i="${i}">×</button>
     </div>`).join('');
 
@@ -389,10 +389,10 @@ function viewCashier() {
 
       <div class="grid2">
         <label class="field">مبلغ انعام (تومان)
-          <input type="number" min="0" step="1000" data-draft="tip" value="${d.tip || ''}">
+          <input type="number" min="0" step="1" data-draft="tip" value="${d.tip || ''}">
         </label>
         <label class="field">تخفیف (تومان)
-          <input type="number" min="0" step="1000" data-draft="discount" value="${d.discount || ''}">
+          <input type="number" min="0" step="1" data-draft="discount" value="${d.discount || ''}">
         </label>
       </div>
 
