@@ -221,6 +221,16 @@
       ]
     },
     {
+      "id": "ct_mwpe92u5fxt8",
+      "name": "تیپ 4",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
+    },
+    {
       "id": "ct_shasi",
       "name": "شاسی‌بلند",
       "prices": {
@@ -298,16 +308,6 @@
           "name": "وانت دو کابین"
         }
       ]
-    },
-    {
-      "id": "ct_mwpe92u5fxt8",
-      "name": "تیپ 4",
-      "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
-      },
-      "cars": []
     },
     {
       "id": "ct_mwpd005tq1o1",
