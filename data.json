@@ -54,6 +54,16 @@
           "name": "پژو ۲۰۶"
         }
       ]
+    },
+    {
+      "id": "ct_mwpa41tm32s2",
+      "name": "تیپ 1",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
     }
   ],
   "workers": [
