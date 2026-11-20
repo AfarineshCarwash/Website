@@ -22,6 +22,21 @@
   ],
   "carTypes": [
     {
+      "id": "ct_shasi",
+      "name": "شاسی‌بلند",
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 200
+      },
+      "cars": [
+        {
+          "id": "car_santafe",
+          "name": "سانتافه"
+        }
+      ]
+    },
+    {
       "id": "ct_mwpa41tm32s2",
       "name": "تیپ 1",
       "prices": {
@@ -37,21 +52,6 @@
         {
           "id": "car_mwpa74iy78eq",
           "name": "پراید"
-        }
-      ]
-    },
-    {
-      "id": "ct_shasi",
-      "name": "شاسی‌بلند",
-      "prices": {
-        "wash": 800,
-        "vacuum": 200,
-        "wax": 200
-      },
-      "cars": [
-        {
-          "id": "car_santafe",
-          "name": "سانتافه"
         }
       ]
     },
