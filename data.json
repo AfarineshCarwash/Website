@@ -189,7 +189,12 @@
         "vacuum": 200,
         "wax": 450
       },
-      "cars": []
+      "cars": [
+        {
+          "id": "car_mwpdxdf7um3y",
+          "name": "x22"
+        }
+      ]
     },
     {
       "id": "ct_shasi",
