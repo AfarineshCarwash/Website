@@ -64,21 +64,6 @@
       ]
     },
     {
-      "id": "ct_shasi",
-      "name": "شاسی‌بلند",
-      "prices": {
-        "wash": 800,
-        "vacuum": 200,
-        "wax": 200
-      },
-      "cars": [
-        {
-          "id": "car_santafe",
-          "name": "سانتافه"
-        }
-      ]
-    },
-    {
       "id": "ct_mwpa4gbemyqr",
       "name": "تیپ 3",
       "prices": {
@@ -94,6 +79,21 @@
         {
           "id": "car_mwpa8rt5imi0",
           "name": "دنا"
+        }
+      ]
+    },
+    {
+      "id": "ct_shasi",
+      "name": "شاسی‌بلند",
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 200
+      },
+      "cars": [
+        {
+          "id": "car_santafe",
+          "name": "سانتافه"
         }
       ]
     },
