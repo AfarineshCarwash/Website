@@ -71,7 +71,12 @@
         "vacuum": 0,
         "wax": 0
       },
-      "cars": []
+      "cars": [
+        {
+          "id": "car_mwpa8o15jdug",
+          "name": "پژو پارس"
+        }
+      ]
     },
     {
       "id": "ct_shasi",
