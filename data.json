@@ -112,37 +112,5 @@
       "name": "گارگر ۳"
     }
   ],
-  "invoices": [
-    {
-      "id": "inv_mwpc99p34xiz",
-      "createdAt": "2026-11-20T18:54:47.127Z",
-      "customer": "۰۹۱۲۳۴۵۶۷۸۹",
-      "carTypeId": "ct_mwpa4cpot6y6",
-      "carTypeName": "تیپ 2",
-      "carId": "car_mwpa84vn1ns4",
-      "carName": "سمند",
-      "workerId": "w_1",
-      "workerName": "کارگر ۱",
-      "services": {
-        "wash": true,
-        "vacuum": true,
-        "wax": true
-      },
-      "prices": {
-        "wash": 500,
-        "vacuum": 200,
-        "wax": 150
-      },
-      "extras": [
-        {
-          "desc": "موتورشویی",
-          "amount": 400
-        }
-      ],
-      "tip": 100,
-      "discount": 250,
-      "total": 1100,
-      "createdBy": "11"
-    }
-  ]
+  "invoices": []
 }
