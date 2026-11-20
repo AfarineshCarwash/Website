@@ -22,6 +22,21 @@
   ],
   "carTypes": [
     {
+      "id": "ct_shasi",
+      "name": "شاسی‌بلند",
+      "prices": {
+        "wash": 200000,
+        "vacuum": 130000,
+        "wax": 100000
+      },
+      "cars": [
+        {
+          "id": "car_santafe",
+          "name": "سانتافه"
+        }
+      ]
+    },
+    {
       "id": "ct_swari",
       "name": "سواری",
       "prices": {
@@ -37,21 +52,6 @@
         {
           "id": "car_206",
           "name": "پژو ۲۰۶"
-        }
-      ]
-    },
-    {
-      "id": "ct_shasi",
-      "name": "شاسی‌بلند",
-      "prices": {
-        "wash": 200000,
-        "vacuum": 130000,
-        "wax": 100000
-      },
-      "cars": [
-        {
-          "id": "car_santafe",
-          "name": "سانتافه"
         }
       ]
     }
