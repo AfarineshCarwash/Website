@@ -48,7 +48,12 @@
         "vacuum": 0,
         "wax": 0
       },
-      "cars": []
+      "cars": [
+        {
+          "id": "car_mwpa7v7ekvka",
+          "name": "پژو 206"
+        }
+      ]
     },
     {
       "id": "ct_mwpa4gbemyqr",
