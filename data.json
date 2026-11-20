@@ -44,9 +44,9 @@
       "id": "ct_mwpa4cpot6y6",
       "name": "تیپ 2",
       "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
+        "wash": 500,
+        "vacuum": 200,
+        "wax": 150
       },
       "cars": [
         {
