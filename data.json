@@ -93,6 +93,16 @@
       "cars": []
     },
     {
+      "id": "ct_mwpczss625om",
+      "name": "نیم شاسی",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
+    },
+    {
       "id": "ct_shasi",
       "name": "شاسی‌بلند",
       "prices": {
@@ -106,16 +116,6 @@
           "name": "سانتافه"
         }
       ]
-    },
-    {
-      "id": "ct_mwpczss625om",
-      "name": "نیم شاسی",
-      "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
-      },
-      "cars": []
     },
     {
       "id": "ct_mwpd005tq1o1",
