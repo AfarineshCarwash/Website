@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>راه‌اندازی — کارواش آفرینش</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="content">
+  <div class="pagehead"><h2>ساخت secrets.json</h2></div>
+  <p class="muted">
+    همه‌چیز در مرورگر شما انجام می‌شود و هیچ داده‌ای جایی ارسال نمی‌شود.
+    پس از ساخت فایل، این صفحه را از مخزن حذف کنید (اختیاری).
+  </p>
+
+  <form class="card" id="setup">
+    <h3>مخزن</h3>
+    <div class="grid2">
+      <label class="field">نام کاربری گیت‌هاب<input name="owner" required dir="ltr" placeholder="my-username"></label>
+      <label class="field">نام مخزن<input name="repo" required dir="ltr" placeholder="carwash"></label>
+      <label class="field">شاخه<input name="branch" value="main" dir="ltr"></label>
+      <label class="field">مسیر فایل داده<input name="path" value="data.json" dir="ltr"></label>
+    </div>
+    <label class="field">توکن گیت‌هاب (Fine-grained، دسترسی Contents: Read and write)
+      <input name="token" required dir="ltr" autocomplete="off" placeholder="github_pat_...">
+    </label>
+
+    <h3>کاربران</h3>
+    <div class="grid2">
+      <label class="field">کاربر ۱ — نام کاربری<input name="u1_username" value="user1" dir="ltr"></label>
+      <label class="field">نقش
+        <select name="u1_role"><option value="manager">مدیر</option><option value="cashier">صندوق‌دار</option></select>
+      </label>
+      <label class="field">رمز<input name="u1_password" type="password" dir="ltr"></label>
+    </div>
+    <div class="grid2">
+      <label class="field">کاربر ۲ — نام کاربری<input name="u2_username" value="user2" dir="ltr"></label>
+      <label class="field">نقش
+        <select name="u2_role"><option value="cashier">صندوق‌دار</option><option value="manager">مدیر</option></select>
+      </label>
+      <label class="field">رمز<input name="u2_password" type="password" dir="ltr"></label>
+    </div>
+    <div class="grid2">
+      <label class="field">کاربر ۳ — نام کاربری<input name="u3_username" value="user3" dir="ltr"></label>
+      <label class="field">نقش
+        <select name="u3_role"><option value="cashier">صندوق‌دار</option><option value="manager">مدیر</option></select>
+      </label>
+      <label class="field">رمز<input name="u3_password" type="password" dir="ltr"></label>
+    </div>
+
+    <button class="btn primary block" type="submit">ساخت</button>
+  </form>
+
+  <div id="out"></div>
+</div>
+
+<script type="module">
+import { sha256Hex, encryptToken } from '../js/crypto.js';
+
+const out = document.getElementById('out');
+
+document.getElementById('setup').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.textContent = 'در حال ساخت…';
+
+  const token = String(fd.get('token')).trim();
+  const users = [];
+  const secretsUsers = {};
+
+  for (let i = 1; i <= 3; i++) {
+    const username = String(fd.get(`u${i}_username`) || '').trim();
+    const password = String(fd.get(`u${i}_password`) || '');
+    const role = String(fd.get(`u${i}_role`) || 'cashier');
+    if (!username || !password) continue;
+    users.push({ username, role, passHash: await sha256Hex(password) });
+    secretsUsers[username] = await encryptToken(token, password);
+  }
+
+  const secrets = {
+    repo: {
+      owner: String(fd.get('owner')).trim(),
+      repo: String(fd.get('repo')).trim(),
+      branch: String(fd.get('branch') || 'main').trim(),
+      path: String(fd.get('path') || 'data.json').trim(),
+    },
+    users: secretsUsers,
+  };
+
+  out.innerHTML = `
+    <div class="card">
+      <h3>۱) محتوای <code>secrets.json</code></h3>
+      <textarea id="ta-secrets" readonly></textarea>
+      <button class="btn" type="button" id="copy-secrets">کپی</button>
+    </div>
+    <div class="card">
+      <h3>۲) آرایه <code>users</code> در <code>data.json</code></h3>
+      <textarea id="ta-users" readonly></textarea>
+      <button class="btn" type="button" id="copy-users">کپی</button>
+    </div>`;
+
+  document.getElementById('ta-secrets').value = JSON.stringify(secrets, null, 2);
+  document.getElementById('ta-users').value = JSON.stringify(users, null, 2);
+
+  const copy = (id) => {
+    const ta = document.getElementById(id);
+    ta.select(); document.execCommand('copy');
+    alert('کپی شد.');
+  };
+  document.getElementById('copy-secrets').onclick = () => copy('ta-secrets');
+  document.getElementById('copy-users').onclick = () => copy('ta-users');
+
+  btn.disabled = false;
+  btn.textContent = 'ساخت';
+});
+</script>
+</body>
+</html>

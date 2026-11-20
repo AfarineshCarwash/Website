@@ -1,0 +1,30 @@
+{
+  "meta": { "version": 1, "currency": "IRT" },
+  "users": [
+    { "username": "user1", "role": "manager", "passHash": "" },
+    { "username": "user2", "role": "cashier", "passHash": "" },
+    { "username": "user3", "role": "cashier", "passHash": "" }
+  ],
+  "carTypes": [
+    {
+      "id": "ct_swari",
+      "name": "سواری",
+      "prices": { "wash": 150000, "vacuum": 100000, "wax": 80000 },
+      "cars": [
+        { "id": "car_pride", "name": "پراید" },
+        { "id": "car_206", "name": "پژو ۲۰۶" }
+      ]
+    },
+    {
+      "id": "ct_shasi",
+      "name": "شاسی‌بلند",
+      "prices": { "wash": 200000, "vacuum": 130000, "wax": 100000 },
+      "cars": [{ "id": "car_santafe", "name": "سانتافه" }]
+    }
+  ],
+  "workers": [
+    { "id": "w_1", "name": "علی" },
+    { "id": "w_2", "name": "رضا" }
+  ],
+  "invoices": []
+}
