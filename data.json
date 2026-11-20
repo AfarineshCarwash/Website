@@ -96,6 +96,16 @@
           "name": "سانتافه"
         }
       ]
+    },
+    {
+      "id": "ct_mwpcz6kwv3iu",
+      "name": "تیپ 3 پلاس",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
     }
   ],
   "workers": [
