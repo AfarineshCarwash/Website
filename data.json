@@ -56,25 +56,6 @@
       ]
     },
     {
-      "id": "ct_mwpa4gbemyqr",
-      "name": "تیپ 3",
-      "prices": {
-        "wash": 550,
-        "vacuum": 200,
-        "wax": 150
-      },
-      "cars": [
-        {
-          "id": "car_mwpa8o15jdug",
-          "name": "پژو پارس"
-        },
-        {
-          "id": "car_mwpa8rt5imi0",
-          "name": "دنا"
-        }
-      ]
-    },
-    {
       "id": "ct_mwpa4cpot6y6",
       "name": "تیپ 2",
       "prices": {
@@ -94,6 +75,25 @@
         {
           "id": "car_mwpa7znn546j",
           "name": "رانا"
+        }
+      ]
+    },
+    {
+      "id": "ct_mwpa4gbemyqr",
+      "name": "تیپ 3",
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 150
+      },
+      "cars": [
+        {
+          "id": "car_mwpa8o15jdug",
+          "name": "پژو پارس"
+        },
+        {
+          "id": "car_mwpa8rt5imi0",
+          "name": "دنا"
         }
       ]
     }
