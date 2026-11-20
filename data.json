@@ -307,7 +307,12 @@
         "vacuum": 200,
         "wax": 450
       },
-      "cars": []
+      "cars": [
+        {
+          "id": "car_mwpe5vg060cz",
+          "name": "لندکروز"
+        }
+      ]
     }
   ],
   "workers": [
