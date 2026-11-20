@@ -29,7 +29,12 @@
         "vacuum": 0,
         "wax": 0
       },
-      "cars": []
+      "cars": [
+        {
+          "id": "car_mwpa74iy78eq",
+          "name": "پراید"
+        }
+      ]
     },
     {
       "id": "ct_mwpa4cpot6y6",
