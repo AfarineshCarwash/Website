@@ -193,7 +193,12 @@
         "vacuum": 0,
         "wax": 0
       },
-      "cars": []
+      "cars": [
+        {
+          "id": "car_mwpe9lwrg8mc",
+          "name": "BMW"
+        }
+      ]
     },
     {
       "id": "ct_mwpczss625om",
