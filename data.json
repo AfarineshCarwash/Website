@@ -106,6 +106,16 @@
           "name": "سانتافه"
         }
       ]
+    },
+    {
+      "id": "ct_mwpczss625om",
+      "name": "نیم شاسی",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
     }
   ],
   "workers": [
