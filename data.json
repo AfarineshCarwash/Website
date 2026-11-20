@@ -86,9 +86,9 @@
       "id": "ct_shasi",
       "name": "شاسی‌بلند",
       "prices": {
-        "wash": 200000,
-        "vacuum": 130000,
-        "wax": 100000
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 200
       },
       "cars": [
         {
