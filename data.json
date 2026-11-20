@@ -186,6 +186,16 @@
       ]
     },
     {
+      "id": "ct_mwpe92u5fxt8",
+      "name": "تیپ 4",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
+    },
+    {
       "id": "ct_mwpczss625om",
       "name": "نیم شاسی",
       "prices": {
@@ -219,16 +229,6 @@
           "name": "رنو کپچر"
         }
       ]
-    },
-    {
-      "id": "ct_mwpe92u5fxt8",
-      "name": "تیپ 4",
-      "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
-      },
-      "cars": []
     },
     {
       "id": "ct_shasi",
