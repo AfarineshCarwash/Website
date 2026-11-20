@@ -96,9 +96,9 @@
       "id": "ct_mwpczss625om",
       "name": "نیم شاسی",
       "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
+        "wash": 700,
+        "vacuum": 200,
+        "wax": 450
       },
       "cars": []
     },
