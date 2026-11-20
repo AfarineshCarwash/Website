@@ -37,25 +37,6 @@
       ]
     },
     {
-      "id": "ct_swari",
-      "name": "سواری",
-      "prices": {
-        "wash": 150000,
-        "vacuum": 100000,
-        "wax": 80000
-      },
-      "cars": [
-        {
-          "id": "car_pride",
-          "name": "پراید"
-        },
-        {
-          "id": "car_206",
-          "name": "پژو ۲۰۶"
-        }
-      ]
-    },
-    {
       "id": "ct_mwpa41tm32s2",
       "name": "تیپ 1",
       "prices": {
