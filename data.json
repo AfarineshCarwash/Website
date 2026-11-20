@@ -121,9 +121,9 @@
       "id": "ct_mwpd005tq1o1",
       "name": "فول شاسی",
       "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
+        "wash": 900,
+        "vacuum": 200,
+        "wax": 450
       },
       "cars": []
     }
