@@ -86,9 +86,9 @@
       "id": "ct_mwpcz6kwv3iu",
       "name": "تیپ 3 پلاس",
       "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
       },
       "cars": []
     },
