@@ -25,9 +25,9 @@
       "id": "ct_mwpa41tm32s2",
       "name": "تیپ 1",
       "prices": {
-        "wash": 450,
-        "vacuum": 150,
-        "wax": 100
+        "wash": 430,
+        "vacuum": 120,
+        "wax": 450
       },
       "cars": [
         {
