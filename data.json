@@ -126,7 +126,12 @@
         "vacuum": 200,
         "wax": 450
       },
-      "cars": []
+      "cars": [
+        {
+          "id": "car_mwpdrlbdhsjh",
+          "name": "زانتیا"
+        }
+      ]
     },
     {
       "id": "ct_mwpczss625om",
