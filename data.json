@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 0,
+    "lastInvoiceNumber": 1,
     "currency": "IRT"
   },
   "users": [
@@ -1419,37 +1419,37 @@
     {
       "id": "inv_mwqeq64on2qq3j",
       "idempotencyKey": "15145bcb-9b6f-404a-9044-2154611a0b9e",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 1,
       "createdAt": "2026-11-21T12:51:41.063Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-21T12:55:47.138Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
-      "carTypeId": "ct_mwpe92u5fxt8",
-      "carTypeName": "تیپ 4",
-      "carId": "car_mwpec25y9afb",
-      "carName": "سدان لوکس",
-      "workerId": "w_mwpd35lheg7n",
-      "workerName": "سعید",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa7znn546j",
+      "carName": "رانا",
+      "workerId": "w_mwpd55w0ruho",
+      "workerName": "عادل",
       "services": {
         "wash": true,
-        "vacuum": false,
+        "vacuum": true,
         "wax": false
       },
       "prices": {
-        "wash": 600,
-        "vacuum": 200,
+        "wash": 450,
+        "vacuum": 150,
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 100,
       "discount": 0,
       "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-21T12:51:41.063Z",
+      "total": 700,
+      "updatedAt": "2026-11-21T12:55:47.138Z",
       "updatedBy": "11"
     },
     {
