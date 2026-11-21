@@ -759,6 +759,37 @@
       "discount": 0,
       "total": 800,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq264q90dh9",
+      "createdAt": "2026-11-21T07:00:10.737Z",
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdvm2ujjq8",
+      "carName": "سوناتا",
+      "workerId": "w_mwpd3v9wheg9",
+      "workerName": "فرید",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "چادر",
+          "amount": 400
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "total": 950,
+      "createdBy": "11"
     }
   ]
 }
