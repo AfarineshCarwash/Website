@@ -593,7 +593,7 @@ function viewCashier() {
 
       <div class="total">مبلغ کل: <strong id="invoice-total">${fmt(previewTotal(d))}</strong> تومان</div>
       ${buttons}
-    </form>`, 'invoices');
+    </form>`, homeRoute());
 }
 
 /* ================= router ================= */
