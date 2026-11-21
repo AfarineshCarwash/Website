@@ -603,6 +603,32 @@
       "discount": 0,
       "total": 700,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq2040dgmq0",
+      "createdAt": "2026-11-21T06:55:29.869Z",
+      "customer": "",
+      "carTypeId": "ct_shasi",
+      "carTypeName": "شاسی‌بلند",
+      "carId": "car_mwpdzd3c8pde",
+      "carName": "تیگو",
+      "workerId": "w_mwpdasvoj6qw",
+      "workerName": "اسد",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 100,
+      "discount": 0,
+      "total": 1100,
+      "createdBy": "11"
     }
   ]
 }
