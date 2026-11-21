@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 9,
+    "lastInvoiceNumber": 10,
     "currency": "IRT"
   },
   "users": [
@@ -1825,12 +1825,12 @@
     {
       "id": "inv_mwqgkyhu1sxgk7",
       "idempotencyKey": "cef918ef-0d11-4c11-8da4-3bcb04a8dde4",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 10,
       "createdAt": "2026-11-21T13:43:37.121Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-21T14:04:27.542Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -1842,7 +1842,7 @@
       "workerName": "اسد",
       "services": {
         "wash": true,
-        "vacuum": true,
+        "vacuum": false,
         "wax": false
       },
       "prices": {
@@ -1853,9 +1853,9 @@
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-21T13:43:37.121Z",
+      "subtotal": 450,
+      "total": 450,
+      "updatedAt": "2026-11-21T14:04:27.542Z",
       "updatedBy": "11"
     },
     {
