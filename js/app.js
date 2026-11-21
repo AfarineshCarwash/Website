@@ -1,8 +1,8 @@
 import { sha256Hex, decryptToken } from './crypto.js';
 import { GitHubStore } from './github.js';
+import { InvoiceService, CURRENT_PATH } from './invoices.js';
 import {
-  GateError, upsertInvoice, deleteInvoice, computeTotal,
-  SERVICE_NAMES, STATUS, ROLES,
+  GateError, computeTotal, SERVICE_NAMES, STATUS, ROLES,
 } from './gate.js';
 
 /* ================= helpers ================= */
@@ -21,6 +21,7 @@ const faTime = v => new Date(v).toLocaleTimeString('fa-IR', { hour: '2-digit', m
 
 const state = {
   data: null, user: null, store: null,
+  invoiceService: null,                          // ← NEW
   route: { name: 'login' },
   draft: null, report: null, filter: 'all',
   busy: false, error: '', toast: '',
@@ -72,7 +73,6 @@ async function doLogin(username, password) {
   const user = (data.users || []).find(
     u => String(u.username).toLowerCase() === String(username).trim().toLowerCase());
   if (!user) throw new Error('نام کاربری یا رمز ورود نادرست است.');
-
   const hash = (await sha256Hex(password)).toLowerCase();
   if (hash !== String(user.passHash || '').toLowerCase())
     throw new Error('نام کاربری یا رمز ورود نادرست است.');
@@ -88,9 +88,47 @@ async function doLogin(username, password) {
   state.user = user;
   state.data = data;
   state.store = new GitHubStore({ ...secrets.repo, token });
+  state.invoiceService = new InvoiceService(state.store, () => state.data);
+
+  /* Load current invoices, then auto-rotate, then (for manager) load archives */
+  await state.invoiceService.loadCurrent();
+  const { rotated } = await state.invoiceService.rotateIfNeeded();
+  if (user.role === ROLES.MANAGER) await state.invoiceService.loadAll();
+
   state.draft = newDraft();
   state.route = { name: user.role === ROLES.MANAGER ? 'manager' : 'cashierhome' };
   state.error = '';
+  if (rotated > 0) state.toast = `${fmt(rotated)} ماه آرشیو شد.`;
+}
+
+async function runInvoiceOp(fn, successMessage) {
+  if (state.busy) return null;
+  state.busy = true;
+  state.error = '';
+  render();
+  try {
+    const result = await fn();
+    // Keep data.json's counter in sync with the invoice we just wrote
+    const inv = result?.invoice;
+    if (inv && Number.isInteger(inv.number)) {
+      const curMeta = Number(state.data.meta?.lastInvoiceNumber || 0);
+      if (inv.number > curMeta) {
+        state.data.meta = state.data.meta || {};
+        state.data.meta.lastInvoiceNumber = inv.number;
+      }
+    }
+    state.toast = typeof successMessage === 'function'
+      ? successMessage(result) : successMessage;
+    return result;
+  } catch (e) {
+    state.error = e instanceof GateError
+      ? e.message
+      : ('ذخیره‌سازی ناموفق بود: ' + (e?.message || 'خطای نامشخص'));
+    return null;
+  } finally {
+    state.busy = false;
+    render();
+  }
 }
 
 /* ================= the only write path ================= */
@@ -140,10 +178,11 @@ function refreshTotal() {
 
 /* ================= reports ================= */
 function dailyReport(day) {
+  const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
   const rows = new Map((state.data.workers || []).map(w => [w.id, { id: w.id, name: w.name, count: 0, total: 0, tips: 0 }]));
   let count = 0, total = 0, tips = 0;
-  for (const inv of state.data.invoices || []) {
-    if (inv.status !== STATUS.SUBMITTED) continue;                       // drafts & void excluded
+  for (const inv of all) {
+    if (inv.status !== STATUS.SUBMITTED) continue;
     if (isoDate(inv.submittedAt || inv.createdAt) !== day) continue;
     const t = Number(inv.total || 0), p = Number(inv.tip || 0);
     count++; total += t; tips += p;
@@ -155,9 +194,10 @@ function dailyReport(day) {
 }
 
 function computeReport({ start, end, workerIds }) {
+  const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
   const set = new Set(workerIds);
-  const invoices = (state.data.invoices || []).filter(inv => {
-    if (inv.status !== STATUS.SUBMITTED) return false;                   // drafts & void excluded
+  const invoices = all.filter(inv => {
+    if (inv.status !== STATUS.SUBMITTED) return false;
     const d = isoDate(inv.submittedAt || inv.createdAt);
     if (start && d < start) return false;
     if (end && d > end) return false;
@@ -431,24 +471,22 @@ function invoiceRow(inv, manager) {
 
 function viewInvoices() {
   const manager = isManager();
-  // صندوق‌دار فقط پیش‌فاکتورها را می‌بیند؛ فاکتورهای نهایی و حذف‌شده از دید او پنهان‌اند.
   const filter = manager ? (state.filter || 'all') : STATUS.DRAFT;
+  const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
+  const visible = manager ? all : all.filter(i => i.status === STATUS.DRAFT);
 
-  const all = (state.data.invoices || [])
-    .filter(inv => manager || inv.status === STATUS.DRAFT)   // ← the gate: cashiers never see submitted/void
-    .slice()
-    .sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+  const sorted = [...visible].sort((a, b) =>
+    String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
 
   const filters = manager
     ? [['all', 'همه'], ['draft', 'پیش‌فاکتور'], ['submitted', 'نهایی'], ['void', 'حذف‌شده']]
     : [['draft', 'پیش‌فاکتور']];
 
-  const list = all.filter(inv => filter === 'all' ? inv.status !== STATUS.VOID : inv.status === filter);
+  const list = sorted.filter(inv => filter === 'all' ? inv.status !== STATUS.VOID : inv.status === filter);
   const items = list.length
     ? list.map(inv => invoiceRow(inv, manager)).join('')
     : `<li class="empty">${manager ? 'موردی یافت نشد.' : 'پیش‌فاکتوری وجود ندارد.'}</li>`;
   const busy = state.busy ? 'disabled' : '';
-
   const title = manager ? 'فاکتورها و پیش‌فاکتورها' : 'پیش‌فاکتورها';
 
   return layout(title, `
@@ -463,7 +501,9 @@ function viewInvoices() {
 
 /* ================= views: cashier ================= */
 function viewCashierHome() {
-  const drafts = (state.data.invoices || []).filter(i => i.status === STATUS.DRAFT).length;
+  const drafts = state.invoiceService
+    ? state.invoiceService.current.filter(i => i.status === STATUS.DRAFT).length
+    : 0;
   const today = dailyReport(todayISO());
   return layout('منوی صندوق‌دار', `
     <div class="grid">
@@ -657,6 +697,7 @@ document.addEventListener('click', async (e) => {
   switch (action) {
     case 'logout':
       state.user = state.store = state.data = state.draft = state.report = null;
+      state.invoiceService = null;      // ← added
       state.error = state.toast = ''; state.filter = 'all'; state.busy = false;
       state.route = { name: 'login' };
       render();
@@ -670,8 +711,9 @@ document.addEventListener('click', async (e) => {
       break;
 
     case 'open-invoice': {
-      const inv = (state.data.invoices || []).find(i => i.id === id);
-      if (!inv) { state.error = 'فاکتور یافت نشد.'; render(); break; }
+      const found = state.invoiceService?.findInvoice(id);
+      if (!found) { state.error = 'فاکتور یافت نشد.'; render(); break; }
+      const inv = found.inv;
       if (inv.status === STATUS.VOID) { state.error = 'این فاکتور حذف شده و قابل ویرایش نیست.'; render(); break; }
       if (inv.status === STATUS.SUBMITTED && !isManager()) {
         state.error = 'فاکتور نهایی‌شده فقط برای مدیر قابل مشاهده و ویرایش است.';
@@ -683,13 +725,12 @@ document.addEventListener('click', async (e) => {
     }
 
     case 'delete-invoice': {
-      const inv = (state.data.invoices || []).find(i => i.id === id);
-      if (!inv) break;
-      const label = inv.number ? `فاکتور #${fmt(inv.number)}` : 'این پیش فاکتور';
+      const found = state.invoiceService?.findInvoice(id);
+      if (!found) break;
+      const label = found.inv.number ? `فاکتور #${fmt(found.inv.number)}` : 'این پیش فاکتور';
       if (!confirm(`آیا از حذف ${label} مطمئن هستید؟\nپس از حذف، از گزارش‌ها و آمار کارکرد کسر می‌شود.`)) break;
-      const ok = await runOp(
-        d => deleteInvoice(d, { id }, actor()),
-        `حذف فاکتور ${inv.number ? '#' + inv.number : ''}`.trim(),
+      const ok = await runInvoiceOp(
+        () => state.invoiceService.deleteInvoice({ id }, actor()),
         'فاکتور با موفقیت حذف شد.'
       );
       if (ok) state.filter = 'all';
@@ -707,6 +748,11 @@ document.addEventListener('click', async (e) => {
       try {
         const { data } = await state.store.read();
         if (data) state.data = data;
+        await state.invoiceService.loadCurrent();
+        if (isManager()) {
+          await state.invoiceService.listArchives();
+          await state.invoiceService.loadArchives();
+        }
         state.toast = 'داده‌ها به‌روزرسانی شد.';
       } catch (err) {
         state.error = 'به‌روزرسانی ناموفق بود: ' + err.message;
@@ -915,7 +961,7 @@ document.addEventListener('submit', async (e) => {
       const editingFinal = d.status === STATUS.SUBMITTED;
       const mode = (e.submitter && e.submitter.dataset.submit)
         || (editingFinal ? 'edit' : 'draft');
-
+    
       const payload = {
         id: d.id || null,
         idempotencyKey: d.idempotencyKey,
@@ -928,35 +974,31 @@ document.addEventListener('submit', async (e) => {
         tip: d.tip,
         discount: d.discount,
       };
-
+    
       if (mode === 'edit') {
-        const before = (state.data.invoices || []).find(i => i.id === d.id);
+        const before = state.invoiceService.findInvoice(d.id)?.inv;
         const beforeTotal = before ? Number(before.total || 0) : 0;
         const afterTotal = previewTotal(d);
         if (!confirm(
           `تأیید ویرایش فاکتور${d.number ? ' #' + fmt(d.number) : ''}\n` +
-          `مبلغ قبلی: ${fmt(beforeTotal)} تومان\n` +
-          `مبلغ جدید: ${fmt(afterTotal)} تومان\n\n` +
+          `مبلغ قبلی: ${fmt(beforeTotal)} تومان\nمبلغ جدید: ${fmt(afterTotal)} تومان\n\n` +
           `با تأیید، تغییرات ذخیره و گزارش‌ها و جمع‌ها به‌روزرسانی می‌شوند. ادامه می‌دهید؟`
         )) return;
-
-        const res = await runOp(
-          data => upsertInvoice(data, payload, actor(), { submit: false }),
-          `ویرایش فاکتور${d.number ? ' #' + d.number : ''}`,
+    
+        const res = await runInvoiceOp(
+          () => state.invoiceService.saveInvoice(payload, actor(), { submit: false }),
           'تغییرات فاکتور با موفقیت ذخیره شد.'
         );
         if (res) { state.draft = newDraft(); go('invoices'); }
         return;
       }
-
+    
       const submit = mode === 'final';
-
       if (submit && !confirm('پس از ثبت نهایی، فاکتور قابل ویرایش توسط صندوق‌دار نخواهد بود. ادامه می‌دهید؟'))
         return;
-
-      const res = await runOp(
-        data => upsertInvoice(data, payload, actor(), { submit }),
-        submit ? 'ثبت نهایی فاکتور' : 'ذخیره پیش فاکتور',
+    
+      const res = await runInvoiceOp(
+        () => state.invoiceService.saveInvoice(payload, actor(), { submit }),
         r => {
           const inv = r && r.invoice;
           if (!inv) return 'ذخیره شد.';
@@ -964,10 +1006,10 @@ document.addEventListener('submit', async (e) => {
           return 'پیش فاکتور ذخیره شد.';
         }
       );
-
+    
       if (res) {
         state.draft = newDraft();
-        go(isManager() ? 'invoices' : 'cashierhome');   // ← cashier goes home; manager stays on the list
+        go(isManager() ? 'invoices' : 'cashierhome');
       }
       return;
     }
