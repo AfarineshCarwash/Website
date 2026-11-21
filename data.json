@@ -1477,7 +1477,7 @@
       "workerName": "پیمان",
       "services": {
         "wash": false,
-        "vacuum": true,
+        "vacuum": false,
         "wax": true
       },
       "prices": {
@@ -1488,9 +1488,9 @@
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 570,
-      "total": 570,
-      "updatedAt": "2026-11-21T11:30:30.891Z",
+      "subtotal": 450,
+      "total": 450,
+      "updatedAt": "2026-11-21T11:31:15.290Z",
       "updatedBy": "user2"
     }
   ]
