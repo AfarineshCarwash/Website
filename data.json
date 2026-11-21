@@ -6,12 +6,12 @@
   },
   "users": [
     {
-      "username": "999",
+      "username": "99",
       "role": "manager",
       "passHash": "83cf8b609de60036a8277bd0e96135751bbc07eb234256d4b65b893360651bf2"
     },
     {
-      "username": "11",
+      "username": "1",
       "role": "cashier",
       "passHash": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
     },
