@@ -1823,15 +1823,15 @@
       "extras": [
         {
           "desc": "تست",
-          "amount": 100
+          "amount": 10
         }
       ],
       "tip": 5,
       "discount": 1,
-      "subtotal": 650,
-      "total": 654,
-      "updatedAt": "2026-11-21T18:07:07.003Z",
-      "updatedBy": "11"
+      "subtotal": 560,
+      "total": 564,
+      "updatedAt": "2026-11-21T18:08:45.685Z",
+      "updatedBy": "999"
     }
   ]
 }
