@@ -1117,6 +1117,32 @@
       "discount": 0,
       "total": 900,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq64x6olgg6",
+      "createdAt": "2026-11-21T08:51:12.768Z",
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdw3akm4n5",
+      "carName": "النترا",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 50,
+      "discount": 0,
+      "total": 800,
+      "createdBy": "11"
     }
   ]
 }
