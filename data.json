@@ -1,7 +1,8 @@
 {
   "meta": {
     "version": 1,
-    "currency": "IRT"
+    "currency": "IRT",
+    "lastInvoiceNumber": 0
   },
   "users": [
     {
