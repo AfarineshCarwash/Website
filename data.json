@@ -1476,7 +1476,7 @@
       "workerId": "w_1",
       "workerName": "پیمان",
       "services": {
-        "wash": true,
+        "wash": false,
         "vacuum": true,
         "wax": true
       },
@@ -1488,9 +1488,9 @@
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 1000,
-      "total": 1000,
-      "updatedAt": "2026-11-21T11:26:30.124Z",
+      "subtotal": 570,
+      "total": 570,
+      "updatedAt": "2026-11-21T11:30:30.891Z",
       "updatedBy": "user2"
     }
   ]
