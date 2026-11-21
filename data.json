@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 2,
+    "lastInvoiceNumber": 3,
     "currency": "IRT"
   },
   "users": [
@@ -1522,6 +1522,47 @@
       "subtotal": 600,
       "total": 600,
       "updatedAt": "2026-11-21T12:54:29.618Z",
+      "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwqf208cnsuw2y",
+      "idempotencyKey": "d7e418bf-3c3f-4575-b248-7a9280384e5b",
+      "status": "submitted",
+      "number": 3,
+      "createdAt": "2026-11-21T13:00:53.288Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-21T13:00:53.288Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdnmpz783o",
+      "carName": "پژو 207",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "قیر زدایی",
+          "amount": 900
+        }
+      ],
+      "tip": 100,
+      "discount": 0,
+      "subtotal": 1500,
+      "total": 1600,
+      "updatedAt": "2026-11-21T13:00:53.288Z",
       "updatedBy": "11"
     }
   ]
