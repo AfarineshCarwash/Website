@@ -420,29 +420,6 @@
           "name": "موتور سیکلت"
         }
       ]
-    },
-    {
-      "id": "ct_mwq9vlimlfcw",
-      "name": "گروه...",
-      "prices": {
-        "wash": 100,
-        "vacuum": 200,
-        "wax": 300
-      },
-      "cars": [
-        {
-          "id": "car_mwq9vrp131ia",
-          "name": "خودرو۱"
-        },
-        {
-          "id": "car_mwq9vzy0hwc6",
-          "name": "خودرو۳"
-        },
-        {
-          "id": "car_mwq9vvshjend",
-          "name": "خودرو۲"
-        }
-      ]
     }
   ],
   "workers": [
