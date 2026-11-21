@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 1,
+    "lastInvoiceNumber": 2,
     "currency": "IRT"
   },
   "users": [
@@ -1383,37 +1383,37 @@
     {
       "id": "inv_mwqepwdzu7cmyc",
       "idempotencyKey": "d417034a-5c03-4152-9eea-3499dae30ff1",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 2,
       "createdAt": "2026-11-21T12:51:28.438Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-21T12:56:26.381Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
-      "carTypeId": "ct_mwpe92u5fxt8",
-      "carTypeName": "تیپ 4",
-      "carId": "car_mwpec25y9afb",
-      "carName": "سدان لوکس",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpds2dsy163",
+      "carName": "آریزو",
       "workerId": "w_mwpd3jcgubkb",
       "workerName": "نائب",
       "services": {
         "wash": true,
-        "vacuum": false,
+        "vacuum": true,
         "wax": false
       },
       "prices": {
-        "wash": 600,
+        "wash": 550,
         "vacuum": 200,
         "wax": 450
       },
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-21T12:51:28.438Z",
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-21T12:56:26.381Z",
       "updatedBy": "11"
     },
     {
