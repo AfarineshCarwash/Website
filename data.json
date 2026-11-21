@@ -380,6 +380,16 @@
           "name": "BMW شاسی"
         }
       ]
+    },
+    {
+      "id": "ct_mwq7h1v6abrv",
+      "name": "موتور سیکلت",
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "cars": []
     }
   ],
   "workers": [
