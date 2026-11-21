@@ -1230,6 +1230,37 @@
       "discount": 0,
       "total": 350,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq6uiiaotib",
+      "createdAt": "2026-11-21T09:11:06.803Z",
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdohqzpwoz",
+      "carName": "ال 90",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "موتور شویی",
+          "amount": 1050
+        }
+      ],
+      "tip": 200,
+      "discount": 0,
+      "total": 1700,
+      "createdBy": "11"
     }
   ]
 }
