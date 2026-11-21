@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 16,
+    "lastInvoiceNumber": 17,
     "currency": "IRT"
   },
   "users": [
@@ -2154,12 +2154,12 @@
     {
       "id": "inv_mwqia6u0n4uboj",
       "idempotencyKey": "0566437e-296f-46e1-8e28-11e796ed8056",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 17,
       "createdAt": "2026-11-21T14:31:13.944Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-21T14:41:40.337Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -2180,11 +2180,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 100,
       "discount": 0,
       "subtotal": 1000,
-      "total": 1000,
-      "updatedAt": "2026-11-21T14:31:13.944Z",
+      "total": 1100,
+      "updatedAt": "2026-11-21T14:41:40.337Z",
       "updatedBy": "11"
     }
   ]
