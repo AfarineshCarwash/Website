@@ -429,7 +429,12 @@
         "vacuum": 0,
         "wax": 0
       },
-      "cars": []
+      "cars": [
+        {
+          "id": "car_mwq9vrp131ia",
+          "name": "خودرو۱"
+        }
+      ]
     }
   ],
   "workers": [
