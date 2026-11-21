@@ -1,4 +1,5 @@
-{"invoices": [
+{
+  "invoices": [
     {
       "id": "inv_mwpdiokeyx5a",
       "createdAt": "2026-11-20T19:30:05.918Z",
@@ -1790,5 +1791,47 @@
       "total": 300,
       "updatedAt": "2026-11-21T15:39:18.089Z",
       "updatedBy": "999"
+    },
+    {
+      "id": "inv_mwqpzth7k7qerx",
+      "idempotencyKey": "4eb74c4c-9133-4d46-a5d2-5cdd85c24047",
+      "status": "submitted",
+      "number": 24,
+      "createdAt": "2026-11-21T18:07:07.003Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-21T18:07:07.003Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "تست",
+      "carTypeId": "ct_mwpa41tm32s2",
+      "carTypeName": "تیپ 1",
+      "carId": "car_mwpa74iy78eq",
+      "carName": "پراید",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 430,
+        "vacuum": 120,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "تست",
+          "amount": 100
+        }
+      ],
+      "tip": 5,
+      "discount": 1,
+      "subtotal": 650,
+      "total": 654,
+      "updatedAt": "2026-11-21T18:07:07.003Z",
+      "updatedBy": "11"
     }
-  ]}
+  ]
+}
