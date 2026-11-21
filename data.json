@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 20,
+    "lastInvoiceNumber": 21,
     "currency": "IRT"
   },
   "users": [
@@ -2191,6 +2191,42 @@
       "total": 1100,
       "updatedAt": "2026-11-21T14:41:40.337Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwqkl052npszed",
+      "idempotencyKey": "3a0b5b8e-2932-46d1-8286-e71894d0b7ab",
+      "status": "submitted",
+      "number": 21,
+      "createdAt": "2026-11-21T15:35:37.717Z",
+      "createdBy": "999",
+      "submittedAt": "2026-11-21T15:35:37.717Z",
+      "submittedBy": "999",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "محمد مستقیمی",
+      "carTypeId": "ct_mwpa4gbemyqr",
+      "carTypeName": "تیپ 3",
+      "carId": "car_mwpa8rt5imi0",
+      "carName": "دنا",
+      "workerId": "w_mwpd3jcgubkb",
+      "workerName": "نائب",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 500,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 700,
+      "total": 700,
+      "updatedAt": "2026-11-21T15:35:37.717Z",
+      "updatedBy": "999"
     }
   ]
 }
