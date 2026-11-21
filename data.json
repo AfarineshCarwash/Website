@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 19,
+    "lastInvoiceNumber": 20,
     "currency": "IRT"
   },
   "users": [
@@ -1640,24 +1640,24 @@
     {
       "id": "inv_mwqf6wpza5vx55",
       "idempotencyKey": "78d35954-36bd-4a1b-bd33-8e9f9cbe3cc4",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 20,
       "createdAt": "2026-11-21T13:04:42.022Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-21T14:58:26.934Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
       "carTypeId": "ct_shasi",
       "carTypeName": "شاسی‌بلند",
-      "carId": "",
-      "carName": "",
+      "carId": "car_mwpdzd3c8pde",
+      "carName": "تیگو",
       "workerId": "w_mwpd2mmq44k6",
       "workerName": "بهرام",
       "services": {
         "wash": true,
-        "vacuum": false,
+        "vacuum": true,
         "wax": false
       },
       "prices": {
@@ -1665,12 +1665,17 @@
         "vacuum": 200,
         "wax": 450
       },
-      "extras": [],
-      "tip": 0,
+      "extras": [
+        {
+          "desc": "بخار",
+          "amount": 400
+        }
+      ],
+      "tip": 100,
       "discount": 0,
-      "subtotal": 800,
-      "total": 800,
-      "updatedAt": "2026-11-21T13:04:42.022Z",
+      "subtotal": 1400,
+      "total": 1500,
+      "updatedAt": "2026-11-21T14:58:26.934Z",
       "updatedBy": "11"
     },
     {
