@@ -1464,10 +1464,10 @@
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
-      "carTypeId": "ct_shasi",
-      "carTypeName": "شاسی‌بلند",
-      "carId": "car_santafe",
-      "carName": "سانتافه",
+      "carTypeId": "ct_mwpa4gbemyqr",
+      "carTypeName": "تیپ 3",
+      "carId": "car_mwpa8rt5imi0",
+      "carName": "دنا",
       "workerId": "w_mwpc2fuqi2sj",
       "workerName": "جمشید",
       "services": {
@@ -1476,16 +1476,16 @@
         "wax": false
       },
       "prices": {
-        "wash": 800,
+        "wash": 500,
         "vacuum": 200,
         "wax": 450
       },
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 1000,
-      "total": 1000,
-      "updatedAt": "2026-11-21T12:52:10.900Z",
+      "subtotal": 700,
+      "total": 700,
+      "updatedAt": "2026-11-21T12:55:03.390Z",
       "updatedBy": "11"
     },
     {
