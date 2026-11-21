@@ -707,6 +707,32 @@
       "discount": 0,
       "total": 600,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq24du4gh3h",
+      "createdAt": "2026-11-21T06:58:49.228Z",
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdrlbdhsjh",
+      "carName": "زانتیا",
+      "workerId": "w_mwpd55w0ruho",
+      "workerName": "عادل",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "total": 550,
+      "createdBy": "11"
     }
   ]
 }
