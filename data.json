@@ -5,22 +5,22 @@
     "currency": "IRT"
   },
   "users": [
-  {
-    "username": "999",
-    "role": "manager",
-    "passHash": "83cf8b609de60036a8277bd0e96135751bbc07eb234256d4b65b893360651bf2"
-  },
-  {
-    "username": "11",
-    "role": "cashier",
-    "passHash": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
-  },
-  {
-    "username": "user",
-    "role": "cashier",
-    "passHash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1"
-  }
-],
+    {
+      "username": "999",
+      "role": "manager",
+      "passHash": "83cf8b609de60036a8277bd0e96135751bbc07eb234256d4b65b893360651bf2"
+    },
+    {
+      "username": "11",
+      "role": "cashier",
+      "passHash": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
+    },
+    {
+      "username": "user",
+      "role": "cashier",
+      "passHash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1"
+    }
+  ],
   "carTypes": [
     {
       "id": "ct_mwpa41tm32s2",
@@ -1379,6 +1379,42 @@
       "discount": 0,
       "total": 1100,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwqe9sal9u1c29",
+      "idempotencyKey": "fa2a5040-0bb3-48e5-bc3f-0cd6f262f892",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-21T12:38:56.634Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4gbemyqr",
+      "carTypeName": "تیپ 3",
+      "carId": "car_mwpa8rt5imi0",
+      "carName": "دنا",
+      "workerId": "w_mwpc2fuqi2sj",
+      "workerName": "جمشید",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 500,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 700,
+      "total": 700,
+      "updatedAt": "2026-11-21T12:38:56.634Z",
+      "updatedBy": "11"
     }
   ]
 }
