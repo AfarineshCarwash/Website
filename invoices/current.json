@@ -1791,6 +1791,42 @@
       "total": 300,
       "updatedAt": "2026-11-21T15:39:18.089Z",
       "updatedBy": "999"
+    },
+    {
+      "id": "inv_mwqqahzeueog3d",
+      "idempotencyKey": "51b619e4-82da-4ae8-85c3-b3a5d46cca06",
+      "status": "submitted",
+      "number": 25,
+      "createdAt": "2026-11-21T18:15:25.322Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-21T18:15:25.322Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "تست",
+      "carTypeId": "ct_mwqq3vq2burl",
+      "carTypeName": "گروه تست",
+      "carId": "car_mwqq44h7vroi",
+      "carName": "خودرو تست",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 0,
+        "vacuum": 0,
+        "wax": 0
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 0,
+      "total": 0,
+      "updatedAt": "2026-11-21T18:15:25.322Z",
+      "updatedBy": "11"
     }
   ]
 }
