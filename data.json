@@ -1065,6 +1065,32 @@
       "discount": 0,
       "total": 2000,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq62tr34afp",
+      "createdAt": "2026-11-21T08:49:35.007Z",
+      "customer": "",
+      "carTypeId": "ct_mwpe92u5fxt8",
+      "carTypeName": "تیپ 4",
+      "carId": "car_mwpe9vv1tl6m",
+      "carName": "BENZ",
+      "workerId": "w_mwpd55w0ruho",
+      "workerName": "عادل",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 600,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 100,
+      "discount": 0,
+      "total": 900,
+      "createdBy": "11"
     }
   ]
 }
