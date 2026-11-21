@@ -196,15 +196,21 @@ export function deleteInvoice(data, payload = {}, actor) {
 const isInt = v => Number.isInteger(v);
 const isStr = v => typeof v === 'string';
 
+/* Replace validateData() and add validateInvoices() */
 export function validateData(data) {
   const bad = [];
   const p = m => bad.push(m);
   if (!data || typeof data !== 'object' || Array.isArray(data)) return ['ریشه‌ی data.json باید یک شیء باشد.'];
 
-  for (const k of ['users', 'carTypes', 'workers', 'invoices'])
+  for (const k of ['users', 'carTypes', 'workers'])
     if (!Array.isArray(data[k])) p(`«${k}» باید آرایه باشد.`);
+  if ('invoices' in data && !Array.isArray(data.invoices))
+    p('«invoices» باید آرایه باشد (تومب‌استون خالی).');
+  if (Array.isArray(data.invoices) && data.invoices.length > 0)
+    p('«invoices» در data.json باید خالی باشد؛ فاکتورها باید در پوشه‌ی invoices/ باشند.');
   if (bad.length) return bad;
 
+  /* users / carTypes / workers — same checks as before */
   const unames = new Set();
   data.users.forEach((u, i) => {
     if (!u || !isStr(u.username) || !u.username.trim()) p(`users[${i}].username نامعتبر است.`);
@@ -213,7 +219,6 @@ export function validateData(data) {
     if (!u || !isStr(u.passHash) || !/^[0-9a-f]{64}$/i.test(u.passHash)) p(`users[${i}].passHash باید SHA-256 هگز باشد.`);
     if (!u || !Object.values(ROLES).includes(u.role)) p(`users[${i}].role نامعتبر است.`);
   });
-
   const tids = new Set();
   data.carTypes.forEach((t, i) => {
     if (!t || !isStr(t.id) || !t.id) p(`carTypes[${i}].id نامعتبر است.`);
@@ -230,51 +235,50 @@ export function validateData(data) {
       if (!c || !isStr(c.name) || !c.name.trim()) p(`carTypes[${i}].cars[${j}].name نامعتبر است.`);
     });
   });
-
   const wids = new Set();
   data.workers.forEach((w, i) => {
     if (!w || !isStr(w.id) || !w.id) p(`workers[${i}].id نامعتبر است.`);
     else if (wids.has(w.id)) p(`شناسه کارگر تکراری: ${w.id}`); else wids.add(w.id);
     if (!w || !isStr(w.name) || !w.name.trim()) p(`workers[${i}].name نامعتبر است.`);
   });
+  return bad;
+}
 
+export function validateInvoices(invoices) {
+  const bad = [];
+  if (!Array.isArray(invoices)) return ['invoices باید آرایه باشد.'];
+  const p = m => bad.push(m);
   const iids = new Set(), nums = new Set();
-  let maxNumber = 0;
-  data.invoices.forEach((inv, i) => {
-    const at = `invoices[${i}]`;
-    if (!inv || !isStr(inv.id) || !inv.id) { p(`${at}.id نامعتبر است.`); return; }
-    if (iids.has(inv.id)) p(`شناسه فاکتور تکراری: ${inv.id}`); else iids.add(inv.id);
-    if (!Object.values(STATUS).includes(inv.status)) { p(`${at}.status نامعتبر است.`); return; }
 
+  invoices.forEach((inv, i) => {
+    const at = `[${i}]`;
+    if (!inv || !isStr(inv.id) || !inv.id) { p(`${at}.id نامعتبر است.`); return; }
+    if (iids.has(inv.id)) p(`${at}.id تکراری`); else iids.add(inv.id);
+    if (!Object.values(STATUS).includes(inv.status)) { p(`${at}.status نامعتبر`); return; }
     for (const k of ['tip', 'discount', 'total', 'subtotal'])
       if (!isInt(inv[k]) || inv[k] < 0) p(`${at}.${k} باید عدد صحیح نامنفی باشد.`);
     if (!Array.isArray(inv.extras)) p(`${at}.extras باید آرایه باشد.`);
     else inv.extras.forEach((x, j) => {
-      if (!x || !isStr(x.desc) || !x.desc.trim()) p(`${at}.extras[${j}].desc نامعتبر است.`);
-      if (!x || !isInt(x.amount) || x.amount < 0) p(`${at}.extras[${j}].amount نامعتبر است.`);
+      if (!x || !isStr(x.desc) || !x.desc.trim()) p(`${at}.extras[${j}].desc نامعتبر`);
+      if (!x || !isInt(x.amount) || x.amount < 0) p(`${at}.extras[${j}].amount نامعتبر`);
     });
     const pr = inv.prices || {};
     for (const k of ['wash', 'vacuum', 'wax'])
       if (!isInt(pr[k]) || pr[k] < 0) p(`${at}.prices.${k} باید عدد صحیح نامنفی باشد.`);
 
-    /* money must match the line items — catches any hand-edit or bypass */
     if (isInt(inv.subtotal) && inv.subtotal !== computeSubtotal(inv))
       p(`${at}.subtotal با اقلام هم‌خوانی ندارد.`);
     if (isInt(inv.total) && inv.total !== computeTotal(inv))
-      p(`${at}.total با جمع اقلام هم‌خوانی ندارد (${inv.total} ≠ ${computeTotal(inv)}).`);
+      p(`${at}.total با اقلام هم‌خوانی ندارد (${inv.total} ≠ ${computeTotal(inv)}).`);
 
     if (inv.status === STATUS.SUBMITTED) {
       if (!isInt(inv.number) || inv.number < 1) p(`${at}.number برای فاکتور نهایی الزامی است.`);
       else if (nums.has(inv.number)) p(`شماره فاکتور تکراری: ${inv.number}`);
-      else { nums.add(inv.number); maxNumber = Math.max(maxNumber, inv.number); }
+      else nums.add(inv.number);
       if (!inv.submittedAt) p(`${at}.submittedAt برای فاکتور نهایی الزامی است.`);
     }
     if (inv.status === STATUS.DRAFT && inv.number != null) p(`${at}.number برای پیش‌فاکتور باید خالی باشد.`);
     if (inv.status === STATUS.VOID && !inv.deletedAt) p(`${at}.deletedAt برای فاکتور حذف‌شده الزامی است.`);
   });
-
-  if (data.meta && isInt(data.meta.lastInvoiceNumber) && data.meta.lastInvoiceNumber < maxNumber)
-    p('meta.lastInvoiceNumber از بزرگ‌ترین شماره فاکتور کمتر است.');
-
   return bad;
 }
