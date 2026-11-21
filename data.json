@@ -5,22 +5,22 @@
     "currency": "IRT"
   },
   "users": [
-    {
-      "username": "999",
-      "role": "manager",
-      "passHash": "83cf8b609de60036a8277bd0e96135751bbc07eb234256d4b65b893360651bf2"
-    },
-    {
-      "username": "11",
-      "role": "cashier",
-      "passHash": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
-    },
-    {
-      "username": "user",
-      "role": "cashier",
-      "passHash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1"
-    }
-  ],
+  {
+    "username": "999",
+    "role": "manager",
+    "passHash": "83cf8b609de60036a8277bd0e96135751bbc07eb234256d4b65b893360651bf2"
+  },
+  {
+    "username": "11",
+    "role": "cashier",
+    "passHash": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
+  },
+  {
+    "username": "user",
+    "role": "cashier",
+    "passHash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1"
+  }
+],
   "carTypes": [
     {
       "id": "ct_mwpa41tm32s2",
@@ -1379,47 +1379,6 @@
       "discount": 0,
       "total": 1100,
       "createdBy": "11"
-    },
-    {
-      "id": "inv_mwqeb5mvjsdo66",
-      "idempotencyKey": "4bf42f9d-288b-4589-8e6c-8a9cdb9be56e",
-      "status": "draft",
-      "number": null,
-      "createdAt": "2026-11-21T12:40:00.582Z",
-      "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
-      "deletedAt": null,
-      "deletedBy": null,
-      "customer": "",
-      "carTypeId": "ct_mwpa4cpot6y6",
-      "carTypeName": "تیپ 2",
-      "carId": "car_mwpdnmpz783o",
-      "carName": "پژو 207",
-      "workerId": "w_2",
-      "workerName": "علی",
-      "services": {
-        "wash": true,
-        "vacuum": true,
-        "wax": false
-      },
-      "prices": {
-        "wash": 450,
-        "vacuum": 150,
-        "wax": 450
-      },
-      "extras": [
-        {
-          "desc": "قیر",
-          "amount": 500
-        }
-      ],
-      "tip": 0,
-      "discount": 0,
-      "subtotal": 1100,
-      "total": 1100,
-      "updatedAt": "2026-11-21T12:40:00.582Z",
-      "updatedBy": "11"
     }
   ]
 }
