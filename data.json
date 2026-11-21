@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 25,
+    "lastInvoiceNumber": 23,
     "currency": "IRT"
   },
   "users": [
@@ -418,21 +418,6 @@
         {
           "id": "car_mwq7hcai6duk",
           "name": "موتور سیکلت"
-        }
-      ]
-    },
-    {
-      "id": "ct_mwqq3vq2burl",
-      "name": "گروه تست",
-      "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
-      },
-      "cars": [
-        {
-          "id": "car_mwqq44h7vroi",
-          "name": "خودرو تست"
         }
       ]
     }
