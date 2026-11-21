@@ -1502,8 +1502,8 @@
       "customer": "",
       "carTypeId": "ct_mwpa4cpot6y6",
       "carTypeName": "تیپ 2",
-      "carId": "car_mwpdnmpz783o",
-      "carName": "پژو 207",
+      "carId": "car_mwpa7v7ekvka",
+      "carName": "پژو 206",
       "workerId": "w_mwpd2z6ykeq1",
       "workerName": "علیرضا",
       "services": {
@@ -1521,7 +1521,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-21T12:52:39.392Z",
+      "updatedAt": "2026-11-21T12:54:29.618Z",
       "updatedBy": "11"
     }
   ]
