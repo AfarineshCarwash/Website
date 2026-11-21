@@ -1306,6 +1306,32 @@
       "discount": 0,
       "total": 650,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq7lsxpi0z0",
+      "createdAt": "2026-11-21T09:32:20.029Z",
+      "customer": "",
+      "carTypeId": "ct_mwq7h1v6abrv",
+      "carTypeName": "موتور سیکلت",
+      "carId": "car_mwq7hcai6duk",
+      "carName": "موتور سیکلت",
+      "workerId": "w_mwpd35lheg7n",
+      "workerName": "سعید",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 250,
+        "vacuum": 0,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "total": 250,
+      "createdBy": "11"
     }
   ]
 }
