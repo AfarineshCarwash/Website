@@ -790,6 +790,32 @@
       "discount": 0,
       "total": 950,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq2g0n4o67c",
+      "createdAt": "2026-11-21T07:07:52.000Z",
+      "customer": "",
+      "carTypeId": "ct_mwpa41tm32s2",
+      "carTypeName": "تیپ 1",
+      "carId": "car_mwpa74iy78eq",
+      "carName": "پراید",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 430,
+        "vacuum": 120,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 70,
+      "discount": 0,
+      "total": 500,
+      "createdBy": "11"
     }
   ]
 }
