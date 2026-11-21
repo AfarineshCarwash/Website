@@ -577,6 +577,32 @@
       "discount": 0,
       "total": 600,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq1y0tdjfaa",
+      "createdAt": "2026-11-21T06:53:52.417Z",
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdoyi6llt3",
+      "carName": "پارس",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 100,
+      "discount": 0,
+      "total": 700,
+      "createdBy": "11"
     }
   ]
 }
