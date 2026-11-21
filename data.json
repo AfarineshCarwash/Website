@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 3,
+    "lastInvoiceNumber": 4,
     "currency": "IRT"
   },
   "users": [
@@ -1563,6 +1563,42 @@
       "subtotal": 1500,
       "total": 1600,
       "updatedAt": "2026-11-21T13:00:53.288Z",
+      "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwqf40perz90e0",
+      "idempotencyKey": "7895d81e-f3f3-4e09-857d-a4095fff4b9d",
+      "status": "submitted",
+      "number": 4,
+      "createdAt": "2026-11-21T13:02:27.218Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-21T13:02:27.218Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa84vn1ns4",
+      "carName": "سمند",
+      "workerId": "w_mwpd1exs7fk5",
+      "workerName": "مجتبی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-21T13:02:27.218Z",
       "updatedBy": "11"
     }
   ]
