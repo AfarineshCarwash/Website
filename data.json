@@ -5,22 +5,22 @@
     "currency": "IRT"
   },
   "users": [
-    {
-      "username": "999",
-      "role": "manager",
-      "passHash": "83cf8b609de60036a8277bd0e96135751bbc07eb234256d4b65b893360651bf2"
-    },
-    {
-      "username": "11",
-      "role": "cashier",
-      "passHash": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
-    },
-    {
-      "username": "user",
-      "role": "cashier",
-      "passHash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1"
-    }
-  ],
+  {
+    "username": "999",
+    "role": "manager",
+    "passHash": "83cf8b609de60036a8277bd0e96135751bbc07eb234256d4b65b893360651bf2"
+  },
+  {
+    "username": "11",
+    "role": "cashier",
+    "passHash": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
+  },
+  {
+    "username": "user",
+    "role": "cashier",
+    "passHash": "d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1"
+  }
+],
   "carTypes": [
     {
       "id": "ct_mwpa41tm32s2",
@@ -1379,42 +1379,6 @@
       "discount": 0,
       "total": 1100,
       "createdBy": "11"
-    },
-    {
-      "id": "inv_mwqemgfi9t861h",
-      "idempotencyKey": "93d8908f-03c0-4dbc-9da1-9d8935cfb1d7",
-      "status": "draft",
-      "number": null,
-      "createdAt": "2026-11-21T12:48:47.788Z",
-      "createdBy": "999",
-      "submittedAt": null,
-      "submittedBy": null,
-      "deletedAt": null,
-      "deletedBy": null,
-      "customer": "",
-      "carTypeId": "ct_mwpczss625om",
-      "carTypeName": "نیم شاسی",
-      "carId": "car_mwpdxxeknore",
-      "carName": "لیفان x60",
-      "workerId": "w_mwpd35lheg7n",
-      "workerName": "سعید",
-      "services": {
-        "wash": true,
-        "vacuum": false,
-        "wax": false
-      },
-      "prices": {
-        "wash": 700,
-        "vacuum": 200,
-        "wax": 450
-      },
-      "extras": [],
-      "tip": 0,
-      "discount": 0,
-      "subtotal": 700,
-      "total": 700,
-      "updatedAt": "2026-11-21T12:48:47.788Z",
-      "updatedBy": "999"
     }
   ]
 }
