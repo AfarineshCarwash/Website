@@ -1415,6 +1415,42 @@
       "total": 600,
       "updatedAt": "2026-11-21T12:51:28.438Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwqeq64on2qq3j",
+      "idempotencyKey": "15145bcb-9b6f-404a-9044-2154611a0b9e",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-21T12:51:41.063Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpe92u5fxt8",
+      "carTypeName": "تیپ 4",
+      "carId": "car_mwpec25y9afb",
+      "carName": "سدان لوکس",
+      "workerId": "w_mwpd35lheg7n",
+      "workerName": "سعید",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 600,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-21T12:51:41.063Z",
+      "updatedBy": "11"
     }
   ]
 }
