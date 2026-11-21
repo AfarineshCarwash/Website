@@ -1,0 +1,33 @@
+name: validate-data
+on:
+  push:
+    branches: [main]
+    paths: ['data.json']
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    # جلوگیری از حلقه‌ی بی‌پایان روی کامیت بازگردانی
+    if: ${{ !contains(github.event.head_commit.message, '[skip-validate]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate data.json
+        run: node tools/validate.mjs data.json
+
+      - name: Revert invalid commit
+        if: failure()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git revert --no-edit "$GITHUB_SHA"
+          git commit --amend -q -m "revert: data.json نامعتبر بود [skip-validate]"
+          git push origin HEAD:main
