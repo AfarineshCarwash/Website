@@ -1406,6 +1406,47 @@
       "discount": 0,
       "total": 1100,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq9zhrfj1fgta",
+      "idempotencyKey": "06a972b0-31bc-42df-8290-7a4fbe49b82d",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-21T10:38:57.962Z",
+      "createdBy": "user2",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "مشتر",
+      "carTypeId": "ct_mwq9vlimlfcw",
+      "carTypeName": "گروه...",
+      "carId": "car_mwq9vzy0hwc6",
+      "carName": "خودرو۳",
+      "workerId": "w_mwq9wprib11t",
+      "workerName": "آریاقلی",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": true
+      },
+      "prices": {
+        "wash": 100,
+        "vacuum": 200,
+        "wax": 300
+      },
+      "extras": [
+        {
+          "desc": "متفرقه",
+          "amount": 40
+        }
+      ],
+      "tip": 5,
+      "discount": 10,
+      "subtotal": 440,
+      "total": 435,
+      "updatedAt": "2026-11-21T10:38:57.962Z",
+      "updatedBy": "user2"
     }
   ]
 }
