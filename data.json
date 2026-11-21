@@ -425,9 +425,9 @@
       "id": "ct_mwq9vlimlfcw",
       "name": "گروه...",
       "prices": {
-        "wash": 0,
-        "vacuum": 0,
-        "wax": 0
+        "wash": 100,
+        "vacuum": 200,
+        "wax": 300
       },
       "cars": [
         {
