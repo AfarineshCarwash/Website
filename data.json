@@ -733,6 +733,32 @@
       "discount": 0,
       "total": 550,
       "createdBy": "11"
+    },
+    {
+      "id": "inv_mwq24xznscqw",
+      "createdAt": "2026-11-21T06:59:15.347Z",
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdnmpz783o",
+      "carName": "پژو 207",
+      "workerId": "w_mwpd55w0ruho",
+      "workerName": "عادل",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 200,
+      "discount": 0,
+      "total": 800,
+      "createdBy": "11"
     }
   ]
 }
