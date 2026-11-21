@@ -431,17 +431,27 @@ function invoiceRow(inv, manager) {
 
 function viewInvoices() {
   const manager = isManager();
-  const filter = state.filter || 'all';
-  const all = (state.data.invoices || []).slice()
+  // صندوق‌دار فقط پیش‌فاکتورها را می‌بیند؛ فاکتورهای نهایی و حذف‌شده از دید او پنهان‌اند.
+  const filter = manager ? (state.filter || 'all') : STATUS.DRAFT;
+
+  const all = (state.data.invoices || [])
+    .filter(inv => manager || inv.status === STATUS.DRAFT)   // ← the gate: cashiers never see submitted/void
+    .slice()
     .sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
 
-  const filters = [['all', 'همه'], ['draft', 'پیش‌فاکتور'], ['submitted', 'نهایی'], ['void', 'حذف‌شده']];
+  const filters = manager
+    ? [['all', 'همه'], ['draft', 'پیش‌فاکتور'], ['submitted', 'نهایی'], ['void', 'حذف‌شده']]
+    : [['draft', 'پیش‌فاکتور']];
+
   const list = all.filter(inv => filter === 'all' ? inv.status !== STATUS.VOID : inv.status === filter);
-  const items = list.length ? list.map(inv => invoiceRow(inv, manager)).join('')
-    : '<li class="empty">موردی یافت نشد.</li>';
+  const items = list.length
+    ? list.map(inv => invoiceRow(inv, manager)).join('')
+    : `<li class="empty">${manager ? 'موردی یافت نشد.' : 'پیش‌فاکتوری وجود ندارد.'}</li>`;
   const busy = state.busy ? 'disabled' : '';
 
-  return layout('فاکتورها و پیش‌فاکتورها', `
+  const title = manager ? 'فاکتورها و پیش‌فاکتورها' : 'پیش‌فاکتورها';
+
+  return layout(title, `
     <div class="toolbar">
       ${filters.map(([v, l]) => `<button class="btn ${filter === v ? 'active' : ''}" type="button" data-action="filter" data-value="${v}">${l}</button>`).join('')}
       <span class="grow"></span>
@@ -458,7 +468,7 @@ function viewCashierHome() {
   return layout('منوی صندوق‌دار', `
     <div class="grid">
       <button class="tile" type="button" data-action="new-invoice">ثبت فاکتور جدید</button>
-      <button class="tile" type="button" data-action="go" data-route="invoices">فاکتورها و پیش‌فاکتورها${drafts ? ` (${fmt(drafts)})` : ''}</button>
+      <button class="tile" type="button" data-action="go" data-route="invoices">پیش‌فاکتورها${drafts ? ` (${fmt(drafts)})` : ''}</button>
       <button class="tile" type="button" data-action="go" data-route="daily">گزارش کار روز${today.count ? ` (${fmt(today.count)})` : ''}</button>
     </div>`);
 }
@@ -664,7 +674,7 @@ document.addEventListener('click', async (e) => {
       if (!inv) { state.error = 'فاکتور یافت نشد.'; render(); break; }
       if (inv.status === STATUS.VOID) { state.error = 'این فاکتور حذف شده و قابل ویرایش نیست.'; render(); break; }
       if (inv.status === STATUS.SUBMITTED && !isManager()) {
-        state.error = 'فاکتور نهایی‌شده قابل ویرایش نیست.';
+        state.error = 'فاکتور نهایی‌شده فقط برای مدیر قابل مشاهده و ویرایش است.';
         render(); break;
       }
       state.draft = draftFromInvoice(inv);
@@ -957,7 +967,7 @@ document.addEventListener('submit', async (e) => {
 
       if (res) {
         state.draft = newDraft();
-        go('invoices');
+        go(isManager() ? 'invoices' : 'cashierhome');   // ← cashier goes home; manager stays on the list
       }
       return;
     }
