@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "lastInvoiceNumber": 0,
+    "lastInvoiceNumber": 1,
     "currency": "IRT"
   },
   "users": [
@@ -1446,6 +1446,42 @@
       "subtotal": 440,
       "total": 435,
       "updatedAt": "2026-11-21T10:38:57.962Z",
+      "updatedBy": "user2"
+    },
+    {
+      "id": "inv_mwqa0d06x4zpl2",
+      "idempotencyKey": "49eff76b-93e3-442a-bbfc-3a9d26bce857",
+      "status": "submitted",
+      "number": 1,
+      "createdAt": "2026-11-21T10:39:38.454Z",
+      "createdBy": "user2",
+      "submittedAt": "2026-11-21T10:39:38.454Z",
+      "submittedBy": "user2",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "مشتر۲ از کرمان",
+      "carTypeId": "ct_mwq9vlimlfcw",
+      "carTypeName": "گروه...",
+      "carId": "car_mwq9vvshjend",
+      "carName": "خودرو۲",
+      "workerId": "w_mwq9wprib11t",
+      "workerName": "آریاقلی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": true
+      },
+      "prices": {
+        "wash": 100,
+        "vacuum": 200,
+        "wax": 300
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-21T10:39:38.454Z",
       "updatedBy": "user2"
     }
   ]
