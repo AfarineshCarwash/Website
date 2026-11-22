@@ -2403,6 +2403,42 @@
       "total": 700,
       "updatedAt": "2026-11-22T07:43:06.506Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwrjnxktqd4dql",
+      "idempotencyKey": "8ba3da01-636a-4d5c-85ad-d22492599dec",
+      "status": "submitted",
+      "number": 37,
+      "createdAt": "2026-11-22T07:57:40.922Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-22T07:57:40.922Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_shasi",
+      "carTypeName": "شاسی‌بلند",
+      "carId": "car_mwpe3db0389x",
+      "carName": "پرادو دو در",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 200,
+      "discount": 0,
+      "subtotal": 800,
+      "total": 1000,
+      "updatedAt": "2026-11-22T07:57:40.922Z",
+      "updatedBy": "11"
     }
   ]
 }
