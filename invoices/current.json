@@ -1583,28 +1583,28 @@
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
-      "carTypeId": "ct_mwpa4gbemyqr",
-      "carTypeName": "تیپ 3",
-      "carId": "car_mwpa8rt5imi0",
-      "carName": "دنا",
-      "workerId": "w_mwpd3jcgubkb",
-      "workerName": "نائب",
+      "carTypeId": "ct_shasi",
+      "carTypeName": "شاسی‌بلند",
+      "carId": "car_mwrfdx6fh2yg",
+      "carName": "لکسوس NX",
+      "workerId": "w_mwpdasvoj6qw",
+      "workerName": "اسد",
       "services": {
         "wash": true,
         "vacuum": true,
         "wax": false
       },
       "prices": {
-        "wash": 500,
+        "wash": 800,
         "vacuum": 200,
         "wax": 450
       },
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 700,
-      "total": 700,
-      "updatedAt": "2026-11-21T14:25:25.840Z",
+      "subtotal": 1000,
+      "total": 1000,
+      "updatedAt": "2026-11-22T06:01:32.104Z",
       "updatedBy": "11"
     },
     {
