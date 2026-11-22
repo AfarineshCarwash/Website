@@ -2204,8 +2204,8 @@
       "carTypeName": "شاسی‌بلند",
       "carId": "car_mwpe57qbxfuq",
       "carName": "فوتون",
-      "workerId": "",
-      "workerName": "",
+      "workerId": "w_mwpc2fuqi2sj",
+      "workerName": "جمشید",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -2221,7 +2221,7 @@
       "discount": 0,
       "subtotal": 1000,
       "total": 1000,
-      "updatedAt": "2026-11-22T07:16:54.179Z",
+      "updatedAt": "2026-11-22T07:30:19.171Z",
       "updatedBy": "11"
     },
     {
