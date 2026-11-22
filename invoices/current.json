@@ -3265,12 +3265,12 @@
     {
       "id": "inv_mwrq39418gexac",
       "idempotencyKey": "8d832504-3a2c-43f9-beeb-b6e2673bd77e",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 62,
       "createdAt": "2026-11-22T10:57:33.409Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-22T11:38:07.436Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -3295,7 +3295,7 @@
       "discount": 0,
       "subtotal": 800,
       "total": 800,
-      "updatedAt": "2026-11-22T10:57:33.409Z",
+      "updatedAt": "2026-11-22T11:38:07.436Z",
       "updatedBy": "11"
     },
     {
