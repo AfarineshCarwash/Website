@@ -2931,12 +2931,12 @@
     {
       "id": "inv_mwrnfdgk3n6in6",
       "idempotencyKey": "067b75a2-5d71-4c6b-b9b2-8208551e22a3",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 54,
       "createdAt": "2026-11-22T09:43:00.067Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-22T10:32:18.065Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -2944,8 +2944,8 @@
       "carTypeName": "نیم شاسی",
       "carId": "car_mwpdxqe1ugej",
       "carName": "لیفان x50",
-      "workerId": "",
-      "workerName": "",
+      "workerId": "w_mwpd3v9wheg9",
+      "workerName": "فرید",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -2957,11 +2957,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 100,
       "discount": 0,
       "subtotal": 900,
-      "total": 900,
-      "updatedAt": "2026-11-22T09:43:00.067Z",
+      "total": 1000,
+      "updatedAt": "2026-11-22T10:32:18.065Z",
       "updatedBy": "11"
     },
     {
