@@ -1,42 +1,6 @@
 {
   "invoices": [
     {
-      "id": "inv_mwqi2q8g2s29f4",
-      "idempotencyKey": "7f71fddd-0131-48df-90c7-98ed6f35be07",
-      "status": "submitted",
-      "number": 28,
-      "createdAt": "2026-11-21T14:25:25.840Z",
-      "createdBy": "11",
-      "submittedAt": "2026-11-22T06:31:26.736Z",
-      "submittedBy": "11",
-      "deletedAt": null,
-      "deletedBy": null,
-      "customer": "",
-      "carTypeId": "ct_shasi",
-      "carTypeName": "شاسی‌بلند",
-      "carId": "car_mwrfdx6fh2yg",
-      "carName": "لکسوس NX",
-      "workerId": "w_mwpdasvoj6qw",
-      "workerName": "اسد",
-      "services": {
-        "wash": true,
-        "vacuum": true,
-        "wax": false
-      },
-      "prices": {
-        "wash": 800,
-        "vacuum": 200,
-        "wax": 450
-      },
-      "extras": [],
-      "tip": 100,
-      "discount": 0,
-      "subtotal": 1000,
-      "total": 1100,
-      "updatedAt": "2026-11-22T06:31:26.736Z",
-      "updatedBy": "11"
-    },
-    {
       "id": "inv_mwre6bpkjgeq2d",
       "idempotencyKey": "5c6625b8-1024-4cad-8914-6c5c561a955c",
       "status": "submitted",
