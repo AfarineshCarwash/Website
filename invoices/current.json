@@ -1935,6 +1935,42 @@
       "total": 450,
       "updatedAt": "2026-11-22T05:56:52.080Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwrfhz56dqyk6n",
+      "idempotencyKey": "20c12676-5e22-4e6a-b926-7dc9ffa8d055",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-22T06:01:04.550Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpd005tq1o1",
+      "carTypeName": "فول شاسی",
+      "carId": "car_mwpe6w8zzh7n",
+      "carName": "لکسوس",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 900,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1100,
+      "total": 1100,
+      "updatedAt": "2026-11-22T06:01:04.550Z",
+      "updatedBy": "11"
     }
   ]
 }
