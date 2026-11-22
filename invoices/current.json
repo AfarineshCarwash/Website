@@ -2664,12 +2664,12 @@
     {
       "id": "inv_mwrlkpnj4rdu1t",
       "idempotencyKey": "196ee9ce-d6a9-4bcc-b0aa-7755641dfd62",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 51,
       "createdAt": "2026-11-22T08:51:09.918Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-22T09:57:33.035Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -2681,7 +2681,7 @@
       "workerName": "حسین",
       "services": {
         "wash": true,
-        "vacuum": false,
+        "vacuum": true,
         "wax": false
       },
       "prices": {
@@ -2689,12 +2689,17 @@
         "vacuum": 150,
         "wax": 450
       },
-      "extras": [],
+      "extras": [
+        {
+          "desc": "قیر زدایی",
+          "amount": 800
+        }
+      ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 450,
-      "total": 450,
-      "updatedAt": "2026-11-22T08:51:09.918Z",
+      "subtotal": 1400,
+      "total": 1400,
+      "updatedAt": "2026-11-22T09:57:33.035Z",
       "updatedBy": "11"
     },
     {
