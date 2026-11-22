@@ -2240,8 +2240,8 @@
       "carTypeName": "تیپ 2",
       "carId": "car_mwpdnmpz783o",
       "carName": "پژو 207",
-      "workerId": "",
-      "workerName": "",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -2257,7 +2257,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-22T07:28:19.752Z",
+      "updatedAt": "2026-11-22T07:29:00.900Z",
       "updatedBy": "11"
     },
     {
