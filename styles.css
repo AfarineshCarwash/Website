@@ -88,3 +88,42 @@ textarea { width: 100%; min-height: 160px; font-family: ui-monospace, monospace;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 .card.busy { opacity: .6; pointer-events: none; }
+/* --- Jalali date picker (day | month | year) --- */
+.jalali-picker {
+  display: flex;
+  gap: .35rem;
+  direction: rtl;
+  margin-top: .35rem;
+}
+.jalali-picker select { flex: 1 1 0; min-width: 0; }
+
+/* --- Worker report table --- */
+.report-table { width: 100%; border-collapse: collapse; }
+.report-table th,
+.report-table td {
+  padding: .65rem .55rem;
+  border-bottom: 1px solid #eef2f7;
+  text-align: right;
+  white-space: nowrap;
+}
+.report-table thead th {
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 700;
+  font-size: .85rem;
+}
+.report-table tbody tr:hover { background: #f8fafc; }
+.report-table tfoot td {
+  background: #eff6ff;
+  font-weight: 700;
+  border-top: 2px solid #bfdbfe;
+  border-bottom: 0;
+}
+.report-table td:first-child,
+.report-table th:first-child { white-space: normal; }  /* allow long names to wrap */
+
+@media (max-width: 480px) {
+  .report-table th,
+  .report-table td { padding: .5rem .35rem; font-size: .85rem; }
+  .report-table .muted { display: block; }            /* stack «تومان» under the number */
+}
