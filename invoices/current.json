@@ -3589,12 +3589,12 @@
     {
       "id": "inv_mwrvakuetmrx9h",
       "idempotencyKey": "f3b183a5-eeda-4238-b7bb-ef87d128d87f",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 73,
       "createdAt": "2026-11-22T13:23:13.284Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-22T13:27:25.260Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -3605,8 +3605,8 @@
       "workerId": "w_mwpd3p7l4dge",
       "workerName": "حسین",
       "services": {
-        "wash": true,
-        "vacuum": true,
+        "wash": false,
+        "vacuum": false,
         "wax": false
       },
       "prices": {
@@ -3614,12 +3614,17 @@
         "vacuum": 150,
         "wax": 450
       },
-      "extras": [],
+      "extras": [
+        {
+          "desc": "آب خالی",
+          "amount": 150
+        }
+      ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-22T13:23:13.284Z",
+      "subtotal": 150,
+      "total": 150,
+      "updatedAt": "2026-11-22T13:27:25.260Z",
       "updatedBy": "11"
     },
     {
