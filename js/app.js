@@ -2,7 +2,10 @@ import { sha256Hex, decryptToken } from './crypto.js';
 import { GitHubStore } from './github.js';
 import { InvoiceService, CURRENT_PATH } from './invoices.js';
 import {
-  GateError, computeTotal, SERVICE_NAMES, STATUS, ROLES,
+  toJalaali, toGregorian, jalaaliMonthLength, JALALI_MONTHS,
+} from './jalali.js';
+import {
+  GateError, computeTotal, computeSubtotal, SERVICE_NAMES, STATUS, ROLES,
 } from './gate.js';
 
 /* ================= helpers ================= */
@@ -20,7 +23,7 @@ const faDate = v => new Date(v).toLocaleDateString('fa-IR');
 const faTime = v => new Date(v).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
 
 const state = {
-  data: null, user: null, store: null,
+  workerReport: null, data: null, user: null, store: null,
   invoiceService: null,                          // ← NEW
   route: { name: 'login' },
   draft: null, report: null, filter: 'all',
@@ -97,6 +100,9 @@ async function doLogin(username, password) {
 
   state.draft = newDraft();
   state.route = { name: user.role === ROLES.MANAGER ? 'manager' : 'cashierhome' };
+  if (user.role === ROLES.MANAGER) {
+    state.workerReport = defaultWorkerReport();
+  }
   state.error = '';
   if (rotated > 0) state.toast = `${fmt(rotated)} ماه آرشیو شد.`;
 }
@@ -177,6 +183,15 @@ function refreshTotal() {
 }
 
 /* ================= reports ================= */
+function defaultWorkerReport() {
+  const t = toJalaali(new Date());
+  return {
+    start: { jy: t.jy, jm: t.jm, jd: 1 },   // 1st of current Jalali month
+    end:   { jy: t.jy, jm: t.jm, jd: t.jd }, // today
+    loading: false, error: '', result: null,
+  };
+}
+
 function dailyReport(day) {
   const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
   const rows = new Map((state.data.workers || []).map(w => [w.id, { id: w.id, name: w.name, count: 0, total: 0, tips: 0 }]));
@@ -262,6 +277,7 @@ function viewManagerHome() {
       <button class="tile" type="button" data-action="go" data-route="workers">فهرست کارگران</button>
       <button class="tile" type="button" data-action="go" data-route="invoices">فاکتورها</button>
       <button class="tile" type="button" data-action="go" data-route="reports">گزارش کارکرد</button>
+      <button class="tile" type="button" data-action="go" data-route="worker-report">گزارش کارگران</button>
       <button class="tile" type="button" data-action="new-invoice">ثبت فاکتور</button>
     </div>`);
 }
@@ -499,6 +515,161 @@ function viewInvoices() {
     <ul class="list">${items}</ul>`, homeRoute());
 }
 
+function viewWorkerReport() {
+  const w = state.workerReport;
+  if (!w) return layout('گزارش کارگران', '<p class="muted">داده‌ای موجود نیست.</p>', 'manager');
+
+  const busy = state.busy || w.loading;
+
+  const yearOptions = (sel) => {
+    const cy = toJalaali(new Date()).jy;
+    let out = '';
+    for (let y = cy - 3; y <= cy + 1; y++)
+      out += `<option value="${y}" ${sel === y ? 'selected' : ''}>${y}</option>`;
+    return out;
+  };
+  const monthOptions = (sel) => JALALI_MONTHS
+    .map((name, i) => `<option value="${i + 1}" ${sel === i + 1 ? 'selected' : ''}>${name}</option>`)
+    .join('');
+  const dayOptions = (sel, max) => {
+    let out = '';
+    for (let d = 1; d <= max; d++)
+      out += `<option value="${d}" ${sel === d ? 'selected' : ''}>${d}</option>`;
+    return out;
+  };
+
+  const makeJalaliPicker = (which, val) => {
+    const max = jalaaliMonthLength(val.jy, val.jm);
+    const d = busy ? 'disabled' : '';
+    return `
+      <div class="jalali-picker">
+        <select data-jalali="${which}" data-part="jd" ${d}>${dayOptions(val.jd, max)}</select>
+        <select data-jalali="${which}" data-part="jm" ${d}>${monthOptions(val.jm)}</select>
+        <select data-jalali="${which}" data-part="jy" ${d}>${yearOptions(val.jy)}</select>
+      </div>`;
+  };
+
+  let body;
+  if (w.loading) {
+    body = `<div class="card empty"><span class="spinner"></span>در حال بارگذاری گزارش…</div>`;
+  } else if (w.error) {
+    body = `<div class="alert error">${esc(w.error)}</div>`;
+  } else if (w.result) {
+    if (w.result.rows.length === 0) {
+      body = `<div class="card empty">در این بازه تاریخی کاری ثبت نشده است.</div>`;
+    } else {
+      const rowsHtml = w.result.rows.map(r => `
+        <tr>
+          <td>${esc(r.name)}</td>
+          <td>${fmt(r.jobs)}</td>
+          <td>${fmt(r.tips)} <span class="muted">تومان</span></td>
+          <td><strong>${fmt(r.sum)}</strong> <span class="muted">تومان</span></td>
+        </tr>`).join('');
+      body = `
+        <div class="card">
+          <div class="table-wrap">
+            <table class="report-table">
+              <thead>
+                <tr>
+                  <th>نام کارگر</th>
+                  <th>تعداد کار</th>
+                  <th>جمع انعام</th>
+                  <th>جمع کل</th>
+                </tr>
+              </thead>
+              <tbody>${rowsHtml}</tbody>
+              <tfoot>
+                <tr>
+                  <td>جمع کل</td>
+                  <td>${fmt(w.result.totals.jobs)}</td>
+                  <td>${fmt(w.result.totals.tips)} <span class="muted">تومان</span></td>
+                  <td>${fmt(w.result.totals.sum)} <span class="muted">تومان</span></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>`;
+    }
+  } else {
+    body = `<div class="card empty">برای مشاهده گزارش، بازه را انتخاب و «نمایش گزارش» را بزنید.</div>`;
+  }
+
+  return layout('گزارش کارگران', `
+    <div class="card">
+      <div class="grid2">
+        <label class="field">از تاریخ ${makeJalaliPicker('start', w.start)}</label>
+        <label class="field">تا تاریخ ${makeJalaliPicker('end', w.end)}</label>
+      </div>
+      <button class="btn primary block" type="button" data-action="run-worker-report" ${busy ? 'disabled' : ''}>
+        ${w.loading ? '<span class="spinner"></span>در حال بارگذاری…' : 'نمایش گزارش'}
+      </button>
+    </div>
+    ${body}`, 'manager');
+}
+
+async function runWorkerReport() {
+  const w = state.workerReport;
+  if (!w || w.loading || state.busy) return;
+
+  /* ---- Jalali → Gregorian conversion AT THE QUERY BOUNDARY ONLY ---- */
+  let startTs, endTs;
+  try {
+    const sG = toGregorian(w.start.jy, w.start.jm, w.start.jd);
+    const eG = toGregorian(w.end.jy, w.end.jm, w.end.jd);
+    startTs = new Date(sG.gy, sG.gm - 1, sG.gd, 0, 0, 0, 0).getTime();      // start of day
+    endTs   = new Date(eG.gy, eG.gm - 1, eG.gd, 23, 59, 59, 999).getTime(); // end of day
+  } catch {
+    w.error = 'تاریخ نامعتبر است.';
+    w.result = null; render(); return;
+  }
+
+  if (startTs > endTs) {
+    w.error = 'تاریخ شروع نمی‌تواند بعد از تاریخ پایان باشد.';
+    w.result = null; render(); return;
+  }
+
+  w.loading = true; w.error = ''; w.result = null; render();
+
+  try {
+    /* Pull fresh current-month invoices so new submissions are included.
+       Archives are already in memory from login. */
+    if (state.invoiceService) await state.invoiceService.loadCurrent();
+
+    const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
+    const byWorker = new Map();
+
+    for (const inv of all) {
+      if (inv.status !== STATUS.SUBMITTED) continue;                       // completed jobs only
+      const ts = new Date(inv.submittedAt || inv.createdAt).getTime();
+      if (!Number.isFinite(ts) || ts < startTs || ts > endTs) continue;    // inclusive range
+
+      const key = inv.workerId || inv.workerName || '—';
+      const row = byWorker.get(key) || { name: inv.workerName || 'کارگر حذف‌شده', jobs: 0, tips: 0, sum: 0 };
+      const tip = Number(inv.tip || 0);
+      const jobPrice = computeSubtotal(inv);                               // = "sum of job prices"
+      row.jobs += 1;
+      row.tips += tip;
+      row.sum += jobPrice + tip;                                            // col4 = tips + job prices
+      byWorker.set(key, row);
+    }
+
+    const rows = [...byWorker.values()].sort((a, b) => b.sum - a.sum);      // descending by sum
+    const totals = rows.reduce((acc, r) => ({
+      jobs: acc.jobs + r.jobs,
+      tips: acc.tips + r.tips,
+      sum:  acc.sum  + r.sum,
+    }), { jobs: 0, tips: 0, sum: 0 });
+
+    w.result = { rows, totals, startTs, endTs };
+  } catch (err) {
+    w.error = 'بارگذاری گزارش ناموفق بود: ' + (err?.message || 'خطای نامشخص');
+    w.result = null;
+  } finally {
+    w.loading = false;
+    render();
+  }
+}
+
 /* ================= views: cashier ================= */
 function viewCashierHome() {
   const drafts = state.invoiceService
@@ -654,6 +825,7 @@ function viewForRoute() {
     case 'reports': return viewReports();
     case 'invoices': return viewInvoices();
     case 'cashier': return viewCashier();
+    case 'worker-report': return viewWorkerReport();
     default: return viewManagerHome();
   }
 }
@@ -677,6 +849,10 @@ function go(name, extra = {}) {
   state.route = { name, ...extra };
   state.error = '';
   render();
+  if (name === 'worker-report' && state.workerReport
+      && !state.workerReport.result && !state.workerReport.loading) {
+    runWorkerReport();
+  }
 }
 
 function setDraft(path, value) {
@@ -698,6 +874,7 @@ document.addEventListener('click', async (e) => {
     case 'logout':
       state.user = state.store = state.data = state.draft = state.report = null;
       state.invoiceService = null;      // ← added
+      state.workerReport = null;
       state.error = state.toast = ''; state.filter = 'all'; state.busy = false;
       state.route = { name: 'login' };
       render();
@@ -708,6 +885,10 @@ document.addEventListener('click', async (e) => {
     case 'new-invoice':
       state.draft = newDraft();
       go('cashier');
+      break;
+
+    case 'run-worker-report':
+      await runWorkerReport();
       break;
 
     case 'open-invoice': {
@@ -848,6 +1029,24 @@ document.addEventListener('input', (e) => {
 
 document.addEventListener('change', (e) => {
   const t = e.target;
+  /* Jalali pickers */
+  if (t.dataset.jalali) {
+    const w = state.workerReport;
+    if (!w) return;
+    const which = t.dataset.jalali;   // 'start' | 'end'
+    const part  = t.dataset.part;     // 'jy' | 'jm' | 'jd'
+    w[which][part] = Number(t.value);
+
+    /* Clamp day if the month/year change shortened it (e.g. 31 → 30 or 29) */
+    const max = jalaaliMonthLength(w[which].jy, w[which].jm);
+    if (w[which].jd > max) w[which].jd = max;
+
+    /* Any edit invalidates the previous run; user re-clicks نمایش گزارش */
+    w.result = null;
+    w.error = '';
+    render();
+    return;
+  }
   if (!t.dataset.draft || !state.draft) return;
   setDraft(t.dataset.draft, t.type === 'checkbox' ? t.checked : t.value);
   if (t.dataset.rerender !== undefined) {
