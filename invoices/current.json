@@ -2619,6 +2619,42 @@
       "total": 600,
       "updatedAt": "2026-11-22T08:21:50.528Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwrlfkjjivi3ji",
+      "idempotencyKey": "7988e480-38b8-44af-a4b0-22e473ce4e61",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-22T08:47:10.014Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpds6t1m70e",
+      "carName": "مگان",
+      "workerId": "w_mwpd1exs7fk5",
+      "workerName": "مجتبی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-22T08:47:10.014Z",
+      "updatedBy": "11"
     }
   ]
 }
