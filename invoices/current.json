@@ -3779,6 +3779,47 @@
       "total": 500,
       "updatedAt": "2026-11-22T15:49:04.249Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mws0k0u6r09kk6",
+      "idempotencyKey": "b83542ec-481a-4d23-a40e-f0ca8724b806",
+      "status": "submitted",
+      "number": 79,
+      "createdAt": "2026-11-22T15:50:31.998Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-22T15:50:31.998Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa7v7ekvka",
+      "carName": "پژو 206",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "لاشی بازی علیرضا و دادن شماره کارت به مشتری",
+          "amount": 0
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 450,
+      "total": 450,
+      "updatedAt": "2026-11-22T15:50:31.998Z",
+      "updatedBy": "11"
     }
   ]
 }
