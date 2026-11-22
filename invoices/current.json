@@ -2551,12 +2551,12 @@
     {
       "id": "inv_mwrkam0zy56910",
       "idempotencyKey": "5fb688aa-1fad-4104-a55f-59dd0903d61b",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 46,
       "createdAt": "2026-11-22T08:15:19.042Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-22T09:12:17.804Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -2576,12 +2576,17 @@
         "vacuum": 200,
         "wax": 450
       },
-      "extras": [],
-      "tip": 0,
+      "extras": [
+        {
+          "desc": "ابر نانو",
+          "amount": 200
+        }
+      ],
+      "tip": 250,
       "discount": 0,
-      "subtotal": 700,
-      "total": 700,
-      "updatedAt": "2026-11-22T08:15:19.042Z",
+      "subtotal": 900,
+      "total": 1150,
+      "updatedAt": "2026-11-22T09:12:17.804Z",
       "updatedBy": "11"
     },
     {
