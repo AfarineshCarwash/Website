@@ -3702,12 +3702,12 @@
     {
       "id": "inv_mwrwt8em67qz6u",
       "idempotencyKey": "81456a66-7f98-4dfe-80d1-c11fa9f6125e",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 77,
       "createdAt": "2026-11-22T14:05:43.244Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-22T15:46:49.564Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -3720,19 +3720,28 @@
       "services": {
         "wash": true,
         "vacuum": true,
-        "wax": false
+        "wax": true
       },
       "prices": {
         "wash": 500,
         "vacuum": 200,
         "wax": 450
       },
-      "extras": [],
-      "tip": 0,
-      "discount": 0,
-      "subtotal": 700,
-      "total": 700,
-      "updatedAt": "2026-11-22T14:27:58.545Z",
+      "extras": [
+        {
+          "desc": "پالیش",
+          "amount": 800
+        },
+        {
+          "desc": "ضربه گیر",
+          "amount": 300
+        }
+      ],
+      "tip": 200,
+      "discount": 50,
+      "subtotal": 2250,
+      "total": 2400,
+      "updatedAt": "2026-11-22T15:46:49.564Z",
       "updatedBy": "11"
     }
   ]
