@@ -2007,6 +2007,42 @@
       "total": 750,
       "updatedAt": "2026-11-22T06:25:43.398Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwrgqrw5ibloj8",
+      "idempotencyKey": "8d998514-4e5e-4d06-ba36-49ee45e6aa44",
+      "status": "submitted",
+      "number": 30,
+      "createdAt": "2026-11-22T06:35:54.676Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-22T06:35:54.676Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa41tm32s2",
+      "carTypeName": "تیپ 1",
+      "carId": "car_mwpa74iy78eq",
+      "carName": "پراید",
+      "workerId": "w_mwpd3jcgubkb",
+      "workerName": "نائب",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 430,
+        "vacuum": 120,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 550,
+      "total": 550,
+      "updatedAt": "2026-11-22T06:35:54.676Z",
+      "updatedBy": "11"
     }
   ]
 }
