@@ -532,7 +532,7 @@ function viewInvoices() {
   const visible = manager ? all : all.filter(i => i.status === STATUS.DRAFT);
 
   const sorted = [...visible].sort((a, b) =>
-    String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+    String(invDate(b) || '').localeCompare(String(a.createdAt || '')));
 
   const filters = manager
     ? [['all', 'همه'], ['draft', 'پیش‌فاکتور'], ['submitted', 'نهایی'], ['void', 'حذف‌شده']]
