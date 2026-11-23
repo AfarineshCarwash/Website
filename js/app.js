@@ -21,6 +21,7 @@ const isoDate = v => {
 const todayISO = () => isoDate(new Date().toISOString());
 const faDate = v => new Date(v).toLocaleDateString('fa-IR');
 const faTime = v => new Date(v).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+const invDate = inv => inv.submittedAt ?? inv.createdAt;   // ← used by change 2 below
 
 const state = {
   workerReport: null, data: null, user: null, store: null,
@@ -183,12 +184,48 @@ function refreshTotal() {
 }
 
 /* ================= reports ================= */
+function makeJalaliPicker(which, val, disabled = false) {
+  const max = jalaaliMonthLength(val.jy, val.jm);
+  const d = disabled ? 'disabled' : '';
+  const yearOptions = (sel) => {
+    const cy = toJalaali(new Date()).jy;
+    let out = '';
+    for (let y = cy - 3; y <= cy + 1; y++)
+      out += `<option value="${y}" ${sel === y ? 'selected' : ''}>${y}</option>`;
+    return out;
+  };
+  const monthOptions = (sel) => JALALI_MONTHS
+    .map((name, i) => `<option value="${i + 1}" ${sel === i + 1 ? 'selected' : ''}>${name}</option>`)
+    .join('');
+  const dayOptions = (sel, max) => {
+    let out = '';
+    for (let d = 1; d <= max; d++)
+      out += `<option value="${d}" ${sel === d ? 'selected' : ''}>${d}</option>`;
+    return out;
+  };
+  return `
+    <div class="jalali-picker">
+      <select data-jalali="${which}" data-part="jd" ${d}>${dayOptions(val.jd, max)}</select>
+      <select data-jalali="${which}" data-part="jm" ${d}>${monthOptions(val.jm)}</select>
+      <select data-jalali="${which}" data-part="jy" ${d}>${yearOptions(val.jy)}</select>
+    </div>`;
+}
+
 function defaultWorkerReport() {
   const t = toJalaali(new Date());
   return {
     start: { jy: t.jy, jm: t.jm, jd: 1 },   // 1st of current Jalali month
     end:   { jy: t.jy, jm: t.jm, jd: t.jd }, // today
     loading: false, error: '', result: null,
+  };
+}
+
+function defaultReport() {
+  const t = toJalaali(new Date());
+  return {
+    start: { jy: t.jy, jm: t.jm, jd: 1 },     // 1st of current Jalali month
+    end:   { jy: t.jy, jm: t.jm, jd: t.jd },  // today
+    workerIds: null, result: null,
   };
 }
 
@@ -381,7 +418,9 @@ function viewWorkers() {
 
 function viewReports() {
   const workers = state.data.workers || [];
-  const r = state.report || { start: '', end: '', workerIds: workers.map(w => w.id), result: null };
+  if (!state.report) state.report = defaultReport();          // ← new
+  const r = state.report;
+  if (!r.workerIds) r.workerIds = workers.map(w => w.id);      // ← new
   const selected = new Set(r.workerIds);
   const busy = state.busy ? 'disabled' : '';
 
@@ -433,8 +472,8 @@ function viewReports() {
   return layout('گزارش کارکرد', `
     <form class="card" data-form="report">
       <div class="grid2">
-        <label class="field">از تاریخ<input type="date" name="start" value="${esc(r.start)}" ${busy}></label>
-        <label class="field">تا تاریخ<input type="date" name="end" value="${esc(r.end)}" ${busy}></label>
+        <label class="field">از تاریخ ${makeJalaliPicker('start', r.start, !!busy)}</label>
+        <label class="field">تا تاریخ ${makeJalaliPicker('end',   r.end,   !!busy)}</label>
       </div>
       <fieldset>
         <legend>کارگران (خالی = همه)</legend>
@@ -444,6 +483,7 @@ function viewReports() {
     </form>
     ${resultHtml}`, 'manager');
 }
+  
 
 /* ================= views: invoices (shared, role-aware) ================= */
 function invoiceRow(inv, manager) {
@@ -476,7 +516,7 @@ function invoiceRow(inv, manager) {
         <strong>${fmt(inv.total)} تومان</strong>
       </div>
       <div class="inv-line muted">
-        <span>${faDate(inv.createdAt)} ${faTime(inv.createdAt)}</span>
+        <span>${faDate(invDate(inv))} ${faTime(invDate(inv))}</span>   <!-- was: inv.createdAt ×2 -->
         <span>${esc(servicesLabel(inv))}</span>
         ${inv.status === STATUS.VOID ? `<span>حذف: ${faDate(inv.deletedAt)} توسط ${esc(inv.deletedBy || '—')}</span>` : ''}
       </div>
@@ -538,16 +578,8 @@ function viewWorkerReport() {
     return out;
   };
 
-  const makeJalaliPicker = (which, val) => {
-    const max = jalaaliMonthLength(val.jy, val.jm);
-    const d = busy ? 'disabled' : '';
-    return `
-      <div class="jalali-picker">
-        <select data-jalali="${which}" data-part="jd" ${d}>${dayOptions(val.jd, max)}</select>
-        <select data-jalali="${which}" data-part="jm" ${d}>${monthOptions(val.jm)}</select>
-        <select data-jalali="${which}" data-part="jy" ${d}>${yearOptions(val.jy)}</select>
-      </div>`;
-  };
+  <label class="field">از تاریخ ${makeJalaliPicker('start', w.start, busy)}</label>
+  <label class="field">تا تاریخ ${makeJalaliPicker('end', w.end, busy)}</label>
 
   let body;
   if (w.loading) {
@@ -1029,24 +1061,23 @@ document.addEventListener('input', (e) => {
 
 document.addEventListener('change', (e) => {
   const t = e.target;
-  /* Jalali pickers */
+
   if (t.dataset.jalali) {
-    const w = state.workerReport;
-    if (!w) return;
-    const which = t.dataset.jalali;   // 'start' | 'end'
-    const part  = t.dataset.part;     // 'jy' | 'jm' | 'jd'
-    w[which][part] = Number(t.value);
-
-    /* Clamp day if the month/year change shortened it (e.g. 31 → 30 or 29) */
-    const max = jalaaliMonthLength(w[which].jy, w[which].jm);
-    if (w[which].jd > max) w[which].jd = max;
-
-    /* Any edit invalidates the previous run; user re-clicks نمایش گزارش */
-    w.result = null;
-    w.error = '';
+    /* worker-report uses state.workerReport; reports view uses state.report */
+    const target = state.route.name === 'worker-report' ? state.workerReport : state.report;
+    if (!target) return;
+    const which = t.dataset.jalali;
+    const part  = t.dataset.part;
+    if (!target[which] || typeof target[which] !== 'object' || !('jy' in target[which])) return;
+    target[which][part] = Number(t.value);
+    const max = jalaaliMonthLength(target[which].jy, target[which].jm);
+    if (target[which].jd > max) target[which].jd = max;
+    target.result = null;
+    state.error = '';
     render();
     return;
   }
+  
   if (!t.dataset.draft || !state.draft) return;
   setDraft(t.dataset.draft, t.type === 'checkbox' ? t.checked : t.value);
   if (t.dataset.rerender !== undefined) {
@@ -1146,10 +1177,31 @@ document.addEventListener('submit', async (e) => {
     }
 
     if (kind === 'report') {
-      const start = String(fd.get('start') || '');
-      const end = String(fd.get('end') || '');
+      const r = state.report;
+      if (!r) return;
+    
+      /* Jalali → Gregorian conversion ONLY here, at the query boundary */
+      let sG, eG;
+      try {
+        sG = toGregorian(r.start.jy, r.start.jm, r.start.jd);
+        eG = toGregorian(r.end.jy,   r.end.jm,   r.end.jd);
+      } catch {
+        state.error = 'تاریخ نامعتبر است.'; render(); return;
+      }
+      const pad = n => String(n).padStart(2, '0');
+      const start = `${sG.gy}-${pad(sG.gm)}-${pad(sG.gd)}`;
+      const end   = `${eG.gy}-${pad(eG.gm)}-${pad(eG.gd)}`;
+    
+      if (start > end) {
+        state.error = 'تاریخ شروع نمی‌تواند بعد از تاریخ پایان باشد.';
+        r.result = null;
+        render(); return;
+      }
+    
       const workerIds = [...form.querySelectorAll('input[name="worker"]:checked')].map(i => i.value);
-      state.report = { start, end, workerIds, result: computeReport({ start, end, workerIds }) };
+      r.workerIds = workerIds;
+      r.result = computeReport({ start, end, workerIds });
+      state.error = '';
       render();
       return;
     }
