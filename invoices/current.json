@@ -3608,6 +3608,47 @@
       "total": 900,
       "updatedAt": "2026-11-23T12:10:47.669Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwt8b9n96rwiad",
+      "idempotencyKey": "fa01c481-affd-46c9-8f11-629862282ab0",
+      "status": "submitted",
+      "number": 117,
+      "createdAt": "2026-11-23T12:15:26.613Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-23T12:15:26.613Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdnmpz783o",
+      "carName": "پژو 207",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "واکس stp و اسپری مایع",
+          "amount": 750
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-23T12:15:26.613Z",
+      "updatedBy": "11"
     }
   ]
 }
