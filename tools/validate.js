@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { monthKey } from '../js/invoices.js';
 import { validateData, validateInvoices, STATUS } from '../js/gate.js';
 
 const dataFile = process.argv[2] || 'data.json';
@@ -26,7 +27,7 @@ if (fs.existsSync(invDir)) {
       for (const inv of j.invoices) {
         if (inv.status === STATUS.DRAFT) problems.push(`${name}: پیش‌فاکتور نباید در آرشیو باشد (${inv.id}).`);
         else {
-          const im = new Date(inv.submittedAt || inv.createdAt).toISOString().slice(0, 7);
+          const im = monthKey(inv.submittedAt || inv.createdAt);   // was: new Date(…).toISOString().slice(0, 7)
           if (im !== month) problems.push(`${name}: فاکتور ${inv.id} به ماه ${im} تعلق دارد.`);
         }
       }
