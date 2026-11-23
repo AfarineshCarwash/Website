@@ -3762,6 +3762,42 @@
       "total": 2150,
       "updatedAt": "2026-11-23T12:18:09.875Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwt8eyz5z34fqq",
+      "idempotencyKey": "7b7e21ec-4283-4aa0-bf20-498feeed8e15",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-23T12:18:19.409Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpczss625om",
+      "carTypeName": "نیم شاسی",
+      "carId": "car_mwpdyjh1ktxx",
+      "carName": "جک s3",
+      "workerId": "w_mwpd3jcgubkb",
+      "workerName": "نائب",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 700,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 900,
+      "total": 900,
+      "updatedAt": "2026-11-23T12:18:19.409Z",
+      "updatedBy": "11"
     }
   ]
 }
