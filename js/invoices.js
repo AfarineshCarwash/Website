@@ -5,8 +5,11 @@ export const ARCHIVE_DIR = 'invoices';
 const ARCHIVE_RE = /^invoices-(\d{4}-\d{2})\.json$/;
 
 export function monthKey(dateLike) {
-  const d = new Date(dateLike);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Tehran', year: 'numeric', month: '2-digit',
+  }).formatToParts(new Date(dateLike));
+  const get = t => parts.find(p => p.type === t)?.value;
+  return `${get('year')}-${get('month')}`;
 }
 export const invoiceMonth = inv => monthKey(inv.submittedAt || inv.createdAt);
 const archivePath = month => `${ARCHIVE_DIR}/invoices-${month}.json`;
