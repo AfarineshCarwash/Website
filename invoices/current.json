@@ -4276,6 +4276,47 @@
       "total": 300,
       "updatedAt": "2026-11-23T14:58:23.300Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwte7qi46bvk6h",
+      "idempotencyKey": "bd5497df-391b-4c13-8d9d-94199621a255",
+      "status": "submitted",
+      "number": 140,
+      "createdAt": "2026-11-23T15:00:39.532Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-23T15:00:39.532Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa7znn546j",
+      "carName": "رانا",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "خوش بو کننده",
+          "amount": 650
+        }
+      ],
+      "tip": 0,
+      "discount": 50,
+      "subtotal": 650,
+      "total": 600,
+      "updatedAt": "2026-11-23T15:00:39.532Z",
+      "updatedBy": "11"
     }
   ]
 }
