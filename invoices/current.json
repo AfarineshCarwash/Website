@@ -2739,6 +2739,42 @@
       "total": 250,
       "updatedAt": "2026-11-23T08:54:00.203Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwt1ip97wsynhd",
+      "idempotencyKey": "0f79bcc5-7386-4524-b531-0df7542c4361",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-23T09:05:16.123Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpczss625om",
+      "carTypeName": "نیم شاسی",
+      "carId": "car_mwpdxi02mw8u",
+      "carName": "x33",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 700,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 900,
+      "total": 900,
+      "updatedAt": "2026-11-23T09:05:16.123Z",
+      "updatedBy": "11"
     }
   ]
 }
