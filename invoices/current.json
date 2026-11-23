@@ -3721,6 +3721,47 @@
       "total": 600,
       "updatedAt": "2026-11-23T12:17:59.945Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwt8ermc6199wr",
+      "idempotencyKey": "84247378-91c7-486e-9bac-da1b1a5bb1c1",
+      "status": "submitted",
+      "number": 118,
+      "createdAt": "2026-11-23T12:18:09.875Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-23T12:18:09.875Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa84vn1ns4",
+      "carName": "سمند",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "دستمال و خوش بو کننده آرئون و ضربه گیر",
+          "amount": 2150
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 2150,
+      "total": 2150,
+      "updatedAt": "2026-11-23T12:18:09.875Z",
+      "updatedBy": "11"
     }
   ]
 }
