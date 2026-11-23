@@ -532,7 +532,7 @@ function viewInvoices() {
   const visible = manager ? all : all.filter(i => i.status === STATUS.DRAFT);
 
   const sorted = [...visible].sort((a, b) =>
-    String(invDate(b) || '').localeCompare(String(a.createdAt || '')));
+    String(invDate(b) || '').localeCompare(String(invDate(a) || '')));
 
   const filters = manager
     ? [['all', 'همه'], ['draft', 'پیش‌فاکتور'], ['submitted', 'نهایی'], ['void', 'حذف‌شده']]
@@ -560,26 +560,6 @@ function viewWorkerReport() {
   if (!w) return layout('گزارش کارگران', '<p class="muted">داده‌ای موجود نیست.</p>', 'manager');
 
   const busy = state.busy || w.loading;
-
-  const yearOptions = (sel) => {
-    const cy = toJalaali(new Date()).jy;
-    let out = '';
-    for (let y = cy - 3; y <= cy + 1; y++)
-      out += `<option value="${y}" ${sel === y ? 'selected' : ''}>${y}</option>`;
-    return out;
-  };
-  const monthOptions = (sel) => JALALI_MONTHS
-    .map((name, i) => `<option value="${i + 1}" ${sel === i + 1 ? 'selected' : ''}>${name}</option>`)
-    .join('');
-  const dayOptions = (sel, max) => {
-    let out = '';
-    for (let d = 1; d <= max; d++)
-      out += `<option value="${d}" ${sel === d ? 'selected' : ''}>${d}</option>`;
-    return out;
-  };
-
-  <label class="field">از تاریخ ${makeJalaliPicker('start', w.start, busy)}</label>
-  <label class="field">تا تاریخ ${makeJalaliPicker('end', w.end, busy)}</label>
 
   let body;
   if (w.loading) {
@@ -629,8 +609,8 @@ function viewWorkerReport() {
   return layout('گزارش کارگران', `
     <div class="card">
       <div class="grid2">
-        <label class="field">از تاریخ ${makeJalaliPicker('start', w.start)}</label>
-        <label class="field">تا تاریخ ${makeJalaliPicker('end', w.end)}</label>
+        <label class="field">از تاریخ ${makeJalaliPicker('start', w.start, busy)}</label>
+        <label class="field">تا تاریخ ${makeJalaliPicker('end', w.end, busy)}</label>
       </div>
       <button class="btn primary block" type="button" data-action="run-worker-report" ${busy ? 'disabled' : ''}>
         ${w.loading ? '<span class="spinner"></span>در حال بارگذاری…' : 'نمایش گزارش'}
