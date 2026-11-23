@@ -3870,6 +3870,42 @@
       "total": 600,
       "updatedAt": "2026-11-23T12:43:05.212Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwt9b9vbytfdme",
+      "idempotencyKey": "6a6ea847-9363-445e-a57f-eaa809b3a8e6",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-23T12:43:26.518Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpe92u5fxt8",
+      "carTypeName": "تیپ 4",
+      "carId": "car_mwpe9lwrg8mc",
+      "carName": "BMW",
+      "workerId": "w_mwpd3v9wheg9",
+      "workerName": "فرید",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 600,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 800,
+      "total": 800,
+      "updatedAt": "2026-11-23T12:43:26.518Z",
+      "updatedBy": "11"
     }
   ]
 }
