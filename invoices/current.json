@@ -2496,6 +2496,42 @@
       "total": 250,
       "updatedAt": "2026-11-23T08:40:44.946Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwt0nryoguvelh",
+      "idempotencyKey": "0f3ddedf-6ec6-4f56-a7cc-b314ef34649c",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-23T08:41:13.295Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdoyi6llt3",
+      "carName": "پارس",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-23T08:41:13.295Z",
+      "updatedBy": "11"
     }
   ]
 }
