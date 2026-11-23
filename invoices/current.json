@@ -2887,12 +2887,12 @@
     {
       "id": "inv_mwt1ni2hy01gu5",
       "idempotencyKey": "d48354c1-a899-483d-8614-9425427b64fe",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 100,
       "createdAt": "2026-11-23T09:09:00.087Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-23T10:00:09.395Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -2917,7 +2917,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-23T09:09:00.087Z",
+      "updatedAt": "2026-11-23T10:00:09.395Z",
       "updatedBy": "11"
     },
     {
