@@ -3649,6 +3649,42 @@
       "total": 750,
       "updatedAt": "2026-11-23T12:15:26.613Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwt8e5le79uvcz",
+      "idempotencyKey": "6638a55a-58be-4bc5-a604-71f8e75dcaf6",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-23T12:17:41.326Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdrtuj578k",
+      "carName": "ماکسیما",
+      "workerId": "w_mwpd55w0ruho",
+      "workerName": "عادل",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-23T12:17:41.326Z",
+      "updatedBy": "11"
     }
   ]
 }
