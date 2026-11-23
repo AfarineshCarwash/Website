@@ -4425,6 +4425,42 @@
       "total": 600,
       "updatedAt": "2026-11-23T15:21:53.616Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwtf0c1mef091k",
+      "idempotencyKey": "79c79521-19b4-49a8-badd-fdd2349878a9",
+      "status": "submitted",
+      "number": 144,
+      "createdAt": "2026-11-23T15:22:53.818Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-23T15:22:53.818Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_shasi",
+      "carTypeName": "شاسی‌بلند",
+      "carId": "car_mwpe5jhvhpfl",
+      "carName": "وانت دو کابین",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1000,
+      "total": 1000,
+      "updatedAt": "2026-11-23T15:22:53.818Z",
+      "updatedBy": "11"
     }
   ]
 }
