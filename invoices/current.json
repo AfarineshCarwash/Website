@@ -3315,6 +3315,42 @@
       "total": 600,
       "updatedAt": "2026-11-23T11:08:33.004Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwt5xo65wgyplh",
+      "idempotencyKey": "2601617d-72e3-4759-a6c5-9baa7d905af1",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-23T11:08:53.021Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdwkdbemxn",
+      "carName": "مزدا 3",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 550,
+      "total": 550,
+      "updatedAt": "2026-11-23T11:08:53.021Z",
+      "updatedBy": "11"
     }
   ]
 }
