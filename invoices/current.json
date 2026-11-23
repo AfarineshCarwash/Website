@@ -2187,10 +2187,10 @@
       "customer": "",
       "carTypeId": "ct_mwpa4cpot6y6",
       "carTypeName": "تیپ 2",
-      "carId": "car_mwpdnmpz783o",
-      "carName": "پژو 207",
-      "workerId": "w_mwpd3jcgubkb",
-      "workerName": "نائب",
+      "carId": "car_mwpa7v7ekvka",
+      "carName": "پژو 206",
+      "workerId": "w_mwpd35lheg7n",
+      "workerName": "سعید",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -2206,7 +2206,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-23T06:20:08.627Z",
+      "updatedAt": "2026-11-23T07:32:43.106Z",
       "updatedBy": "11"
     }
   ]
