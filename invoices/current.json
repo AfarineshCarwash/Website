@@ -1928,29 +1928,20 @@
       "services": {
         "wash": true,
         "vacuum": true,
-        "wax": true
+        "wax": false
       },
       "prices": {
         "wash": 500,
         "vacuum": 200,
         "wax": 450
       },
-      "extras": [
-        {
-          "desc": "پالیش",
-          "amount": 800
-        },
-        {
-          "desc": "ضربه گیر",
-          "amount": 300
-        }
-      ],
+      "extras": [],
       "tip": 200,
       "discount": 50,
-      "subtotal": 2250,
-      "total": 2400,
-      "updatedAt": "2026-11-22T15:46:49.564Z",
-      "updatedBy": "11"
+      "subtotal": 700,
+      "total": 850,
+      "updatedAt": "2026-11-23T08:48:34.830Z",
+      "updatedBy": "999"
     },
     {
       "id": "inv_mws0i54p6shogm",
