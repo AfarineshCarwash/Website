@@ -11,17 +11,57 @@ import {
 /* ================= helpers ================= */
 const esc = s => String(s ?? '').replace(/[&<>"']/g,
   c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+/* ---------------- Tehran (IRST / UTC+3:30) time helpers ---------------- */
+const TEHRAN_TZ = 'Asia/Tehran';
+const TEHRAN_OFFSET_MS = 3.5 * 60 * 60 * 1000;   // Iran has no DST since 2022
+
+/** Gregorian calendar parts of `date` as seen in Tehran. */
+function tehranGregorianParts(date = new Date()) {
+  const d = date instanceof Date ? date : new Date(date);
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: TEHRAN_TZ, year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(d);
+  const get = t => Number(parts.find(p => p.type === t)?.value);
+  return { gy: get('year'), gm: get('month'), gd: get('day') };
+}
+
+/** Jalali (jy, jm, jd) of `date` as seen in Tehran. */
+function tehranJalali(date = new Date()) {
+  const p = tehranGregorianParts(date);
+  return toJalaali(p.gy, p.gm, p.gd);
+}
+
+/** Milliseconds for Tehran's [00:00:00.000, 23:59:59.999] of a Gregorian day. */
+const tehranDayStartMs = (gy, gm, gd) => Date.UTC(gy, gm - 1, gd, 0, 0, 0, 0) - TEHRAN_OFFSET_MS;
+const tehranDayEndMs   = (gy, gm, gd) => Date.UTC(gy, gm - 1, gd, 23, 59, 59, 999) - TEHRAN_OFFSET_MS;
+
+/* ---------------- display / filter formatters (now Tehran-based) ---------------- */
 const fmt = n => Number(n || 0).toLocaleString('fa-IR');
 const uid = p => `${p}_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
 const uuid = () => (globalThis.crypto?.randomUUID ? crypto.randomUUID() : uid('key'));
+
+/** ISO date (YYYY-MM-DD) in Tehran time — used for report filtering. */
 const isoDate = v => {
-  const d = new Date(v), p = n => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+  const p = tehranGregorianParts(v);
+  const pad = n => String(n).padStart(2, '0');
+  return `${p.gy}-${pad(p.gm)}-${pad(p.gd)}`;
 };
-const todayISO = () => isoDate(new Date().toISOString());
-const faDate = v => new Date(v).toLocaleDateString('fa-IR');
-const faTime = v => new Date(v).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
-const invDate = inv => inv.submittedAt ?? inv.createdAt;   // ← used by change 2 below
+const todayISO = () => isoDate(new Date());
+
+/** Jalali date + time in Tehran time — used for display only. */
+const faDate = v => new Date(v).toLocaleDateString('fa-IR', { timeZone: TEHRAN_TZ });
+const faTime = v => new Date(v).toLocaleTimeString('fa-IR', {
+  timeZone: TEHRAN_TZ, hour: '2-digit', minute: '2-digit',
+});
+
+/** Display-date source: submittedAt if present, else createdAt. */
+const invDate = inv => inv.submittedAt ?? inv.createdAt;
+
+/** Sort key: actual ms timestamp of invDate — NOT the formatted string. */
+const invTs = inv => {
+  const v = invDate(inv);
+  return v ? new Date(v).getTime() : 0;
+};
 
 const state = {
   workerReport: null, data: null, user: null, store: null,
@@ -188,7 +228,7 @@ function makeJalaliPicker(which, val, disabled = false) {
   const max = jalaaliMonthLength(val.jy, val.jm);
   const d = disabled ? 'disabled' : '';
   const yearOptions = (sel) => {
-    const cy = toJalaali(new Date()).jy;
+    const cy = tehranJalali().jy;
     let out = '';
     for (let y = cy - 3; y <= cy + 1; y++)
       out += `<option value="${y}" ${sel === y ? 'selected' : ''}>${y}</option>`;
@@ -212,7 +252,7 @@ function makeJalaliPicker(which, val, disabled = false) {
 }
 
 function defaultWorkerReport() {
-  const t = toJalaali(new Date());
+  const t = tehranJalali();
   return {
     start: { jy: t.jy, jm: t.jm, jd: 1 },   // 1st of current Jalali month
     end:   { jy: t.jy, jm: t.jm, jd: t.jd }, // today
@@ -221,7 +261,7 @@ function defaultWorkerReport() {
 }
 
 function defaultReport() {
-  const t = toJalaali(new Date());
+  const t = tehranJalali();
   return {
     start: { jy: t.jy, jm: t.jm, jd: 1 },     // 1st of current Jalali month
     end:   { jy: t.jy, jm: t.jm, jd: t.jd },  // today
@@ -432,11 +472,12 @@ function viewReports() {
 
   let resultHtml = '';
   if (r.result) {
-    const rows = r.result.invoices.length ? r.result.invoices.map(inv => `
+    const sortedInvoices = [...r.result.invoices].sort((a, b) => invTs(b) - invTs(a));
+    const rows = sortedInvoices.length ? sortedInvoices.map(inv => `
       <tr>
         <td>${inv.number ? '#' + fmt(inv.number) : '—'}</td>
-        <td>${faDate(inv.submittedAt || inv.createdAt)}</td>
-        <td>${faTime(inv.submittedAt || inv.createdAt)}</td>
+        <td>${faDate(invDate(inv))}</td>
+        <td>${faTime(invDate(inv))}</td>
         <td>${esc(inv.customer || '—')}</td>
         <td>${esc(inv.carTypeName || '—')} / ${esc(inv.carName || '—')}</td>
         <td>${esc(inv.workerName || '—')}</td>
@@ -531,8 +572,7 @@ function viewInvoices() {
   const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
   const visible = manager ? all : all.filter(i => i.status === STATUS.DRAFT);
 
-  const sorted = [...visible].sort((a, b) =>
-    String(invDate(b) || '').localeCompare(String(invDate(a) || '')));
+  const sorted = [...visible].sort((a, b) => invTs(b) - invTs(a));   // was: localeCompare on createdAt
 
   const filters = manager
     ? [['all', 'همه'], ['draft', 'پیش‌فاکتور'], ['submitted', 'نهایی'], ['void', 'حذف‌شده']]
@@ -628,8 +668,8 @@ async function runWorkerReport() {
   try {
     const sG = toGregorian(w.start.jy, w.start.jm, w.start.jd);
     const eG = toGregorian(w.end.jy, w.end.jm, w.end.jd);
-    startTs = new Date(sG.gy, sG.gm - 1, sG.gd, 0, 0, 0, 0).getTime();      // start of day
-    endTs   = new Date(eG.gy, eG.gm - 1, eG.gd, 23, 59, 59, 999).getTime(); // end of day
+    startTs = tehranDayStartMs(sG.gy, sG.gm, sG.gd);   // ← was: new Date(sG.gy, sG.gm-1, sG.gd, 0,0,0,0).getTime()
+    endTs   = tehranDayEndMs  (eG.gy, eG.gm, eG.gd);   // ← was: new Date(eG.gy, eG.gm-1, eG.gd, 23,59,59,999).getTime()
   } catch {
     w.error = 'تاریخ نامعتبر است.';
     w.result = null; render(); return;
