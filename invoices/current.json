@@ -6754,6 +6754,42 @@
       "total": 600,
       "updatedAt": "2026-11-24T14:05:36.957Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwurqpge1bgbfz",
+      "idempotencyKey": "4b274f14-4efd-4d6f-b0b2-a95d13e1719b",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-24T14:07:05.821Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdpinekymq",
+      "carName": "ساینا",
+      "workerId": "w_mwpd1exs7fk5",
+      "workerName": "مجتبی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-24T14:07:05.821Z",
+      "updatedBy": "11"
     }
   ]
 }
