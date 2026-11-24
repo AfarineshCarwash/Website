@@ -6172,12 +6172,12 @@
     {
       "id": "inv_mwulqwiwexprhz",
       "idempotencyKey": "9960cf1c-b2ff-450d-836e-ee21c0612126",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 192,
       "createdAt": "2026-11-24T11:19:17.283Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-24T12:35:57.170Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -6188,8 +6188,8 @@
       "workerId": "w_mwpd3v9wheg9",
       "workerName": "فرید",
       "services": {
-        "wash": true,
-        "vacuum": true,
+        "wash": false,
+        "vacuum": false,
         "wax": false
       },
       "prices": {
@@ -6197,12 +6197,17 @@
         "vacuum": 120,
         "wax": 450
       },
-      "extras": [],
+      "extras": [
+        {
+          "desc": "کلانتری",
+          "amount": 0
+        }
+      ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 550,
-      "total": 550,
-      "updatedAt": "2026-11-24T11:19:17.283Z",
+      "subtotal": 0,
+      "total": 0,
+      "updatedAt": "2026-11-24T12:35:57.170Z",
       "updatedBy": "11"
     },
     {
