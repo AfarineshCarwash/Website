@@ -6028,12 +6028,12 @@
     {
       "id": "inv_mwukukspeuetxv",
       "idempotencyKey": "33460657-cc56-4717-9360-f427c962de06",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 188,
       "createdAt": "2026-11-24T10:54:09.097Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-24T12:07:15.604Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -6058,7 +6058,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-24T10:54:09.097Z",
+      "updatedAt": "2026-11-24T12:07:15.604Z",
       "updatedBy": "11"
     },
     {
