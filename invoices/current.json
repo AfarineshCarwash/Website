@@ -5892,8 +5892,8 @@
       "carTypeName": "تیپ 2",
       "carId": "car_mwpdpdzlca7l",
       "carName": "تیبا",
-      "workerId": "w_2",
-      "workerName": "علی",
+      "workerId": "w_mwpd3jcgubkb",
+      "workerName": "نائب",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -5909,7 +5909,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-24T10:25:29.951Z",
+      "updatedAt": "2026-11-24T10:28:57.015Z",
       "updatedBy": "11"
     },
     {
