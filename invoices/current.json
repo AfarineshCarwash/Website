@@ -5735,12 +5735,12 @@
     {
       "id": "inv_mwuhslllzz31t4",
       "idempotencyKey": "3d97d68f-c0b4-4b98-ad96-8406d7ccd478",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 178,
       "createdAt": "2026-11-24T09:28:37.977Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-24T10:28:25.007Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -5752,7 +5752,7 @@
       "workerName": "علی",
       "services": {
         "wash": true,
-        "vacuum": true,
+        "vacuum": false,
         "wax": false
       },
       "prices": {
@@ -5763,9 +5763,9 @@
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-24T09:28:37.977Z",
+      "subtotal": 450,
+      "total": 450,
+      "updatedAt": "2026-11-24T10:28:25.007Z",
       "updatedBy": "11"
     },
     {
