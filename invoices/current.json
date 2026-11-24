@@ -5928,8 +5928,8 @@
       "carTypeName": "تیپ 2",
       "carId": "car_mwpa7v7ekvka",
       "carName": "پژو 206",
-      "workerId": "w_mwpd2mmq44k6",
-      "workerName": "بهرام",
+      "workerId": "w_mwpd3jcgubkb",
+      "workerName": "نائب",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -5945,7 +5945,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-24T10:26:39.356Z",
+      "updatedAt": "2026-11-24T10:27:41.700Z",
       "updatedBy": "11"
     }
   ]
