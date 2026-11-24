@@ -6353,6 +6353,42 @@
       "total": 600,
       "updatedAt": "2026-11-24T12:05:42.720Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwunpr5xi7tluv",
+      "idempotencyKey": "f8bdc6d1-73af-4cce-b32f-5310a4c43ea6",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-24T12:14:22.909Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa7znn546j",
+      "carName": "رانا",
+      "workerId": "w_mwpdasvoj6qw",
+      "workerName": "اسد",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-24T12:14:22.909Z",
+      "updatedBy": "11"
     }
   ]
 }
