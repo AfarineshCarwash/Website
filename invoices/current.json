@@ -6771,8 +6771,8 @@
       "carTypeName": "تیپ 2",
       "carId": "car_mwpdpinekymq",
       "carName": "ساینا",
-      "workerId": "w_mwpd1exs7fk5",
-      "workerName": "مجتبی",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -6788,7 +6788,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-24T14:07:05.821Z",
+      "updatedAt": "2026-11-24T14:15:53.623Z",
       "updatedBy": "11"
     },
     {
