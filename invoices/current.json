@@ -4713,6 +4713,42 @@
       "total": 750,
       "updatedAt": "2026-11-24T05:42:57.371Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwuarmjafygqiy",
+      "idempotencyKey": "a059d9a7-b006-44e8-ba79-4865cde41f9e",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-24T06:11:55.214Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdp87xuvj5",
+      "carName": "کوییک",
+      "workerId": "w_mwpdasvoj6qw",
+      "workerName": "اسد",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 450,
+      "total": 450,
+      "updatedAt": "2026-11-24T06:11:55.214Z",
+      "updatedBy": "11"
     }
   ]
 }
