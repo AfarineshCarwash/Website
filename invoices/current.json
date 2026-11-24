@@ -6686,12 +6686,12 @@
     {
       "id": "inv_mwurm5y26ade4i",
       "idempotencyKey": "f8b87d97-dafb-4feb-8d40-36ea5346373c",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 203,
       "createdAt": "2026-11-24T14:03:33.914Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-24T14:26:51.671Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -6702,7 +6702,7 @@
       "workerId": "w_mwpdasvoj6qw",
       "workerName": "اسد",
       "services": {
-        "wash": true,
+        "wash": false,
         "vacuum": false,
         "wax": false
       },
@@ -6711,12 +6711,17 @@
         "vacuum": 150,
         "wax": 450
       },
-      "extras": [],
-      "tip": 0,
+      "extras": [
+        {
+          "desc": "انعام",
+          "amount": 0
+        }
+      ],
+      "tip": 100,
       "discount": 0,
-      "subtotal": 450,
-      "total": 450,
-      "updatedAt": "2026-11-24T14:03:33.914Z",
+      "subtotal": 0,
+      "total": 100,
+      "updatedAt": "2026-11-24T14:26:51.671Z",
       "updatedBy": "11"
     },
     {
