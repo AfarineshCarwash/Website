@@ -4609,12 +4609,12 @@
     {
       "id": "inv_mwu9l5my7iqktk",
       "idempotencyKey": "9b72dd94-177e-4f3b-98c6-09ee76ff6307",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 152,
       "createdAt": "2026-11-24T05:38:53.770Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-24T07:08:48.339Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -4634,12 +4634,17 @@
         "vacuum": 200,
         "wax": 450
       },
-      "extras": [],
-      "tip": 0,
+      "extras": [
+        {
+          "desc": "موتور شویی",
+          "amount": 1200
+        }
+      ],
+      "tip": 200,
       "discount": 0,
-      "subtotal": 1000,
-      "total": 1000,
-      "updatedAt": "2026-11-24T05:38:53.770Z",
+      "subtotal": 2200,
+      "total": 2400,
+      "updatedAt": "2026-11-24T07:08:48.339Z",
       "updatedBy": "11"
     },
     {
