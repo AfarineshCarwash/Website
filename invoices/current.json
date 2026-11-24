@@ -6826,6 +6826,42 @@
       "total": 700,
       "updatedAt": "2026-11-24T14:15:37.536Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwus3q7qyfvksm",
+      "idempotencyKey": "88e6f1ca-0be6-4ca5-97b8-efe91a5fba82",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-24T14:17:13.323Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_shasi",
+      "carTypeName": "شاسی‌بلند",
+      "carId": "car_mwpe2m8yo5wr",
+      "carName": "تویوتا رافور",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1000,
+      "total": 1000,
+      "updatedAt": "2026-11-24T14:17:13.323Z",
+      "updatedBy": "11"
     }
   ]
 }
