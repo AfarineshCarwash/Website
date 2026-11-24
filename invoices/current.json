@@ -5591,12 +5591,12 @@
     {
       "id": "inv_mwuhie1kika8lx",
       "idempotencyKey": "e88a7559-d904-4ef7-b621-8d6480a02930",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 172,
       "createdAt": "2026-11-24T09:20:41.624Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-24T09:46:51.808Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -5621,7 +5621,7 @@
       "discount": 0,
       "subtotal": 450,
       "total": 450,
-      "updatedAt": "2026-11-24T09:20:41.624Z",
+      "updatedAt": "2026-11-24T09:46:51.808Z",
       "updatedBy": "11"
     },
     {
