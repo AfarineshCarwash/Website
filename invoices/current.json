@@ -7853,12 +7853,12 @@
     {
       "id": "inv_mwvv23gjr2irrn",
       "idempotencyKey": "8691e663-e460-4abd-8249-25fa96cefeb8",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 232,
       "createdAt": "2026-11-25T08:27:42.210Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-25T08:31:18.409Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -7881,14 +7881,14 @@
       "extras": [
         {
           "desc": "آب خالی",
-          "amount": 0
+          "amount": 400
         }
       ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 0,
-      "total": 0,
-      "updatedAt": "2026-11-25T08:27:42.210Z",
+      "subtotal": 400,
+      "total": 400,
+      "updatedAt": "2026-11-25T08:31:18.409Z",
       "updatedBy": "11"
     },
     {
