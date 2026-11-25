@@ -7808,6 +7808,47 @@
       "total": 600,
       "updatedAt": "2026-11-25T08:09:16.410Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwvv063c5bp4tq",
+      "idempotencyKey": "fb71b479-b5a8-4f3f-9beb-1ebdce21fe2b",
+      "status": "submitted",
+      "number": 231,
+      "createdAt": "2026-11-25T08:26:12.311Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-25T08:26:12.311Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdp87xuvj5",
+      "carName": "کوییک",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "موتور شویی",
+          "amount": 1100
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1100,
+      "total": 1100,
+      "updatedAt": "2026-11-25T08:26:12.311Z",
+      "updatedBy": "11"
     }
   ]
 }
