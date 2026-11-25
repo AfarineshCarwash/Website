@@ -8038,12 +8038,12 @@
     {
       "id": "inv_mwvvp3canya3fx",
       "idempotencyKey": "02c4aca5-9e18-4ac8-889d-27ff7d3007b5",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 234,
       "createdAt": "2026-11-25T08:45:35.146Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-25T08:58:31.505Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -8064,11 +8064,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 50,
       "discount": 0,
       "subtotal": 900,
-      "total": 900,
-      "updatedAt": "2026-11-25T08:45:35.146Z",
+      "total": 950,
+      "updatedAt": "2026-11-25T08:58:31.505Z",
       "updatedBy": "11"
     },
     {
