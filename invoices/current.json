@@ -8286,6 +8286,42 @@
       "total": 1000,
       "updatedAt": "2026-11-25T09:28:15.931Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwvx8j1u7kwn6p",
+      "idempotencyKey": "1b117312-be14-45fb-ac2e-60e4f588e923",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-25T09:28:41.586Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdsbgvsvyl",
+      "carName": "ساندرو",
+      "workerId": "w_mwpd3jcgubkb",
+      "workerName": "نائب",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-25T09:28:41.586Z",
+      "updatedBy": "11"
     }
   ]
 }
