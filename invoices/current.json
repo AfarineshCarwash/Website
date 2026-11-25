@@ -7704,12 +7704,12 @@
     {
       "id": "inv_mwvudr83f061mr",
       "idempotencyKey": "2b5b4365-5fb7-4a5b-8f4c-82e33b35237a",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 230,
       "createdAt": "2026-11-25T08:08:46.611Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-25T08:25:27.997Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -7717,8 +7717,8 @@
       "carTypeName": "تیپ 3",
       "carId": "car_mwpa8rt5imi0",
       "carName": "دنا",
-      "workerId": "",
-      "workerName": "",
+      "workerId": "w_2",
+      "workerName": "علی",
       "services": {
         "wash": true,
         "vacuum": false,
@@ -7730,11 +7730,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 200,
       "discount": 0,
       "subtotal": 500,
-      "total": 500,
-      "updatedAt": "2026-11-25T08:08:46.611Z",
+      "total": 700,
+      "updatedAt": "2026-11-25T08:25:27.997Z",
       "updatedBy": "11"
     },
     {
