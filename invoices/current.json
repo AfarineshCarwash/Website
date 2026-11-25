@@ -7753,8 +7753,8 @@
       "carTypeName": "تیپ 1",
       "carId": "car_mwpa74iy78eq",
       "carName": "پراید",
-      "workerId": "",
-      "workerName": "",
+      "workerId": "w_mwpd3jcgubkb",
+      "workerName": "نائب",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -7770,7 +7770,7 @@
       "discount": 0,
       "subtotal": 550,
       "total": 550,
-      "updatedAt": "2026-11-25T08:09:00.012Z",
+      "updatedAt": "2026-11-25T08:09:36.715Z",
       "updatedBy": "11"
     },
     {
