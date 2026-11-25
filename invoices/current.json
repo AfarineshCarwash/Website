@@ -7641,28 +7641,28 @@
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
-      "carTypeId": "ct_mwpa4gbemyqr",
-      "carTypeName": "تیپ 3",
-      "carId": "car_mwpa8rt5imi0",
-      "carName": "دنا",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdnmpz783o",
+      "carName": "پژو 207",
       "workerId": "w_mwpc2fuqi2sj",
       "workerName": "جمشید",
       "services": {
         "wash": true,
-        "vacuum": true,
+        "vacuum": false,
         "wax": false
       },
       "prices": {
-        "wash": 500,
-        "vacuum": 200,
+        "wash": 450,
+        "vacuum": 150,
         "wax": 450
       },
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 700,
-      "total": 700,
-      "updatedAt": "2026-11-25T07:43:11.590Z",
+      "subtotal": 450,
+      "total": 450,
+      "updatedAt": "2026-11-25T08:02:31.611Z",
       "updatedBy": "11"
     }
   ]
