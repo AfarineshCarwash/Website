@@ -8521,12 +8521,12 @@
     {
       "id": "inv_mww12ki5enfj9o",
       "idempotencyKey": "e8c35fba-7dd9-4809-a4d0-a46e12e4debc",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 257,
       "createdAt": "2026-11-25T11:16:01.989Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-25T12:32:45.694Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -8534,8 +8534,8 @@
       "carTypeName": "شاسی‌بلند",
       "carId": "car_mwpe0ely2c36",
       "carName": "لاماری",
-      "workerId": "",
-      "workerName": "",
+      "workerId": "w_mwpc2fuqi2sj",
+      "workerName": "جمشید",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -8547,11 +8547,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 300,
       "discount": 0,
       "subtotal": 1000,
-      "total": 1000,
-      "updatedAt": "2026-11-25T11:16:01.989Z",
+      "total": 1300,
+      "updatedAt": "2026-11-25T12:32:45.694Z",
       "updatedBy": "11"
     },
     {
