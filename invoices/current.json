@@ -8435,6 +8435,42 @@
       "total": 450,
       "updatedAt": "2026-11-25T09:54:06.743Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwvyhin2ao50vq",
+      "idempotencyKey": "736dec4e-c2ad-4701-8580-8ceba213ff03",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-25T10:03:40.574Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_shasi",
+      "carTypeName": "شاسی‌بلند",
+      "carId": "car_mwt2oq16po4i",
+      "carName": "فونیکس FX",
+      "workerId": "w_mwpd3p7l4dge",
+      "workerName": "حسین",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 800,
+      "total": 800,
+      "updatedAt": "2026-11-25T10:03:40.574Z",
+      "updatedBy": "11"
     }
   ]
 }
