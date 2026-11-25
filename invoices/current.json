@@ -8439,12 +8439,12 @@
     {
       "id": "inv_mwvyhin2ao50vq",
       "idempotencyKey": "736dec4e-c2ad-4701-8580-8ceba213ff03",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 247,
       "createdAt": "2026-11-25T10:03:40.574Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-25T10:14:20.628Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -8469,7 +8469,7 @@
       "discount": 0,
       "subtotal": 800,
       "total": 800,
-      "updatedAt": "2026-11-25T10:03:40.574Z",
+      "updatedAt": "2026-11-25T10:14:20.628Z",
       "updatedBy": "11"
     }
   ]
