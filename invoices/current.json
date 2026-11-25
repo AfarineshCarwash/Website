@@ -7083,6 +7083,47 @@
       "total": 600,
       "updatedAt": "2026-11-25T05:57:55.417Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwvpuq5x56grgt",
+      "idempotencyKey": "de4a49cb-ad96-4661-a22b-edcb460ca035",
+      "status": "submitted",
+      "number": 214,
+      "createdAt": "2026-11-25T06:02:00.299Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-25T06:02:00.299Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdsbgvsvyl",
+      "carName": "ساندرو",
+      "workerId": "w_mwpd1exs7fk5",
+      "workerName": "مجتبی",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "موتور شویی",
+          "amount": 900
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 900,
+      "total": 900,
+      "updatedAt": "2026-11-25T06:02:00.299Z",
+      "updatedBy": "11"
     }
   ]
 }
