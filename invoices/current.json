@@ -7740,12 +7740,12 @@
     {
       "id": "inv_mwvue1kcum7k8e",
       "idempotencyKey": "a6436107-e95e-4381-b4c3-0c9e047c9d4b",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 240,
       "createdAt": "2026-11-25T08:09:00.012Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-25T09:34:16.043Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -7765,12 +7765,17 @@
         "vacuum": 120,
         "wax": 450
       },
-      "extras": [],
-      "tip": 0,
+      "extras": [
+        {
+          "desc": "بخار",
+          "amount": 550
+        }
+      ],
+      "tip": 400,
       "discount": 0,
-      "subtotal": 550,
-      "total": 550,
-      "updatedAt": "2026-11-25T08:09:36.715Z",
+      "subtotal": 1100,
+      "total": 1500,
+      "updatedAt": "2026-11-25T09:34:16.043Z",
       "updatedBy": "11"
     },
     {
