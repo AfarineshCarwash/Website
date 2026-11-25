@@ -9139,6 +9139,47 @@
       "total": 700,
       "updatedAt": "2026-11-25T14:41:13.492Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwwc2d2u7p664f",
+      "idempotencyKey": "c00a6a0f-352c-4b70-ba3e-79bd5bae9dd4",
+      "status": "submitted",
+      "number": 273,
+      "createdAt": "2026-11-25T16:23:48.148Z",
+      "createdBy": "999",
+      "submittedAt": "2026-11-25T16:23:48.148Z",
+      "submittedBy": "999",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4gbemyqr",
+      "carTypeName": "تیپ 3",
+      "carId": "car_mwpa8rt5imi0",
+      "carName": "دنا",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 500,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "پالیش و خوشبو",
+          "amount": 5500
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 5500,
+      "total": 5500,
+      "updatedAt": "2026-11-25T16:23:48.148Z",
+      "updatedBy": "999"
     }
   ]
 }
