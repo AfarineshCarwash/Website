@@ -8949,6 +8949,42 @@
       "total": 550,
       "updatedAt": "2026-11-25T13:18:21.572Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mww5p88qq3bpwl",
+      "idempotencyKey": "d71f75b2-e745-4dad-902f-60626d6918d0",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-25T13:25:37.657Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdwqgoqtxy",
+      "carName": "کمری",
+      "workerId": "w_mwpd1exs7fk5",
+      "workerName": "مجتبی",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 550,
+      "total": 550,
+      "updatedAt": "2026-11-25T13:25:37.657Z",
+      "updatedBy": "11"
     }
   ]
 }
