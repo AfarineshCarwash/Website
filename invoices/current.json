@@ -7524,12 +7524,12 @@
     {
       "id": "inv_mwvt4klcbg1qkw",
       "idempotencyKey": "8318d9ba-fb15-4350-9e5d-97a1d77cf120",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 248,
       "createdAt": "2026-11-25T07:33:38.495Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-25T10:15:11.220Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -7540,8 +7540,8 @@
       "workerId": "w_mwpd2z6ykeq1",
       "workerName": "علیرضا",
       "services": {
-        "wash": true,
-        "vacuum": true,
+        "wash": false,
+        "vacuum": false,
         "wax": false
       },
       "prices": {
@@ -7549,12 +7549,17 @@
         "vacuum": 200,
         "wax": 450
       },
-      "extras": [],
+      "extras": [
+        {
+          "desc": "حساب دفتری امید",
+          "amount": 0
+        }
+      ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 700,
-      "total": 700,
-      "updatedAt": "2026-11-25T10:12:05.157Z",
+      "subtotal": 0,
+      "total": 0,
+      "updatedAt": "2026-11-25T10:15:11.220Z",
       "updatedBy": "11"
     },
     {
