@@ -7340,6 +7340,42 @@
       "total": 450,
       "updatedAt": "2026-11-25T07:14:58.090Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwvspgajrh3be4",
+      "idempotencyKey": "d4a87057-8723-46df-a472-18cb29156058",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-25T07:21:53.075Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpe92u5fxt8",
+      "carTypeName": "تیپ 4",
+      "carId": "car_mwpe9vv1tl6m",
+      "carName": "BENZ",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 600,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-25T07:21:53.075Z",
+      "updatedBy": "11"
     }
   ]
 }
