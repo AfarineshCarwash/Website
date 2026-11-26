@@ -11370,6 +11370,42 @@
       "total": 750,
       "updatedAt": "2026-11-26T11:16:01.241Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwxi6mpzlkhr13",
+      "idempotencyKey": "61caf36f-2d45-4025-9c50-46aa43aba0b2",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T12:02:51.137Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdo42ypj2k",
+      "carName": "پژو 405",
+      "workerId": "w_mwpc2fuqi2sj",
+      "workerName": "جمشید",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-26T12:02:51.137Z",
+      "updatedBy": "11"
     }
   ]
 }
