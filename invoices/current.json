@@ -10337,6 +10337,42 @@
       "total": 600,
       "updatedAt": "2026-11-26T08:45:19.024Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwxbf6vhxb23m0",
+      "idempotencyKey": "7c2e12c1-9e29-43ff-8436-31102a533b46",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T08:53:33.197Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpe92u5fxt8",
+      "carTypeName": "تیپ 4",
+      "carId": "car_mwq7lj532cq1",
+      "carName": "جنسیس",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 600,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-26T08:53:33.197Z",
+      "updatedBy": "11"
     }
   ]
 }
