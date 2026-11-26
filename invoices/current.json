@@ -10959,6 +10959,42 @@
       "total": 750,
       "updatedAt": "2026-11-26T10:35:01.457Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwxf296k2hfekr",
+      "idempotencyKey": "779af390-fe26-4c67-9f18-c216b10f0db1",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T10:35:28.123Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpd005tq1o1",
+      "carTypeName": "فول شاسی",
+      "carId": "car_mwpe6ochybdj",
+      "carName": "تانک",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 900,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1100,
+      "total": 1100,
+      "updatedAt": "2026-11-26T10:35:28.123Z",
+      "updatedBy": "11"
     }
   ]
 }
