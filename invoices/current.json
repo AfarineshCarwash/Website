@@ -11534,7 +11534,7 @@
       "workerId": "w_mwpd44frbs5n",
       "workerName": "محمد",
       "services": {
-        "wash": false,
+        "wash": true,
         "vacuum": true,
         "wax": false
       },
@@ -11546,9 +11546,9 @@
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 150,
-      "total": 150,
-      "updatedAt": "2026-11-26T12:20:41.731Z",
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-26T12:22:35.219Z",
       "updatedBy": "11"
     }
   ]
