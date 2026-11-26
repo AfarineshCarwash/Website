@@ -9468,6 +9468,42 @@
       "total": 600,
       "updatedAt": "2026-11-26T07:02:57.971Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwx7hb411awjkc",
+      "idempotencyKey": "dd4335a7-4e46-47f7-a27c-f169dba6bd07",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T07:03:13.537Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpd005tq1o1",
+      "carTypeName": "فول شاسی",
+      "carId": "car_mwpe6k34ey1a",
+      "carName": "نیسان ترا",
+      "workerId": "w_mwpc2fuqi2sj",
+      "workerName": "جمشید",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 900,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1100,
+      "total": 1100,
+      "updatedAt": "2026-11-26T07:03:13.537Z",
+      "updatedBy": "11"
     }
   ]
 }
