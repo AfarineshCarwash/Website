@@ -10197,14 +10197,14 @@
     {
       "id": "inv_mwxakloj5e82me",
       "idempotencyKey": "a6a682da-2717-44fb-8fb5-f3d312fa8813",
-      "status": "submitted",
+      "status": "void",
       "number": 294,
       "createdAt": "2026-11-26T08:29:46.047Z",
       "createdBy": "11",
       "submittedAt": "2026-11-26T08:29:46.047Z",
       "submittedBy": "11",
-      "deletedAt": null,
-      "deletedBy": null,
+      "deletedAt": "2026-11-26T08:33:11.213Z",
+      "deletedBy": "999",
       "customer": "",
       "carTypeId": "ct_mwpa4gbemyqr",
       "carTypeName": "تیپ 3",
@@ -10227,8 +10227,8 @@
       "discount": 0,
       "subtotal": 700,
       "total": 700,
-      "updatedAt": "2026-11-26T08:29:46.047Z",
-      "updatedBy": "11"
+      "updatedAt": "2026-11-26T08:33:11.213Z",
+      "updatedBy": "999"
     }
   ]
 }
