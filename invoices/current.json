@@ -11211,6 +11211,42 @@
       "total": 700,
       "updatedAt": "2026-11-26T11:05:25.784Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwxg6tcuv1fx8q",
+      "idempotencyKey": "9cbc87f1-1d65-4e1c-b8f0-14564d6a2203",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T11:07:00.507Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdvm2ujjq8",
+      "carName": "سوناتا",
+      "workerId": "w_mwpd44frbs5n",
+      "workerName": "محمد",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 550,
+      "total": 550,
+      "updatedAt": "2026-11-26T11:07:00.507Z",
+      "updatedBy": "11"
     }
   ]
 }
