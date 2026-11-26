@@ -10013,6 +10013,42 @@
       "total": 0,
       "updatedAt": "2026-11-26T08:05:54.253Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwx9vrgrav1jch",
+      "idempotencyKey": "1400823d-9f44-4fa9-9d49-32d76e27bfde",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T08:10:27.137Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdw3akm4n5",
+      "carName": "النترا",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-26T08:10:27.137Z",
+      "updatedBy": "11"
     }
   ]
 }
