@@ -11766,6 +11766,47 @@
       "total": 1000,
       "updatedAt": "2026-11-26T12:51:55.646Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwxk22jdnpn0bx",
+      "idempotencyKey": "240b2bb9-fb46-4a4e-8df8-48a8564a88b1",
+      "status": "submitted",
+      "number": 337,
+      "createdAt": "2026-11-26T12:55:17.592Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-26T12:55:17.592Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdp87xuvj5",
+      "carName": "کوییک",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "ماشین نیما",
+          "amount": 0
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 0,
+      "total": 0,
+      "updatedAt": "2026-11-26T12:55:17.592Z",
+      "updatedBy": "11"
     }
   ]
 }
