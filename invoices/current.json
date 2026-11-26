@@ -10886,12 +10886,12 @@
     {
       "id": "inv_mwxegt4udtb6hm",
       "idempotencyKey": "c2a07c9e-6818-4c27-accf-391b5901e007",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 314,
       "createdAt": "2026-11-26T10:18:47.549Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-26T10:34:36.827Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -10914,14 +10914,14 @@
       "extras": [
         {
           "desc": "موتور شویی",
-          "amount": 0
+          "amount": 1200
         }
       ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 0,
-      "total": 0,
-      "updatedAt": "2026-11-26T10:18:47.549Z",
+      "subtotal": 1200,
+      "total": 1200,
+      "updatedAt": "2026-11-26T10:34:36.827Z",
       "updatedBy": "11"
     }
   ]
