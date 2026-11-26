@@ -11590,12 +11590,12 @@
     {
       "id": "inv_mwxj48yog14tmc",
       "idempotencyKey": "28343c5c-f85f-4e70-9d22-4cfeb77f4a98",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 339,
       "createdAt": "2026-11-26T12:28:59.607Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-26T13:14:18.593Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -11616,11 +11616,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 400,
       "discount": 0,
       "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-26T12:28:59.607Z",
+      "total": 1000,
+      "updatedAt": "2026-11-26T13:14:18.593Z",
       "updatedBy": "11"
     },
     {
