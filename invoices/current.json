@@ -9940,14 +9940,14 @@
     {
       "id": "inv_mwx9miepuche7b",
       "idempotencyKey": "55098e88-36cb-4309-9958-14b486903d4f",
-      "status": "submitted",
+      "status": "void",
       "number": 288,
       "createdAt": "2026-11-26T08:03:15.504Z",
       "createdBy": "11",
       "submittedAt": "2026-11-26T08:03:15.504Z",
       "submittedBy": "11",
-      "deletedAt": null,
-      "deletedBy": null,
+      "deletedAt": "2026-11-26T08:05:24.323Z",
+      "deletedBy": "999",
       "customer": "",
       "carTypeId": "ct_mwpa4cpot6y6",
       "carTypeName": "تیپ 2",
@@ -9970,8 +9970,8 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-26T08:03:15.504Z",
-      "updatedBy": "11"
+      "updatedAt": "2026-11-26T08:05:24.323Z",
+      "updatedBy": "999"
     }
   ]
 }
