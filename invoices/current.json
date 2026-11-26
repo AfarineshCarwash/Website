@@ -9904,12 +9904,12 @@
     {
       "id": "inv_mwx9lus34cpcax",
       "idempotencyKey": "18916d9b-bb9a-4be4-a3a4-cd3d9e344074",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 297,
       "createdAt": "2026-11-26T08:02:44.877Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-26T08:52:12.672Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -9934,7 +9934,7 @@
       "discount": 0,
       "subtotal": 1000,
       "total": 1000,
-      "updatedAt": "2026-11-26T08:02:44.877Z",
+      "updatedAt": "2026-11-26T08:52:12.672Z",
       "updatedBy": "11"
     },
     {
