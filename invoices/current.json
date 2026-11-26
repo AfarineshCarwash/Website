@@ -10714,8 +10714,8 @@
       "carTypeName": "تیپ 3 پلاس",
       "carId": "car_mwpdrtuj578k",
       "carName": "ماکسیما",
-      "workerId": "w_mwpd1exs7fk5",
-      "workerName": "مجتبی",
+      "workerId": "w_mwpdasvoj6qw",
+      "workerName": "اسد",
       "services": {
         "wash": true,
         "vacuum": false,
@@ -10731,7 +10731,7 @@
       "discount": 0,
       "subtotal": 550,
       "total": 550,
-      "updatedAt": "2026-11-26T09:55:29.528Z",
+      "updatedAt": "2026-11-26T10:18:13.606Z",
       "updatedBy": "11"
     },
     {
