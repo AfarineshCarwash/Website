@@ -9360,6 +9360,42 @@
       "total": 600,
       "updatedAt": "2026-11-26T06:09:21.778Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwx6ocizjvobsx",
+      "idempotencyKey": "7211fe9d-f06e-47dc-ac13-3f62dab03cac",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T06:40:42.340Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mww5q4rklips",
+      "carName": "H30 کراس",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-26T06:40:42.340Z",
+      "updatedBy": "11"
     }
   ]
 }
