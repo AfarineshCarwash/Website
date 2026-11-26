@@ -10121,6 +10121,42 @@
       "total": 550,
       "updatedAt": "2026-11-26T08:17:30.741Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwxa8gpizbc5md",
+      "idempotencyKey": "e167f7b2-3962-4a1b-bfb5-76bad5d15a52",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T08:20:19.730Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4gbemyqr",
+      "carTypeName": "تیپ 3",
+      "carId": "car_mwpa8rt5imi0",
+      "carName": "دنا",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 500,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 700,
+      "total": 700,
+      "updatedAt": "2026-11-26T08:20:19.730Z",
+      "updatedBy": "11"
     }
   ]
 }
