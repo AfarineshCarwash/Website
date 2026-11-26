@@ -10229,6 +10229,42 @@
       "total": 700,
       "updatedAt": "2026-11-26T08:33:11.213Z",
       "updatedBy": "999"
+    },
+    {
+      "id": "inv_mwxar1nbjg82pr",
+      "idempotencyKey": "cbe2d270-cfd9-4f87-8a95-2c9eacb57c18",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T08:34:46.679Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdzzg7kqkw",
+      "carName": "لیفان",
+      "workerId": "w_mwpd1exs7fk5",
+      "workerName": "مجتبی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-26T08:34:46.679Z",
+      "updatedBy": "11"
     }
   ]
 }
