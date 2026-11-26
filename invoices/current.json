@@ -11951,6 +11951,42 @@
       "total": 600,
       "updatedAt": "2026-11-26T13:13:32.823Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwxkzrm8cbzrl8",
+      "idempotencyKey": "ea95e030-37bd-4b94-8dd6-04dc98fafc8f",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T13:21:29.737Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdnmpz783o",
+      "carName": "پژو 207",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 450,
+      "total": 450,
+      "updatedAt": "2026-11-26T13:21:29.737Z",
+      "updatedBy": "11"
     }
   ]
 }
