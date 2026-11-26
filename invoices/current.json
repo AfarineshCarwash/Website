@@ -11955,12 +11955,12 @@
     {
       "id": "inv_mwxkzrm8cbzrl8",
       "idempotencyKey": "ea95e030-37bd-4b94-8dd6-04dc98fafc8f",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 344,
       "createdAt": "2026-11-26T13:21:29.737Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-26T13:51:56.637Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -11971,7 +11971,7 @@
       "workerId": "w_mwpd2mmq44k6",
       "workerName": "بهرام",
       "services": {
-        "wash": true,
+        "wash": false,
         "vacuum": false,
         "wax": false
       },
@@ -11980,12 +11980,17 @@
         "vacuum": 150,
         "wax": 450
       },
-      "extras": [],
+      "extras": [
+        {
+          "desc": "طلب کارواش",
+          "amount": 0
+        }
+      ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 450,
-      "total": 450,
-      "updatedAt": "2026-11-26T13:21:29.737Z",
+      "subtotal": 0,
+      "total": 0,
+      "updatedAt": "2026-11-26T13:51:56.637Z",
       "updatedBy": "11"
     },
     {
