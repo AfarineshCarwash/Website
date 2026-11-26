@@ -10923,6 +10923,42 @@
       "total": 1200,
       "updatedAt": "2026-11-26T10:34:36.827Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwxf1olt61vqzx",
+      "idempotencyKey": "e90e40ee-d2ce-48b5-9715-af516e23676d",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-26T10:35:01.457Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdvrgdols1",
+      "carName": "ام جی",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-26T10:35:01.457Z",
+      "updatedBy": "11"
     }
   ]
 }
