@@ -12145,12 +12145,12 @@
     {
       "id": "inv_mwxnh0r1k840fp",
       "idempotencyKey": "bff260ae-20bf-4b92-9e78-3a5c45b82aa2",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 353,
       "createdAt": "2026-11-26T14:30:53.965Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-26T14:56:15.335Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -12163,7 +12163,7 @@
       "services": {
         "wash": true,
         "vacuum": false,
-        "wax": false
+        "wax": true
       },
       "prices": {
         "wash": 800,
@@ -12171,11 +12171,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 50,
       "discount": 0,
-      "subtotal": 800,
-      "total": 800,
-      "updatedAt": "2026-11-26T14:30:53.965Z",
+      "subtotal": 1250,
+      "total": 1300,
+      "updatedAt": "2026-11-26T14:56:15.335Z",
       "updatedBy": "11"
     }
   ]
