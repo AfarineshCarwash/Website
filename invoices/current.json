@@ -12397,12 +12397,12 @@
     {
       "id": "inv_mwykfslpk0a6o8",
       "idempotencyKey": "ede55211-f021-454f-bf54-6bd147f741af",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 376,
       "createdAt": "2026-11-27T05:53:44.077Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-27T08:46:24.566Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -12425,14 +12425,14 @@
       "extras": [
         {
           "desc": "صفرشویی صندلی",
-          "amount": 0
+          "amount": 900
         }
       ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-27T05:53:44.077Z",
+      "subtotal": 1500,
+      "total": 1500,
+      "updatedAt": "2026-11-27T08:46:24.566Z",
       "updatedBy": "11"
     },
     {
