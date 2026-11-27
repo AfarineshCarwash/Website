@@ -12470,6 +12470,47 @@
       "total": 600,
       "updatedAt": "2026-11-27T06:04:43.185Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwyldzyavslpi6",
+      "idempotencyKey": "468b0a96-eafc-4031-b0bc-7c04769e44cd",
+      "status": "submitted",
+      "number": 360,
+      "createdAt": "2026-11-27T06:20:19.898Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-27T06:20:19.898Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa41tm32s2",
+      "carTypeName": "تیپ 1",
+      "carId": "car_mwpa74iy78eq",
+      "carName": "پراید",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 430,
+        "vacuum": 120,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "موتور شویی",
+          "amount": 1000
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1550,
+      "total": 1550,
+      "updatedAt": "2026-11-27T06:20:19.898Z",
+      "updatedBy": "11"
     }
   ]
 }
