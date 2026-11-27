@@ -13096,12 +13096,12 @@
     {
       "id": "inv_mwypyx0mdww99f",
       "idempotencyKey": "6bf50062-36ac-4fd3-ac29-b3cda0c4b062",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 383,
       "createdAt": "2026-11-27T08:28:34.341Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-27T09:25:08.203Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -13112,7 +13112,7 @@
       "workerId": "w_2",
       "workerName": "علی",
       "services": {
-        "wash": false,
+        "wash": true,
         "vacuum": false,
         "wax": false
       },
@@ -13124,14 +13124,14 @@
       "extras": [
         {
           "desc": "موتور شویی",
-          "amount": 0
+          "amount": 1200
         }
       ],
-      "tip": 0,
+      "tip": 50,
       "discount": 0,
-      "subtotal": 0,
-      "total": 0,
-      "updatedAt": "2026-11-27T08:28:34.341Z",
+      "subtotal": 1650,
+      "total": 1700,
+      "updatedAt": "2026-11-27T09:25:08.203Z",
       "updatedBy": "11"
     },
     {
