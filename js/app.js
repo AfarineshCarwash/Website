@@ -64,11 +64,12 @@ const invTs = inv => {
 };
 
 const state = {
-  workerReport: null, data: null, user: null, store: null,
-  invoiceService: null,                          // ← NEW
+  data: null, user: null, store: null,
+  invoiceService: null,
   route: { name: 'login' },
   draft: null, report: null, filter: 'all',
-  busy: false, error: '', toast: '',
+  busy: false, loadingArchives: false,          // ← new
+  error: '', toast: '',
 };
 
 const isManager = () => state.user && state.user.role === ROLES.MANAGER;
@@ -133,11 +134,8 @@ async function doLogin(username, password) {
   state.data = data;
   state.store = new GitHubStore({ ...secrets.repo, token });
   state.invoiceService = new InvoiceService(state.store, () => state.data);
-
-  /* Load current invoices, then auto-rotate, then (for manager) load archives */
   await state.invoiceService.loadCurrent();
-  const { rotated } = await state.invoiceService.rotateIfNeeded();
-  if (user.role === ROLES.MANAGER) await state.invoiceService.loadAll();
+  /* archives are lazy-loaded on first manager view that needs them */
 
   state.draft = newDraft();
   state.route = { name: user.role === ROLES.MANAGER ? 'manager' : 'cashierhome' };
@@ -457,6 +455,12 @@ function viewWorkers() {
 }
 
 function viewReports() {
+  if (state.loadingArchives) {
+    return layout(
+      /* appropriate title */,
+      '<div class="card empty"><span class="spinner"></span>در حال بارگذاری آرشیو…</div>',
+      /* back route */);
+  }
   const workers = state.data.workers || [];
   if (!state.report) state.report = defaultReport();          // ← new
   const r = state.report;
@@ -567,6 +571,12 @@ function invoiceRow(inv, manager) {
 }
 
 function viewInvoices() {
+  if (state.loadingArchives) {
+    return layout(
+      /* appropriate title */,
+      '<div class="card empty"><span class="spinner"></span>در حال بارگذاری آرشیو…</div>',
+      /* back route */);
+  }
   const manager = isManager();
   const filter = manager ? (state.filter || 'all') : STATUS.DRAFT;
   const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
@@ -596,6 +606,12 @@ function viewInvoices() {
 }
 
 function viewWorkerReport() {
+  if (state.loadingArchives) {
+    return layout(
+      /* appropriate title */,
+      '<div class="card empty"><span class="spinner"></span>در حال بارگذاری آرشیو…</div>',
+      /* back route */);
+  }
   const w = state.workerReport;
   if (!w) return layout('گزارش کارگران', '<p class="muted">داده‌ای موجود نیست.</p>', 'manager');
 
@@ -895,10 +911,22 @@ function render() {
   }
 }
 
-function go(name, extra = {}) {
+async function go(name, extra = {}) {
   state.route = { name, ...extra };
   state.error = '';
+  const needsArchives = ['invoices', 'reports', 'worker-report'].includes(name)
+    && isManager()
+    && state.invoiceService
+    && !state.invoiceService.archivesLoaded;
+  if (needsArchives) {
+    state.loadingArchives = true;
+    render();
+    try { await state.invoiceService.ensureArchives(); }
+    catch (e) { console.warn('Archive load failed:', e); }
+    finally { state.loadingArchives = false; }
+  }
   render();
+
   if (name === 'worker-report' && state.workerReport
       && !state.workerReport.result && !state.workerReport.loading) {
     runWorkerReport();
@@ -980,9 +1008,9 @@ document.addEventListener('click', async (e) => {
         const { data } = await state.store.read();
         if (data) state.data = data;
         await state.invoiceService.loadCurrent();
-        if (isManager()) {
-          await state.invoiceService.listArchives();
-          await state.invoiceService.loadArchives();
+        if (isManager() && state.invoiceService.archivesLoaded) {
+          state.invoiceService.resetArchives();
+          await state.invoiceService.ensureArchives();
         }
         state.toast = 'داده‌ها به‌روزرسانی شد.';
       } catch (err) {
