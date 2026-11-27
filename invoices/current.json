@@ -13624,28 +13624,28 @@
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
-      "carTypeId": "ct_mwpcz6kwv3iu",
-      "carTypeName": "تیپ 3 پلاس",
-      "carId": "car_mwpdwkdbemxn",
-      "carName": "مزدا 3",
-      "workerId": "w_mwpd3p7l4dge",
-      "workerName": "حسین",
+      "carTypeId": "ct_mwpa4gbemyqr",
+      "carTypeName": "تیپ 3",
+      "carId": "car_mwpa8rt5imi0",
+      "carName": "دنا",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
       "services": {
         "wash": true,
         "vacuum": true,
         "wax": false
       },
       "prices": {
-        "wash": 550,
+        "wash": 500,
         "vacuum": 200,
         "wax": 450
       },
       "extras": [],
       "tip": 0,
       "discount": 0,
-      "subtotal": 750,
-      "total": 750,
-      "updatedAt": "2026-11-27T09:45:46.857Z",
+      "subtotal": 700,
+      "total": 700,
+      "updatedAt": "2026-11-27T10:59:53.671Z",
       "updatedBy": "11"
     },
     {
