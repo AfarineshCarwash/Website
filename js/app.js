@@ -65,60 +65,10 @@ const invTs = inv => {
 
 const state = {
   workerReport: null, data: null, user: null, store: null,
-  invoiceService: null,
+  invoiceService: null,                          // ← NEW
   route: { name: 'login' },
   draft: null, report: null, filter: 'all',
   busy: false, error: '', toast: '',
-  sidebarOpen: false,                           // ← new
-  archiveLoading: false,                        // ← new
-};
-
-/* ---------------- Icons (inline SVG paths) ---------------- */
-const ICONS = {
-  home:     'M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5',
-  invoice:  'M6 3h12v18l-3-2-3 2-3-2-3 2V3zM9 8h6M9 12h6M9 16h4',
-  archive:  'M3 7h18v3H3V7zm2 3v11h14V10M9 14h6',
-  chart:    'M4 20V10M10 20V4M16 20v-8M22 20H2',
-  users:    'M17 20v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 20v-2a4 4 0 0 0-3-3.87M16 2.13a4 4 0 0 1 0 7.75',
-  user:     'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
-  car:      'M5 17h14M5 17v-4l2-5h10l2 5v4M5 17v2h2v-2M17 17v2h2v-2M7 13h2M15 13h2',
-  calendar: 'M8 2v4M16 2v4M3 10h18M5 6h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z',
-  plus:     'M12 5v14M5 12h14',
-  menu:     'M4 6h16M4 12h16M4 18h16',
-  logo:     'M3 7l9-4 9 4-9 4-9-4zm0 6l9 4 9-4M3 17l9 4 9-4',
-};
-const icon = (name, size = 18) =>
-  `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICONS[name] || ''}"/></svg>`;
-
-/* ---------------- Navigation ---------------- */
-function sidebarNav() {
-  if (isManager()) {
-    return [
-      { route: 'manager',       label: 'داشبورد',        icon: 'home' },
-      { route: 'invoices',      label: 'فاکتورها',        icon: 'invoice' },
-      { route: 'archives',      label: 'بایگانی‌ها',      icon: 'archive' },
-      { route: 'reports',       label: 'گزارش کارکرد',   icon: 'chart' },
-      { route: 'worker-report', label: 'گزارش کارگران',  icon: 'users' },
-      { route: 'cars',          label: 'مدیریت خودروها',  icon: 'car' },
-      { route: 'tariffs',       label: 'تعرفه‌ها',        icon: 'car' },
-      { route: 'workers',       label: 'کارگران',         icon: 'user' },
-      { route: 'cashier-new',   label: 'ثبت فاکتور',      icon: 'plus', action: 'new-invoice' },
-    ];
-  }
-  return [
-    { route: 'cashierhome', label: 'داشبورد',      icon: 'home' },
-    { route: 'cashier-new', label: 'فاکتور جدید',  icon: 'plus', action: 'new-invoice' },
-    { route: 'invoices',    label: 'پیش‌فاکتورها', icon: 'invoice' },
-    { route: 'daily',       label: 'گزارش امروز',  icon: 'calendar' },
-  ];
-}
-
-const isActiveNav = (item) => {
-  if (item.action) return false;
-  if (state.route.name === item.route) return true;
-  if (state.route.name === 'cartype' && item.route === 'cars') return true;
-  if (state.route.name === 'tariff'  && item.route === 'tariffs') return true;
-  return false;
 };
 
 const isManager = () => state.user && state.user.role === ROLES.MANAGER;
@@ -186,6 +136,8 @@ async function doLogin(username, password) {
 
   /* Load current invoices, then auto-rotate, then (for manager) load archives */
   await state.invoiceService.loadCurrent();
+  const { rotated } = await state.invoiceService.rotateIfNeeded();
+  if (user.role === ROLES.MANAGER) await state.invoiceService.loadAll();
 
   state.draft = newDraft();
   state.route = { name: user.role === ROLES.MANAGER ? 'manager' : 'cashierhome' };
@@ -360,69 +312,21 @@ function servicesLabel(inv) {
 }
 
 /* ================= layout ================= */
-function layout(title, body, back, subtitle = '') {
-  const nav = sidebarNav().map(item => {
-    const active = isActiveNav(item);
-    const inner = `${icon(item.icon)}<span>${item.label}</span>`;
-    if (item.action) {
-      return `<button type="button" class="nav-item" data-action="${item.action}">${inner}</button>`;
-    }
-    return `<button type="button" class="nav-item ${active ? 'active' : ''}"
-              data-action="go" data-route="${item.route}">${inner}</button>`;
-  }).join('');
-
-  const initial = (state.user.username || '?').trim().charAt(0).toUpperCase();
-  const roleLabel = isManager() ? 'مدیر' : 'صندوق‌دار';
-  const backBtn = back
-    ? `<button class="btn btn-ghost btn-sm" type="button" data-action="go" data-route="${back}"
-               ${state.busy ? 'disabled' : ''}>
-         بازگشت
-       </button>` : '';
-
+function layout(title, body, back) {
   return `
-  <div class="shell">
-    <div class="sidebar-overlay ${state.sidebarOpen ? 'show' : ''}" data-action="toggle-sidebar"></div>
-    <aside class="sidebar ${state.sidebarOpen ? 'open' : ''}" aria-label="ناوبری اصلی">
-      <div class="sidebar-brand">
-        <div class="brand-mark">آ</div>
-        <div class="brand-text">
-          <strong>کارواش آفرینش</strong>
-          <span>${roleLabel}</span>
-        </div>
-      </div>
-      <nav class="sidebar-nav">${nav}</nav>
-      <div class="sidebar-footer">
-        <div class="user-info">
-          <div class="user-avatar">${esc(initial)}</div>
-          <div class="user-meta">
-            <strong>${esc(state.user.username)}</strong>
-            <span>${roleLabel}</span>
-          </div>
-        </div>
-        <button class="btn btn-ghost btn-sm btn-block" type="button"
-                data-action="logout" ${state.busy ? 'disabled' : ''}>خروج از حساب</button>
-      </div>
-    </aside>
-
-    <div class="main">
-      <header class="mobile-topbar">
-        <button class="menu-btn" type="button" data-action="toggle-sidebar"
-                aria-label="باز و بسته کردن منو">${icon('menu', 20)}</button>
-        <span class="brand">کارواش آفرینش</span>
-        <span class="grow"></span>
-      </header>
-      <main class="page">
-        <div class="page-header">
-          <div>
-            <h1>${esc(title)}</h1>
-            ${subtitle ? `<p>${esc(subtitle)}</p>` : ''}
-          </div>
-          <div class="page-header-actions">${backBtn}</div>
-        </div>
-        ${state.error ? `<div class="alert error" role="alert">${esc(state.error)}</div>` : ''}
-        ${body}
-      </main>
+  <header class="topbar">
+    <span class="brand">کارواش آفرینش</span>
+    <span class="spacer"></span>
+    <span class="who">${esc(state.user.username)} · ${isManager() ? 'مدیر' : 'صندوق‌دار'}</span>
+    <button class="btn ghost" type="button" data-action="logout" ${state.busy ? 'disabled' : ''}>خروج</button>
+  </header>
+  <div class="content">
+    <div class="pagehead">
+      <h2>${esc(title)}</h2>
+      ${back ? `<button class="btn ghost" type="button" data-action="go" data-route="${back}" ${state.busy ? 'disabled' : ''}>بازگشت</button>` : ''}
     </div>
+    ${state.error ? `<div class="alert error">${esc(state.error)}</div>` : ''}
+    ${body}
   </div>`;
 }
 
@@ -430,81 +334,29 @@ function layout(title, body, back, subtitle = '') {
 function viewLogin() {
   return `
   <div class="login-wrap">
-    <form class="login" data-form="login" novalidate>
-      <div class="login-header">
-        <div class="login-mark">آ</div>
-        <h1>کارواش آفرینش</h1>
-        <p>به پنل مدیریت خوش آمدید.</p>
-      </div>
-      <label class="field">
-        <span>نام کاربری</span>
-        <input name="username" required autocomplete="username" dir="ltr">
-      </label>
-      <label class="field">
-        <span>رمز ورود</span>
-        <input name="password" type="password" required autocomplete="current-password" dir="ltr">
-      </label>
-      ${state.error ? `<div class="alert error" role="alert">${esc(state.error)}</div>` : ''}
-      <button class="btn btn-primary btn-block" type="submit" ${state.busy ? 'disabled' : ''}>
-        ${state.busy ? '<span class="spinner"></span> در حال ورود…' : 'ورود به پنل'}
-      </button>
+    <form class="card login" data-form="login">
+      <h1>کارواش آفرینش</h1>
+      <p class="muted">به کارواش آفرینش خوش آمدید.</p>
+      <label class="field">نام کاربری<input name="username" required autocomplete="username" dir="ltr"></label>
+      <label class="field">رمز ورود<input name="password" type="password" required autocomplete="current-password" dir="ltr"></label>
+      ${state.error ? `<p class="alert error">${esc(state.error)}</p>` : ''}
+      <button class="btn primary block" type="submit" ${state.busy ? 'disabled' : ''}>${state.busy ? '<span class="spinner"></span>در حال ورود…' : 'ورود'}</button>
     </form>
   </div>`;
 }
 
 /* ================= views: manager ================= */
 function viewManagerHome() {
-  const today = dailyReport(todayISO());
-  const invs  = state.invoiceService ? state.invoiceService.allInvoices() : [];
-  const drafts = invs.filter(i => i.status === STATUS.DRAFT).length;
-  const workerCount = (state.data.workers || []).length;
-
-  const stats = `
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span class="stat-label">فاکتورهای امروز</span>
-        <span class="stat-value">${fmt(today.count)}</span>
-        <span class="stat-sub">تعداد خودرو</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">درآمد امروز</span>
-        <span class="stat-value">${fmt(today.total)}</span>
-        <span class="stat-sub">تومان</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">انعام امروز</span>
-        <span class="stat-value">${fmt(today.tips)}</span>
-        <span class="stat-sub">تومان</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">پیش‌فاکتورهای باز</span>
-        <span class="stat-value">${fmt(drafts)}</span>
-        <span class="stat-sub">در انتظار تکمیل</span>
-      </div>
-    </div>`;
-
-  const tile = (route, title, desc, ic, action = 'go') =>
-    `<button type="button" class="tile" data-action="${action}"${route ? ` data-route="${route}"` : ''}>
-       <div class="tile-icon">${icon(ic, 20)}</div>
-       <div class="tile-title">${title}</div>
-       <div class="tile-desc">${desc}</div>
-     </button>`;
-
-  const tiles = `
-    <h3 style="margin: 0 0 var(--s-3);">دسترسی سریع</h3>
-    <div class="tile-grid">
-      ${tile('invoices', 'فاکتورها',        'مشاهده، ویرایش و مدیریت فاکتورها',  'invoice')}
-      ${tile('archives', 'بایگانی‌ها',      'فایل‌های بایگانی خودکار',           'archive')}
-      ${tile('reports', 'گزارش کارکرد',     'بازه‌ی زمانی دلخواه',               'chart')}
-      ${tile('worker-report', 'گزارش کارگران', 'عملکرد هر کارگر',                'users')}
-      ${tile('cars', 'مدیریت خودروها',      'گروه‌ها، خودروها و ترتیب نمایش',   'car')}
-      ${tile('tariffs', 'تعرفه‌ها',          'قیمت خدمات هر گروه خودرو',         'car')}
-      ${tile('workers', 'کارگران',          'افزودن، ویرایش و حذف کارگران',     'user')}
-      ${tile(null, 'ثبت فاکتور جدید',       'شروع یک فاکتور یا پیش‌فاکتور',      'plus', 'new-invoice')}
-    </div>`;
-
-  return layout('داشبورد', stats + tiles, null,
-    `خلاصه‌ی فعالیت امروز و دسترسی سریع به بخش‌های پرکاربرد.`);
+  return layout('منوی مدیر', `
+    <div class="grid">
+      <button class="tile" type="button" data-action="go" data-route="cars">مدیریت خودروها</button>
+      <button class="tile" type="button" data-action="go" data-route="tariffs">تنظیم تعرفه‌ها</button>
+      <button class="tile" type="button" data-action="go" data-route="workers">فهرست کارگران</button>
+      <button class="tile" type="button" data-action="go" data-route="invoices">فاکتورها</button>
+      <button class="tile" type="button" data-action="go" data-route="reports">گزارش کارکرد</button>
+      <button class="tile" type="button" data-action="go" data-route="worker-report">گزارش کارگران</button>
+      <button class="tile" type="button" data-action="new-invoice">ثبت فاکتور</button>
+    </div>`);
 }
 
 function viewCars() {
@@ -675,9 +527,9 @@ function viewReports() {
   
 
 /* ================= views: invoices (shared, role-aware) ================= */
-function invoiceRow(inv, manager, isArchived = false) {
+function invoiceRow(inv, manager) {
   const badgeMap = {
-    [STATUS.DRAFT]: ['draft', 'پیش‌فاکتور'],
+    [STATUS.DRAFT]: ['draft', 'پیش فاکتور'],
     [STATUS.SUBMITTED]: ['submitted', 'نهایی'],
     [STATUS.VOID]: ['void', 'حذف‌شده'],
   };
@@ -686,27 +538,26 @@ function invoiceRow(inv, manager, isArchived = false) {
 
   const actions = [];
   if (inv.status === STATUS.DRAFT)
-    actions.push(`<button class="btn btn-sm" type="button" data-action="open-invoice" data-id="${inv.id}" ${busy}>ادامه / ویرایش</button>`);
+    actions.push(`<button class="btn" type="button" data-action="open-invoice" data-id="${inv.id}" ${busy}>ادامه / ویرایش</button>`);
   if (manager && inv.status === STATUS.SUBMITTED)
-    actions.push(`<button class="btn btn-sm" type="button" data-action="open-invoice" data-id="${inv.id}" ${busy}>ویرایش</button>`);
+    actions.push(`<button class="btn" type="button" data-action="open-invoice" data-id="${inv.id}" ${busy}>ویرایش</button>`);
   if (manager && inv.status !== STATUS.VOID)
-    actions.push(`<button class="btn btn-danger btn-sm" type="button" data-action="delete-invoice" data-id="${inv.id}" ${busy}>حذف</button>`);
+    actions.push(`<button class="btn danger" type="button" data-action="delete-invoice" data-id="${inv.id}" ${busy}>حذف</button>`);
 
   return `
-  <li class="row inv ${isArchived ? 'inv--archived' : ''}">
+  <li class="row inv">
     <div class="inv-main">
       <div class="inv-line">
         <span class="badge ${cls}">${label}</span>
-        ${isArchived ? '<span class="badge info">بایگانی</span>' : ''}
         ${inv.number ? `<span class="inv-num">فاکتور #${fmt(inv.number)}</span>` : ''}
         <span>${esc(inv.customer) || 'بدون نام'}</span>
         <span class="muted">${esc(inv.carTypeName || '—')} / ${esc(inv.carName || '—')}</span>
         <span class="muted">${esc(inv.workerName || 'کارگر تعیین نشده')}</span>
         <span class="grow"></span>
-        <strong class="num">${fmt(inv.total)} تومان</strong>
+        <strong>${fmt(inv.total)} تومان</strong>
       </div>
-      <div class="inv-line muted text-sm">
-        <span>${faDate(invDate(inv))} ${faTime(invDate(inv))}</span>
+      <div class="inv-line muted">
+        <span>${faDate(invDate(inv))} ${faTime(invDate(inv))}</span>   <!-- was: inv.createdAt ×2 -->
         <span>${esc(servicesLabel(inv))}</span>
         ${inv.status === STATUS.VOID ? `<span>حذف: ${faDate(inv.deletedAt)} توسط ${esc(inv.deletedBy || '—')}</span>` : ''}
       </div>
@@ -719,10 +570,9 @@ function viewInvoices() {
   const manager = isManager();
   const filter = manager ? (state.filter || 'all') : STATUS.DRAFT;
   const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
-  const currentIds = new Set(state.invoiceService ? state.invoiceService.current.map(i => i.id) : []);
   const visible = manager ? all : all.filter(i => i.status === STATUS.DRAFT);
 
-  const sorted = [...visible].sort((a, b) => invTs(b) - invTs(a));
+  const sorted = [...visible].sort((a, b) => invTs(b) - invTs(a));   // was: localeCompare on createdAt
 
   const filters = manager
     ? [['all', 'همه'], ['draft', 'پیش‌فاکتور'], ['submitted', 'نهایی'], ['void', 'حذف‌شده']]
@@ -730,108 +580,19 @@ function viewInvoices() {
 
   const list = sorted.filter(inv => filter === 'all' ? inv.status !== STATUS.VOID : inv.status === filter);
   const items = list.length
-    ? list.map(inv => invoiceRow(inv, manager, !currentIds.has(inv.id))).join('')
-    : `<li class="empty">
-         <div class="empty-icon">${icon('invoice', 22)}</div>
-         <h4>موردی یافت نشد</h4>
-         <p>${manager ? 'در حال حاضر هیچ فاکتوری با این فیلتر وجود ندارد.' : 'هنوز پیش‌فاکتوری ثبت نشده است.'}</p>
-       </li>`;
+    ? list.map(inv => invoiceRow(inv, manager)).join('')
+    : `<li class="empty">${manager ? 'موردی یافت نشد.' : 'پیش‌فاکتوری وجود ندارد.'}</li>`;
   const busy = state.busy ? 'disabled' : '';
-  const title = manager ? 'فاکتورها' : 'پیش‌فاکتورها';
-
-  const archiveBtn = manager
-    ? `<button class="btn" type="button" data-action="go" data-route="archives" ${busy}>بایگانی‌ها</button>`
-    : '';
+  const title = manager ? 'فاکتورها و پیش‌فاکتورها' : 'پیش‌فاکتورها';
 
   return layout(title, `
     <div class="toolbar">
-      ${filters.map(([v, l]) =>
-        `<button class="btn btn-sm ${filter === v ? 'active' : ''}" type="button"
-                 data-action="filter" data-value="${v}">${l}</button>`).join('')}
+      ${filters.map(([v, l]) => `<button class="btn ${filter === v ? 'active' : ''}" type="button" data-action="filter" data-value="${v}">${l}</button>`).join('')}
       <span class="grow"></span>
-      ${archiveBtn}
       <button class="btn" type="button" data-action="refresh" ${busy}>به‌روزرسانی</button>
-      <button class="btn btn-primary" type="button" data-action="new-invoice" ${busy}>فاکتور جدید</button>
+      <button class="btn primary" type="button" data-action="new-invoice" ${busy}>فاکتور جدید</button>
     </div>
     <ul class="list">${items}</ul>`, homeRoute());
-}
-
-function viewArchives() {
-  const svc = state.invoiceService;
-  if (!svc) return layout('بایگانی‌ها', '<p class="muted">داده‌ای موجود نیست.</p>', 'manager');
-
-  const meta = svc.archiveMeta || [];
-  const limitLabel = '۵۰۰ کیلوبایت';
-
-  const fmtSize = bytes => {
-    if (!bytes) return '—';
-    if (bytes < 1024) return `${fmt(bytes)} بایت`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
-  };
-
-  let body;
-  if (!svc.listingLoaded || state.archiveLoading) {
-    body = `
-      <div class="card">
-        <div class="loading-block">
-          <span class="spinner spinner-lg"></span>
-          <div>در حال بارگذاری فهرست بایگانی‌ها…</div>
-        </div>
-      </div>`;
-  } else if (meta.length === 0) {
-    body = `
-      <div class="card">
-        <div class="empty">
-          <div class="empty-icon">${icon('archive', 22)}</div>
-          <h4>هنوز بایگانی‌ای ساخته نشده است</h4>
-          <p>فایل جاری پس از رسیدن به حجم ${limitLabel} به‌صورت خودکار بایگانی می‌شود.</p>
-        </div>
-      </div>`;
-  } else {
-    const rows = meta.map(a => {
-      const loaded = svc.isArchiveLoaded(a.name);
-      const count = loaded ? (svc.loadedArchives.get(a.name) || []).length : null;
-      return `
-        <div class="archive-row">
-          <div style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-            <span class="archive-name">${esc(a.name)}</span>
-            <span class="archive-size">
-              ${fmtSize(a.size)}
-              ${count != null ? ` · ${fmt(count)} فاکتور بارگذاری‌شده` : ''}
-            </span>
-          </div>
-          <span class="grow"></span>
-          ${loaded
-            ? `<button class="btn btn-sm" type="button" data-action="unload-archive" data-name="${esc(a.name)}">پنهان‌سازی</button>`
-            : `<button class="btn btn-primary btn-sm" type="button" data-action="load-archive" data-name="${esc(a.name)}">بارگذاری</button>`}
-        </div>`;
-    }).join('');
-
-    const anyUnloaded = meta.some(a => !svc.isArchiveLoaded(a.name));
-    body = `
-      <div class="card">
-        <div class="card-header">
-          <h3>فایل‌های بایگانی</h3>
-          <span class="muted text-sm">${fmt(meta.length)} فایل</span>
-        </div>
-        <div class="list">${rows}</div>
-      </div>
-      ${anyUnloaded ? `
-        <div class="toolbar">
-          <button class="btn btn-primary" type="button" data-action="load-all-archives" ${state.busy ? 'disabled' : ''}>
-            بارگذاری همه‌ی بایگانی‌ها
-          </button>
-        </div>
-        <p class="muted text-sm">
-          محتوای بایگانی‌ها تنها زمانی بارگذاری می‌شود که شما آن را درخواست کنید — این کار باعث می‌شود
-          بار اولیه‌ی برنامه سریع بماند.
-        </p>` : ''}
-    `;
-  }
-
-  return layout('بایگانی‌ها', body, 'manager',
-    `فایل‌های بایگانی هر ${limitLabel} یک‌بار به‌صورت خودکار ساخته می‌شوند.`);
 }
 
 function viewWorkerReport() {
@@ -902,16 +663,18 @@ async function runWorkerReport() {
   const w = state.workerReport;
   if (!w || w.loading || state.busy) return;
 
+  /* ---- Jalali → Gregorian conversion AT THE QUERY BOUNDARY ONLY ---- */
   let startTs, endTs;
   try {
     const sG = toGregorian(w.start.jy, w.start.jm, w.start.jd);
-    const eG = toGregorian(w.end.jy,   w.end.jm,   w.end.jd);
-    startTs = tehranDayStartMs(sG.gy, sG.gm, sG.gd);
-    endTs   = tehranDayEndMs  (eG.gy, eG.gm, eG.gd);
+    const eG = toGregorian(w.end.jy, w.end.jm, w.end.jd);
+    startTs = tehranDayStartMs(sG.gy, sG.gm, sG.gd);   // ← was: new Date(sG.gy, sG.gm-1, sG.gd, 0,0,0,0).getTime()
+    endTs   = tehranDayEndMs  (eG.gy, eG.gm, eG.gd);   // ← was: new Date(eG.gy, eG.gm-1, eG.gd, 23,59,59,999).getTime()
   } catch {
     w.error = 'تاریخ نامعتبر است.';
     w.result = null; render(); return;
   }
+
   if (startTs > endTs) {
     w.error = 'تاریخ شروع نمی‌تواند بعد از تاریخ پایان باشد.';
     w.result = null; render(); return;
@@ -920,26 +683,29 @@ async function runWorkerReport() {
   w.loading = true; w.error = ''; w.result = null; render();
 
   try {
-    await state.invoiceService.loadCurrent();
-    await state.invoiceService.loadAllArchives();     // ← on-demand, before computing
+    /* Pull fresh current-month invoices so new submissions are included.
+       Archives are already in memory from login. */
+    if (state.invoiceService) await state.invoiceService.loadCurrent();
 
-    const all = state.invoiceService.allInvoices();
+    const all = state.invoiceService ? state.invoiceService.allInvoices() : [];
     const byWorker = new Map();
 
     for (const inv of all) {
-      if (inv.status !== STATUS.SUBMITTED) continue;
+      if (inv.status !== STATUS.SUBMITTED) continue;                       // completed jobs only
       const ts = new Date(inv.submittedAt || inv.createdAt).getTime();
-      if (!Number.isFinite(ts) || ts < startTs || ts > endTs) continue;
+      if (!Number.isFinite(ts) || ts < startTs || ts > endTs) continue;    // inclusive range
 
       const key = inv.workerId || inv.workerName || '—';
       const row = byWorker.get(key) || { name: inv.workerName || 'کارگر حذف‌شده', jobs: 0, tips: 0, sum: 0 };
+      const tip = Number(inv.tip || 0);
+      const jobPrice = computeSubtotal(inv);                               // = "sum of job prices"
       row.jobs += 1;
-      row.tips += Number(inv.tip || 0);
-      row.sum  += Number(inv.total || 0);              // ← subtotal + tip − discount
+      row.tips += tip;
+      row.sum += jobPrice + tip;                                            // col4 = tips + job prices
       byWorker.set(key, row);
     }
 
-    const rows = [...byWorker.values()].sort((a, b) => b.sum - a.sum);
+    const rows = [...byWorker.values()].sort((a, b) => b.sum - a.sum);      // descending by sum
     const totals = rows.reduce((acc, r) => ({
       jobs: acc.jobs + r.jobs,
       tips: acc.tips + r.tips,
@@ -958,52 +724,16 @@ async function runWorkerReport() {
 
 /* ================= views: cashier ================= */
 function viewCashierHome() {
-  const today = dailyReport(todayISO());
   const drafts = state.invoiceService
     ? state.invoiceService.current.filter(i => i.status === STATUS.DRAFT).length
     : 0;
-
-  const stats = `
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span class="stat-label">خودروهای امروز</span>
-        <span class="stat-value">${fmt(today.count)}</span>
-        <span class="stat-sub">فاکتورهای نهایی امروز</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">درآمد امروز</span>
-        <span class="stat-value">${fmt(today.total)}</span>
-        <span class="stat-sub">تومان</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">پیش‌فاکتورهای باز</span>
-        <span class="stat-value">${fmt(drafts)}</span>
-        <span class="stat-sub">در انتظار تکمیل</span>
-      </div>
-    </div>`;
-
-  const tiles = `
-    <h3 style="margin: 0 0 var(--s-3);">عملیات</h3>
-    <div class="tile-grid">
-      <button type="button" class="tile" data-action="new-invoice">
-        <div class="tile-icon">${icon('plus', 20)}</div>
-        <div class="tile-title">ثبت فاکتور جدید</div>
-        <div class="tile-desc">شروع یک فاکتور یا پیش‌فاکتور تازه</div>
-      </button>
-      <button type="button" class="tile" data-action="go" data-route="invoices">
-        <div class="tile-icon">${icon('invoice', 20)}</div>
-        <div class="tile-title">پیش‌فاکتورها</div>
-        <div class="tile-desc">${drafts ? fmt(drafts) + ' پیش‌فاکتور در انتظار' : 'موردی در انتظار نیست'}</div>
-      </button>
-      <button type="button" class="tile" data-action="go" data-route="daily">
-        <div class="tile-icon">${icon('calendar', 20)}</div>
-        <div class="tile-title">گزارش امروز</div>
-        <div class="tile-desc">تعداد خودرو و مبالغ به‌تفکیک کارگر</div>
-      </button>
-    </div>`;
-
-  return layout('داشبورد', stats + tiles, null,
-    'خلاصه‌ی کار امروز و شروع سریع فاکتور جدید.');
+  const today = dailyReport(todayISO());
+  return layout('منوی صندوق‌دار', `
+    <div class="grid">
+      <button class="tile" type="button" data-action="new-invoice">ثبت فاکتور جدید</button>
+      <button class="tile" type="button" data-action="go" data-route="invoices">پیش‌فاکتورها${drafts ? ` (${fmt(drafts)})` : ''}</button>
+      <button class="tile" type="button" data-action="go" data-route="daily">گزارش کار روز${today.count ? ` (${fmt(today.count)})` : ''}</button>
+    </div>`);
 }
 
 function viewDaily() {
@@ -1148,7 +878,6 @@ function viewForRoute() {
     case 'invoices': return viewInvoices();
     case 'cashier': return viewCashier();
     case 'worker-report': return viewWorkerReport();
-    case 'archives': return viewArchives();
     default: return viewManagerHome();
   }
 }
@@ -1170,30 +899,11 @@ function render() {
 
 function go(name, extra = {}) {
   state.route = { name, ...extra };
-  state.sidebarOpen = false;
   state.error = '';
   render();
-
   if (name === 'worker-report' && state.workerReport
       && !state.workerReport.result && !state.workerReport.loading) {
     runWorkerReport();
-  }
-  if (name === 'archives' && isManager()
-      && state.invoiceService && !state.invoiceService.listingLoaded
-      && !state.archiveLoading) {
-    loadArchivesList();
-  }
-}
-
-async function loadArchivesList() {
-  if (!isManager() || !state.invoiceService) return;
-  state.archiveLoading = true; state.error = ''; render();
-  try {
-    await state.invoiceService.listArchives();
-  } catch (err) {
-    state.error = 'بارگذاری فهرست بایگانی ناموفق بود: ' + (err?.message || 'خطای نامشخص');
-  } finally {
-    state.archiveLoading = false; render();
   }
 }
 
@@ -1215,10 +925,9 @@ document.addEventListener('click', async (e) => {
   switch (action) {
     case 'logout':
       state.user = state.store = state.data = state.draft = state.report = null;
-      state.invoiceService = null;
+      state.invoiceService = null;      // ← added
       state.workerReport = null;
       state.error = state.toast = ''; state.filter = 'all'; state.busy = false;
-      state.sidebarOpen = false; state.archiveLoading = false;
       state.route = { name: 'login' };
       render();
       break;
@@ -1232,46 +941,6 @@ document.addEventListener('click', async (e) => {
 
     case 'run-worker-report':
       await runWorkerReport();
-      break;
-
-    case 'toggle-sidebar':
-      state.sidebarOpen = !state.sidebarOpen;
-      render();
-      break;
-    
-    case 'load-archive': {
-      const name = el.dataset.name;
-      if (!name || !state.invoiceService) break;
-      state.archiveLoading = true; state.error = ''; render();
-      try {
-        await state.invoiceService.loadArchive(name);
-        state.toast = `بایگانی «${name}» بارگذاری شد.`;
-      } catch (err) {
-        state.error = 'بارگذاری بایگانی ناموفق بود: ' + err.message;
-      } finally {
-        state.archiveLoading = false; render();
-      }
-      break;
-    }
-    
-    case 'unload-archive': {
-      const name = el.dataset.name;
-      if (!name || !state.invoiceService) break;
-      state.invoiceService.loadedArchives.delete(name);
-      render();
-      break;
-    }
-    
-    case 'load-all-archives':
-      state.archiveLoading = true; state.error = ''; render();
-      try {
-        await state.invoiceService.loadAllArchives();
-        state.toast = 'همه‌ی بایگانی‌ها بارگذاری شدند.';
-      } catch (err) {
-        state.error = 'بارگذاری بایگانی‌ها ناموفق بود: ' + err.message;
-      } finally {
-        state.archiveLoading = false; render();
-      }
       break;
 
     case 'open-invoice': {
@@ -1530,33 +1199,30 @@ document.addEventListener('submit', async (e) => {
     if (kind === 'report') {
       const r = state.report;
       if (!r) return;
+    
+      /* Jalali → Gregorian conversion ONLY here, at the query boundary */
       let sG, eG;
       try {
         sG = toGregorian(r.start.jy, r.start.jm, r.start.jd);
         eG = toGregorian(r.end.jy,   r.end.jm,   r.end.jd);
-      } catch { state.error = 'تاریخ نامعتبر است.'; render(); return; }
+      } catch {
+        state.error = 'تاریخ نامعتبر است.'; render(); return;
+      }
       const pad = n => String(n).padStart(2, '0');
       const start = `${sG.gy}-${pad(sG.gm)}-${pad(sG.gd)}`;
       const end   = `${eG.gy}-${pad(eG.gm)}-${pad(eG.gd)}`;
+    
       if (start > end) {
         state.error = 'تاریخ شروع نمی‌تواند بعد از تاریخ پایان باشد.';
-        r.result = null; render(); return;
+        r.result = null;
+        render(); return;
       }
     
       const workerIds = [...form.querySelectorAll('input[name="worker"]:checked')].map(i => i.value);
       r.workerIds = workerIds;
-      r.result = null;
-    
-      state.busy = true; state.error = ''; render();
-      try {
-        await state.invoiceService.loadCurrent();
-        await state.invoiceService.loadAllArchives();     // ← on demand
-        r.result = computeReport({ start, end, workerIds });
-      } catch (err) {
-        state.error = 'بارگذاری گزارش ناموفق بود: ' + (err?.message || 'خطای نامشخص');
-      } finally {
-        state.busy = false; render();
-      }
+      r.result = computeReport({ start, end, workerIds });
+      state.error = '';
+      render();
       return;
     }
 
@@ -1607,11 +1273,7 @@ document.addEventListener('submit', async (e) => {
         r => {
           const inv = r && r.invoice;
           if (!inv) return 'ذخیره شد.';
-          if (submit && inv.number) {
-            let msg = `فاکتور نهایی #${fmt(inv.number)} با موفقیت ثبت شد.`;
-            if (r.archived) msg += ` — ${fmt(r.archived.count)} فاکتور در «${r.archived.name}» بایگانی شد.`;
-            return msg;
-          }
+          if (submit && inv.number) return `فاکتور نهایی #${fmt(inv.number)} با موفقیت ثبت شد.`;
           return 'پیش فاکتور ذخیره شد.';
         }
       );
