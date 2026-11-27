@@ -571,8 +571,10 @@ function invoiceRow(inv, manager) {
 
 function viewInvoices() {
   if (state.loadingArchives) {
+    const manager = isManager();
+    const title = manager ? 'فاکتورها و پیش‌فاکتورها' : 'پیش‌فاکتورها';
     return layout(
-      'فاکتورها',
+      title,
       '<div class="card empty"><span class="spinner"></span>در حال بارگذاری آرشیو…</div>',
       homeRoute());
   }
