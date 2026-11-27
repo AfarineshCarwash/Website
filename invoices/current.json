@@ -13539,6 +13539,42 @@
       "total": 900,
       "updatedAt": "2026-11-27T09:11:59.782Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwys0j4lq8aph9",
+      "idempotencyKey": "c64d505d-516d-49b0-9981-c4714e8e1680",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-27T09:25:48.885Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdpdzlca7l",
+      "carName": "تیبا",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-27T09:25:48.885Z",
+      "updatedBy": "11"
     }
   ]
 }
