@@ -143,7 +143,6 @@ async function doLogin(username, password) {
     state.workerReport = defaultWorkerReport();
   }
   state.error = '';
-  if (rotated > 0) state.toast = `${fmt(rotated)} ماه آرشیو شد.`;
 }
 
 async function runInvoiceOp(fn, successMessage) {
