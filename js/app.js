@@ -697,11 +697,11 @@ async function runWorkerReport() {
 
       const key = inv.workerId || inv.workerName || '—';
       const row = byWorker.get(key) || { name: inv.workerName || 'کارگر حذف‌شده', jobs: 0, tips: 0, sum: 0 };
-      const tip = Number(inv.tip || 0);
-      const jobPrice = computeSubtotal(inv);                               // = "sum of job prices"
-      row.jobs += 1;
-      row.tips += tip;
-      row.sum += jobPrice + tip;                                            // col4 = tips + job prices
+      const tip  = Number(inv.tip || 0);
+      const disc = Number(inv.discount || 0);
+      row.jobs  += 1;
+      row.tips  += tip;
+      row.sum   += Number(inv.total || 0);   // ✅ subtotal + tip − discount
       byWorker.set(key, row);
     }
 
