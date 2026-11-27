@@ -457,9 +457,9 @@ function viewWorkers() {
 function viewReports() {
   if (state.loadingArchives) {
     return layout(
-      /* appropriate title */,
+      'گزارش کارکرد',
       '<div class="card empty"><span class="spinner"></span>در حال بارگذاری آرشیو…</div>',
-      /* back route */);
+      homeRoute());
   }
   const workers = state.data.workers || [];
   if (!state.report) state.report = defaultReport();          // ← new
@@ -572,10 +572,11 @@ function invoiceRow(inv, manager) {
 
 function viewInvoices() {
   if (state.loadingArchives) {
+    const title = manager ? 'فاکتورها و پیش‌فاکتورها' : 'پیش‌فاکتورها';
     return layout(
-      /* appropriate title */,
+      title,
       '<div class="card empty"><span class="spinner"></span>در حال بارگذاری آرشیو…</div>',
-      /* back route */);
+      homeRoute());
   }
   const manager = isManager();
   const filter = manager ? (state.filter || 'all') : STATUS.DRAFT;
@@ -608,9 +609,9 @@ function viewInvoices() {
 function viewWorkerReport() {
   if (state.loadingArchives) {
     return layout(
-      /* appropriate title */,
+      'گزارش کارگران',
       '<div class="card empty"><span class="spinner"></span>در حال بارگذاری آرشیو…</div>',
-      /* back route */);
+      homeRoute());
   }
   const w = state.workerReport;
   if (!w) return layout('گزارش کارگران', '<p class="muted">داده‌ای موجود نیست.</p>', 'manager');
