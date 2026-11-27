@@ -14007,6 +14007,42 @@
       "total": 600,
       "updatedAt": "2026-11-27T11:52:54.958Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwyxnl66pvb0hy",
+      "idempotencyKey": "4e05cf8f-cb0f-4b27-8c12-e3e84e90e6a6",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-27T12:03:42.693Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpczss625om",
+      "carTypeName": "نیم شاسی",
+      "carId": "car_mww5qdwws1qz",
+      "carName": "X55",
+      "workerId": "w_mwpd3v9wheg9",
+      "workerName": "فرید",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 700,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 900,
+      "total": 900,
+      "updatedAt": "2026-11-27T12:03:42.693Z",
+      "updatedBy": "11"
     }
   ]
 }
