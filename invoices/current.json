@@ -13939,12 +13939,12 @@
     {
       "id": "inv_mwyx9axqly16z2",
       "idempotencyKey": "8473a03c-92d7-407f-8bb6-6af46ea80a38",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 403,
       "createdAt": "2026-11-27T11:52:36.246Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-27T12:34:08.519Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -13956,7 +13956,7 @@
       "workerName": "علیرضا",
       "services": {
         "wash": true,
-        "vacuum": false,
+        "vacuum": true,
         "wax": false
       },
       "prices": {
@@ -13965,11 +13965,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 50,
       "discount": 0,
-      "subtotal": 450,
-      "total": 450,
-      "updatedAt": "2026-11-27T11:52:36.246Z",
+      "subtotal": 600,
+      "total": 650,
+      "updatedAt": "2026-11-27T12:34:08.519Z",
       "updatedBy": "11"
     },
     {
