@@ -2,61 +2,64 @@ import { GateError, upsertInvoice, deleteInvoice, STATUS } from './gate.js';
 
 export const CURRENT_PATH = 'invoices/current.json';
 export const ARCHIVE_DIR = 'invoices';
-export const ARCHIVE_SIZE_LIMIT = 500 * 1024;      // 500 KB
-export const ARCHIVE_SIZE_LIMIT_LABEL = '۵۰۰ کیلوبایت';
+const ARCHIVE_RE = /^invoices-(\d{4}-\d{2})\.json$/;
 
-const ARCHIVE_RE = /^archive-(\d{4})\.json$/;
-const archivePath = name => `${ARCHIVE_DIR}/${name}`;
-const encoder = new TextEncoder();
-const byteSize = obj => encoder.encode(JSON.stringify(obj)).length;
+export function monthKey(dateLike) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Tehran', year: 'numeric', month: '2-digit',
+  }).formatToParts(new Date(dateLike));
+  const get = t => parts.find(p => p.type === t)?.value;
+  return `${get('year')}-${get('month')}`;
+}
+export const invoiceMonth = inv => monthKey(inv.submittedAt || inv.createdAt);
+const archivePath = month => `${ARCHIVE_DIR}/invoices-${month}.json`;
 
 export class InvoiceService {
   constructor(store, getData) {
     this.store = store;
-    this.getData = getData;
-    this.current = [];                    // current.json invoices
-    this.loadedArchives = new Map();      // name → invoices[]
-    this.archiveMeta = [];                // [{ name, size, sha }]
-    this.listingLoaded = false;
+    this.getData = getData;                 // () => state.data
+    this.current = [];                      // invoices from current.json
+    this.archives = new Map();              // month → invoices[]
+    this.loadedArchives = new Set();
+    this.allArchiveMonths = null;
   }
 
-  /* ---------------- current ---------------- */
+  /* ---------------- loading ---------------- */
   async loadCurrent() {
     const { data } = await this.store.readPath(CURRENT_PATH);
     this.current = Array.isArray(data?.invoices) ? data.invoices : [];
     return this.current;
   }
 
-  /* ---------------- archives (metadata is cheap; contents are lazy) ---------------- */
   async listArchives() {
     try {
       const files = await this.store.listDir(ARCHIVE_DIR);
-      this.archiveMeta = files
-        .filter(f => ARCHIVE_RE.test(f.name) && f.type === 'file')
-        .map(f => ({ name: f.name, size: f.size || 0, sha: f.sha }))
-        .sort((a, b) => a.name.localeCompare(b.name));
-      this.listingLoaded = true;
-    } catch {
-      this.archiveMeta = [];
+      this.allArchiveMonths = files
+        .map(f => (String(f.name).match(ARCHIVE_RE) || [])[1])
+        .filter(Boolean)
+        .sort();
+    } catch { this.allArchiveMonths = []; }
+    return this.allArchiveMonths;
+  }
+
+  async loadArchives(months = null) {
+    const targets = months || this.allArchiveMonths || (await this.listArchives());
+    for (const month of targets) {
+      if (this.loadedArchives.has(month)) continue;
+      try {
+        const { data } = await this.store.readPath(archivePath(month));
+        this.archives.set(month, Array.isArray(data?.invoices) ? data.invoices : []);
+        this.loadedArchives.add(month);
+      } catch (e) {
+        console.warn(`Archive ${month} read failed:`, e.message);
+      }
     }
-    return this.archiveMeta;
   }
 
-  async loadArchive(name) {
-    if (this.loadedArchives.has(name)) return this.loadedArchives.get(name);
-    if (!ARCHIVE_RE.test(name)) throw new GateError('archive_name', 'نام فایل بایگانی نامعتبر است.');
-    const { data } = await this.store.readPath(archivePath(name));
-    const invs = Array.isArray(data?.invoices) ? data.invoices : [];
-    this.loadedArchives.set(name, invs);
-    return invs;
-  }
-
-  isArchiveLoaded(name) { return this.loadedArchives.has(name); }
-
-  async loadAllArchives() {
+  async loadAll() {
+    await this.loadCurrent();
     await this.listArchives();
-    await Promise.all(this.archiveMeta.map(a =>
-      this.loadArchive(a.name).catch(() => [])));
+    await this.loadArchives();
   }
 
   /* ---------------- queries ---------------- */
@@ -65,78 +68,93 @@ export class InvoiceService {
     const out = [];
     const push = arr => { for (const i of arr) if (!seen.has(i.id)) { seen.add(i.id); out.push(i); } };
     push(this.current);
-    for (const arr of this.loadedArchives.values()) push(arr);
+    for (const month of this.loadedArchives) push(this.archives.get(month) || []);
     return out;
   }
 
   findInvoice(id) {
     const cur = this.current.find(i => i.id === id);
     if (cur) return { inv: cur, location: 'current' };
-    for (const [name, arr] of this.loadedArchives) {
-      const found = arr.find(i => i.id === id);
-      if (found) return { inv: found, location: 'archive', name };
+    for (const month of this.loadedArchives) {
+      const found = (this.archives.get(month) || []).find(i => i.id === id);
+      if (found) return { inv: found, location: 'archive', month };
     }
     return null;
   }
 
-  /* ---------------- size-based rotation ---------------- */
-  currentByteSize() { return byteSize({ invoices: this.current }); }
+  /* ---------------- rotation ---------------- */
+  async rotateIfNeeded() {
+    const currentMonth = monthKey(new Date());
+    const keep = [];
+    const toArchive = new Map();
 
-  async maybeArchive() {
-    if (this.currentByteSize() < ARCHIVE_SIZE_LIMIT) return { archived: false };
+    for (const inv of this.current) {
+      if (inv.status === STATUS.DRAFT) { keep.push(inv); continue; }   // drafts stay editable
+      const m = invoiceMonth(inv);
+      if (m === currentMonth) { keep.push(inv); continue; }
+      if (!toArchive.has(m)) toArchive.set(m, []);
+      toArchive.get(m).push(inv);
+    }
+    if (toArchive.size === 0) return { rotated: 0 };
 
-    const finalizable = this.current.filter(i => i.status !== STATUS.DRAFT);
-    if (finalizable.length === 0) return { archived: false, reason: 'only-drafts' };
+    /* Phase 1: write all archives first — idempotent (dedupe by id) */
+    for (const [month, invs] of toArchive) {
+      const path = archivePath(month);
+      let existing = { invoices: [] }, sha = null;
+      try {
+        const r = await this.store.readPath(path);
+        if (r?.data && Array.isArray(r.data.invoices)) { existing = r.data; sha = r.sha; }
+      } catch (e) {
+        if (e.status !== 404)
+          throw new GateError('archive_read', `خواندن آرشیو ${month} ناموفق بود: ${e.message}`);
+      }
+      const existingIds = new Set(existing.invoices.map(i => i.id));
+      const toAdd = invs.filter(i => !existingIds.has(i.id));
+      if (toAdd.length === 0) continue;
+      await this.store.writePath(
+        path,
+        { ...existing, invoices: [...existing.invoices, ...toAdd] },
+        sha,
+        `آرشیو فاکتورهای ${month}`
+      );
+    }
 
-    if (!this.listingLoaded) await this.listArchives();
-    const max = this.archiveMeta.reduce((m, f) => {
-      const match = f.name.match(ARCHIVE_RE);
-      return match ? Math.max(m, parseInt(match[1], 10)) : m;
-    }, 0);
-    const name = `archive-${String(max + 1).padStart(4, '0')}.json`;
-
-    /* Phase 1 — write archive first (data safety) */
-    await this.store.writePath(
-      archivePath(name),
-      { invoices: finalizable },
-      null,
-      `بایگانی خودکار ${name}`
-    );
-
-    /* Phase 2 — shrink current.json (drafts remain) */
-    const remaining = this.current.filter(i => i.status === STATUS.DRAFT);
+    /* Phase 2: only after every archive write succeeded, shrink current.json */
     const cur = await this.store.readPath(CURRENT_PATH);
-    await this.store.writePath(
-      CURRENT_PATH,
-      { ...cur.data, invoices: remaining },
-      cur.sha,
-      'کوچک‌سازی فایل جاری پس از بایگانی'
-    );
-
+    const curInvs = Array.isArray(cur.data?.invoices) ? cur.data.invoices : [];
+    const remaining = curInvs.filter(inv => inv.status === STATUS.DRAFT || invoiceMonth(inv) === currentMonth);
+    if (remaining.length !== curInvs.length) {
+      await this.store.writePath(CURRENT_PATH, { ...cur.data, invoices: remaining },
+                                 cur.sha, 'چرخش ماهانه فاکتورها');
+    }
     this.current = remaining;
-    this.loadedArchives.set(name, finalizable);
-    await this.listArchives();
 
-    return { archived: true, name, count: finalizable.length };
+    for (const month of toArchive.keys()) {
+      this.loadedArchives.delete(month);
+      this.archives.delete(month);
+    }
+    await this.loadArchives([...toArchive.keys()]);
+    return { rotated: toArchive.size };
   }
 
   /* ---------------- mutations ---------------- */
   async saveInvoice(payload, actor, { submit = false } = {}) {
+    // Ensure counter reflects reality before submit assigns a new number
     if (submit) await this._syncCounterFromCurrent();
 
-    let targetPath = CURRENT_PATH, targetName = null, targetLocation = 'current';
+    let targetPath = CURRENT_PATH, targetMonth = null, targetLocation = 'current';
     if (payload.id) {
       const found = this.findInvoice(payload.id);
       if (!found) throw new GateError('not_found', 'فاکتور یافت نشد.');
       if (found.location === 'archive') {
-        targetPath = archivePath(found.name);
-        targetName = found.name;
+        targetPath = archivePath(found.month);
+        targetMonth = found.month;
         targetLocation = 'archive';
       }
     }
 
     let captured = null;
-    const result = await this.store.update(file => {
+    const result = await this.store.update((file) => {
       const invs = Array.isArray(file.invoices) ? file.invoices : [];
       const ctx = this._ctx(invs);
       captured = upsertInvoice(ctx, payload, actor, { submit });
@@ -144,7 +162,7 @@ export class InvoiceService {
       return file;
     }, submit ? 'ثبت نهایی فاکتور' : 'ذخیره فاکتور', targetPath);
 
-    if (targetLocation === 'archive') this.loadedArchives.set(targetName, result.invoices);
+    if (targetLocation === 'archive') this.archives.set(targetMonth, result.invoices);
     else this.current = result.invoices;
 
     const inv = captured?.invoice;
@@ -152,27 +170,18 @@ export class InvoiceService {
       try { await this._syncCounterTo(inv.number); }
       catch (e) { console.warn('Counter sync failed (non-fatal):', e.message); }
     }
-
-    let archived = null;
-    if (submit) {
-      try {
-        const r = await this.maybeArchive();
-        if (r.archived) archived = r;
-      } catch (e) {
-        console.warn('Archive check failed (non-fatal):', e.message);
-      }
-    }
-    return { invoice: inv, deduped: !!captured?.deduped, archived };
+    return { invoice: inv, deduped: !!captured?.deduped };
   }
 
   async deleteInvoice(payload, actor) {
     const found = this.findInvoice(payload.id);
     if (!found) throw new GateError('not_found', 'فاکتور یافت نشد.');
     const targetPath = found.location === 'archive'
-      ? archivePath(found.name) : CURRENT_PATH;
+      ? archivePath(found.month)
+      : CURRENT_PATH;
 
     let captured = null;
-    const result = await this.store.update(file => {
+    const result = await this.store.update((file) => {
       const invs = Array.isArray(file.invoices) ? file.invoices : [];
       const ctx = this._ctx(invs);
       captured = deleteInvoice(ctx, payload, actor);
@@ -180,9 +189,8 @@ export class InvoiceService {
       return file;
     }, 'حذف فاکتور', targetPath);
 
-    if (found.location === 'archive') this.loadedArchives.set(found.name, result.invoices);
+    if (found.location === 'archive') this.archives.set(found.month, result.invoices);
     else this.current = result.invoices;
-
     return { invoice: captured?.invoice };
   }
 
