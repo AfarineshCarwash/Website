@@ -12393,6 +12393,47 @@
       "total": 600,
       "updatedAt": "2026-11-27T05:52:47.036Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwykfslpk0a6o8",
+      "idempotencyKey": "ede55211-f021-454f-bf54-6bd147f741af",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-27T05:53:44.077Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdpinekymq",
+      "carName": "ساینا",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "صفرشویی صندلی",
+          "amount": 0
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-27T05:53:44.077Z",
+      "updatedBy": "11"
     }
   ]
 }
