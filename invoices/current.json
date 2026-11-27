@@ -14187,6 +14187,42 @@
       "total": 600,
       "updatedAt": "2026-11-27T12:30:30.044Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwyymqtc84970m",
+      "idempotencyKey": "d7ada12f-8377-46c6-bf9b-c30a0095e28b",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-27T12:31:02.976Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpdubouqvde",
+      "carName": "تالیسمان",
+      "workerId": "w_mwpd1exs7fk5",
+      "workerName": "مجتبی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-27T12:31:02.976Z",
+      "updatedBy": "11"
     }
   ]
 }
