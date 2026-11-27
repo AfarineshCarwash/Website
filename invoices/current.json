@@ -14367,6 +14367,42 @@
       "total": 900,
       "updatedAt": "2026-11-27T13:11:17.352Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwz03phavc0v24",
+      "idempotencyKey": "1c5b0536-daa2-486b-a3c5-0062838cbeea",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-27T13:12:14.014Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpczss625om",
+      "carTypeName": "نیم شاسی",
+      "carId": "car_mwpdxxeknore",
+      "carName": "لیفان x60",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 700,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 900,
+      "total": 900,
+      "updatedAt": "2026-11-27T13:12:14.014Z",
+      "updatedBy": "11"
     }
   ]
 }
