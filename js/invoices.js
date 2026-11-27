@@ -1,27 +1,24 @@
+import { sha256Hex } from './crypto.js';
 import { GateError, upsertInvoice, deleteInvoice, STATUS } from './gate.js';
 
 export const CURRENT_PATH = 'invoices/current.json';
-export const ARCHIVE_DIR = 'invoices';
-const ARCHIVE_RE = /^invoices-(\d{4}-\d{2})\.json$/;
+export const ARCHIVE_DIR  = 'invoices';
+export const ARCHIVE_SIZE_BYTES = 500 * 1024;   // rotate when current.json ≥ 500 KB
 
-export function monthKey(dateLike) {
-  const parts = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Asia/Tehran', year: 'numeric', month: '2-digit',
-  }).formatToParts(new Date(dateLike));
-  const get = t => parts.find(p => p.type === t)?.value;
-  return `${get('year')}-${get('month')}`;
-}
-export const invoiceMonth = inv => monthKey(inv.submittedAt || inv.createdAt);
-const archivePath = month => `${ARCHIVE_DIR}/invoices-${month}.json`;
+/* matches new names AND any legacy month files the operator may still have */
+const ARCHIVE_RE = /^(archive-[a-z0-9]+|invoices-\d{4}-\d{2})\.json$/;
+
+const serializedBytes = obj =>
+  new TextEncoder().encode(JSON.stringify(obj, null, 2) + '\n').length;
 
 export class InvoiceService {
   constructor(store, getData) {
     this.store = store;
-    this.getData = getData;                 // () => state.data
-    this.current = [];                      // invoices from current.json
-    this.archives = new Map();              // month → invoices[]
-    this.loadedArchives = new Set();
-    this.allArchiveMonths = null;
+    this.getData = getData;              // () => state.data
+    this.current = [];                   // always loaded
+    this.archives = new Map();           // filename → invoices[]  (only when lazy-loaded)
+    this.archiveFiles = null;            // list of archive filenames, memoized
+    this.archivesLoaded = false;         // true once all archives are in memory
   }
 
   /* ---------------- loading ---------------- */
@@ -32,34 +29,35 @@ export class InvoiceService {
   }
 
   async listArchives() {
+    if (this.archiveFiles) return this.archiveFiles;
     try {
       const files = await this.store.listDir(ARCHIVE_DIR);
-      this.allArchiveMonths = files
-        .map(f => (String(f.name).match(ARCHIVE_RE) || [])[1])
-        .filter(Boolean)
-        .sort();
-    } catch { this.allArchiveMonths = []; }
-    return this.allArchiveMonths;
+      this.archiveFiles = files.map(f => f.name).filter(n => ARCHIVE_RE.test(n)).sort();
+    } catch { this.archiveFiles = []; }
+    return this.archiveFiles;
   }
 
-  async loadArchives(months = null) {
-    const targets = months || this.allArchiveMonths || (await this.listArchives());
-    for (const month of targets) {
-      if (this.loadedArchives.has(month)) continue;
+  /** Lazy-load every archive file. Safe to call multiple times; a no-op when already loaded. */
+  async ensureArchives() {
+    if (this.archivesLoaded) return;
+    const files = await this.listArchives();
+    for (const name of files) {
+      if (this.archives.has(name)) continue;
       try {
-        const { data } = await this.store.readPath(archivePath(month));
-        this.archives.set(month, Array.isArray(data?.invoices) ? data.invoices : []);
-        this.loadedArchives.add(month);
+        const { data } = await this.store.readPath(`${ARCHIVE_DIR}/${name}`);
+        this.archives.set(name, Array.isArray(data?.invoices) ? data.invoices : []);
       } catch (e) {
-        console.warn(`Archive ${month} read failed:`, e.message);
+        console.warn(`Archive ${name} read failed:`, e.message);
       }
     }
+    this.archivesLoaded = true;
   }
 
-  async loadAll() {
-    await this.loadCurrent();
-    await this.listArchives();
-    await this.loadArchives();
+  /* forget archives; next ensureArchives() re-reads everything */
+  resetArchives() {
+    this.archives.clear();
+    this.archiveFiles = null;
+    this.archivesLoaded = false;
   }
 
   /* ---------------- queries ---------------- */
@@ -68,87 +66,31 @@ export class InvoiceService {
     const out = [];
     const push = arr => { for (const i of arr) if (!seen.has(i.id)) { seen.add(i.id); out.push(i); } };
     push(this.current);
-    for (const month of this.loadedArchives) push(this.archives.get(month) || []);
+    for (const [, arr] of this.archives) push(arr);
     return out;
   }
 
   findInvoice(id) {
     const cur = this.current.find(i => i.id === id);
     if (cur) return { inv: cur, location: 'current' };
-    for (const month of this.loadedArchives) {
-      const found = (this.archives.get(month) || []).find(i => i.id === id);
-      if (found) return { inv: found, location: 'archive', month };
+    for (const [name, arr] of this.archives) {
+      const found = arr.find(i => i.id === id);
+      if (found) return { inv: found, location: 'archive', archive: name };
     }
     return null;
   }
 
-  /* ---------------- rotation ---------------- */
-  async rotateIfNeeded() {
-    const currentMonth = monthKey(new Date());
-    const keep = [];
-    const toArchive = new Map();
-
-    for (const inv of this.current) {
-      if (inv.status === STATUS.DRAFT) { keep.push(inv); continue; }   // drafts stay editable
-      const m = invoiceMonth(inv);
-      if (m === currentMonth) { keep.push(inv); continue; }
-      if (!toArchive.has(m)) toArchive.set(m, []);
-      toArchive.get(m).push(inv);
-    }
-    if (toArchive.size === 0) return { rotated: 0 };
-
-    /* Phase 1: write all archives first — idempotent (dedupe by id) */
-    for (const [month, invs] of toArchive) {
-      const path = archivePath(month);
-      let existing = { invoices: [] }, sha = null;
-      try {
-        const r = await this.store.readPath(path);
-        if (r?.data && Array.isArray(r.data.invoices)) { existing = r.data; sha = r.sha; }
-      } catch (e) {
-        if (e.status !== 404)
-          throw new GateError('archive_read', `خواندن آرشیو ${month} ناموفق بود: ${e.message}`);
-      }
-      const existingIds = new Set(existing.invoices.map(i => i.id));
-      const toAdd = invs.filter(i => !existingIds.has(i.id));
-      if (toAdd.length === 0) continue;
-      await this.store.writePath(
-        path,
-        { ...existing, invoices: [...existing.invoices, ...toAdd] },
-        sha,
-        `آرشیو فاکتورهای ${month}`
-      );
-    }
-
-    /* Phase 2: only after every archive write succeeded, shrink current.json */
-    const cur = await this.store.readPath(CURRENT_PATH);
-    const curInvs = Array.isArray(cur.data?.invoices) ? cur.data.invoices : [];
-    const remaining = curInvs.filter(inv => inv.status === STATUS.DRAFT || invoiceMonth(inv) === currentMonth);
-    if (remaining.length !== curInvs.length) {
-      await this.store.writePath(CURRENT_PATH, { ...cur.data, invoices: remaining },
-                                 cur.sha, 'چرخش ماهانه فاکتورها');
-    }
-    this.current = remaining;
-
-    for (const month of toArchive.keys()) {
-      this.loadedArchives.delete(month);
-      this.archives.delete(month);
-    }
-    await this.loadArchives([...toArchive.keys()]);
-    return { rotated: toArchive.size };
-  }
-
   /* ---------------- mutations ---------------- */
   async saveInvoice(payload, actor, { submit = false } = {}) {
-    // Ensure counter reflects reality before submit assigns a new number
     if (submit) await this._syncCounterFromCurrent();
 
-    let targetPath = CURRENT_PATH, targetMonth = null, targetLocation = 'current';
+    let targetPath = CURRENT_PATH, targetArchive = null, targetLocation = 'current';
     if (payload.id) {
       const found = this.findInvoice(payload.id);
       if (!found) throw new GateError('not_found', 'فاکتور یافت نشد.');
       if (found.location === 'archive') {
-        targetPath = archivePath(found.month);
-        targetMonth = found.month;
+        targetPath = `${ARCHIVE_DIR}/${found.archive}`;
+        targetArchive = found.archive;
         targetLocation = 'archive';
       }
     }
@@ -162,8 +104,11 @@ export class InvoiceService {
       return file;
     }, submit ? 'ثبت نهایی فاکتور' : 'ذخیره فاکتور', targetPath);
 
-    if (targetLocation === 'archive') this.archives.set(targetMonth, result.invoices);
-    else this.current = result.invoices;
+    if (targetLocation === 'archive') this.archives.set(targetArchive, result.invoices);
+    else {
+      this.current = result.invoices;
+      await this._maybeRotateBySize();
+    }
 
     const inv = captured?.invoice;
     if (inv && Number.isInteger(inv.number)) {
@@ -177,8 +122,7 @@ export class InvoiceService {
     const found = this.findInvoice(payload.id);
     if (!found) throw new GateError('not_found', 'فاکتور یافت نشد.');
     const targetPath = found.location === 'archive'
-      ? archivePath(found.month)
-      : CURRENT_PATH;
+      ? `${ARCHIVE_DIR}/${found.archive}` : CURRENT_PATH;
 
     let captured = null;
     const result = await this.store.update((file) => {
@@ -189,9 +133,64 @@ export class InvoiceService {
       return file;
     }, 'حذف فاکتور', targetPath);
 
-    if (found.location === 'archive') this.archives.set(found.month, result.invoices);
-    else this.current = result.invoices;
+    if (found.location === 'archive') this.archives.set(found.archive, result.invoices);
+    else {
+      this.current = result.invoices;
+      await this._maybeRotateBySize();
+    }
     return { invoice: captured?.invoice };
+  }
+
+  /* ---------------- rotation by size ---------------- */
+  async _maybeRotateBySize() {
+    if (serializedBytes({ invoices: this.current }) < ARCHIVE_SIZE_BYTES) return null;
+
+    /* drafts must never be archived — the cashier can only read current.json */
+    const keep    = this.current.filter(i => i.status === STATUS.DRAFT);
+    const archive = this.current.filter(i => i.status !== STATUS.DRAFT);
+    if (archive.length === 0) return null;                   // pathological: only drafts, skip
+
+    /* deterministic filename for idempotent retries */
+    const ids  = archive.map(i => i.id).sort().join('|');
+    const hash = (await sha256Hex(ids)).slice(0, 16);
+    const filename = `archive-${hash}.json`;
+    const archivePath = `${ARCHIVE_DIR}/${filename}`;
+
+    /* phase 1 — write archive first, merging by id */
+    let existing = { invoices: [] }, existingSha = null;
+    try {
+      const r = await this.store.readPath(archivePath);
+      if (r?.data && Array.isArray(r.data.invoices)) { existing = r.data; existingSha = r.sha; }
+    } catch (e) {
+      if (e.status !== 404) throw e;
+    }
+    const existingIds = new Set(existing.invoices.map(i => i.id));
+    const toAdd = archive.filter(i => !existingIds.has(i.id));
+    if (toAdd.length > 0) {
+      await this.store.writePath(
+        archivePath,
+        { invoices: [...existing.invoices, ...toAdd] },
+        existingSha,
+        `آرشیو فاکتورها (${hash.slice(0, 8)})`
+      );
+    }
+
+    /* phase 2 — remove archived invoices from current.json (keep drafts) */
+    const archivedIds = new Set(archive.map(i => i.id));
+    await this.store.update((file) => {
+      const invs = Array.isArray(file.invoices) ? file.invoices : [];
+      file.invoices = invs.filter(i => !archivedIds.has(i.id));
+      return file;
+    }, 'چرخش آرشیو فاکتورها', CURRENT_PATH);
+
+    /* in-memory mirror */
+    this.current = keep;
+    this.archives.set(filename, [...existing.invoices, ...toAdd]);
+    if (this.archiveFiles && !this.archiveFiles.includes(filename)) {
+      this.archiveFiles.push(filename);
+      this.archiveFiles.sort();
+    }
+    return { archived: archive.length, path: archivePath };
   }
 
   /* ---------------- internals ---------------- */
