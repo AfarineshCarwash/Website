@@ -5,7 +5,7 @@ import {
   toJalaali, toGregorian, jalaaliMonthLength, JALALI_MONTHS,
 } from './jalali.js';
 import {
-  GateError, computeTotal, computeSubtotal, SERVICE_NAMES, STATUS, ROLES,
+  GateError, computeTotal, SERVICE_NAMES, STATUS, ROLES,
 } from './gate.js';
 
 /* ================= helpers ================= */
@@ -691,17 +691,15 @@ async function runWorkerReport() {
     const byWorker = new Map();
 
     for (const inv of all) {
-      if (inv.status !== STATUS.SUBMITTED) continue;                       // completed jobs only
+      if (inv.status !== STATUS.SUBMITTED) continue;
       const ts = new Date(inv.submittedAt || inv.createdAt).getTime();
-      if (!Number.isFinite(ts) || ts < startTs || ts > endTs) continue;    // inclusive range
-
+      if (!Number.isFinite(ts) || ts < startTs || ts > endTs) continue;
+    
       const key = inv.workerId || inv.workerName || '—';
       const row = byWorker.get(key) || { name: inv.workerName || 'کارگر حذف‌شده', jobs: 0, tips: 0, sum: 0 };
-      const tip  = Number(inv.tip || 0);
-      const disc = Number(inv.discount || 0);
-      row.jobs  += 1;
-      row.tips  += tip;
-      row.sum   += Number(inv.total || 0);   // ✅ subtotal + tip − discount
+      row.jobs += 1;
+      row.tips += Number(inv.tip || 0);
+      row.sum  += Number(inv.total || 0);          // ← was: computeSubtotal(inv) + tip
       byWorker.set(key, row);
     }
 
