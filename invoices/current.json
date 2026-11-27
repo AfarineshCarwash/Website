@@ -12943,6 +12943,42 @@
       "total": 600,
       "updatedAt": "2026-11-27T08:07:54.160Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwypmbnsjb4uwb",
+      "idempotencyKey": "70b428b6-7ee4-44ad-a374-da3a14254a73",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-27T08:18:46.786Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_shasi",
+      "carTypeName": "شاسی‌بلند",
+      "carId": "car_santafe",
+      "carName": "سانتافه",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1000,
+      "total": 1000,
+      "updatedAt": "2026-11-27T08:18:46.786Z",
+      "updatedBy": "11"
     }
   ]
 }
