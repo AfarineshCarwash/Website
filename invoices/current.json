@@ -12361,12 +12361,12 @@
     {
       "id": "inv_mwykekleuatss1",
       "idempotencyKey": "a672ba0a-cf27-4f65-a4b4-25124f277371",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 362,
       "createdAt": "2026-11-27T05:52:47.036Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-27T07:31:44.795Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -12379,7 +12379,7 @@
       "services": {
         "wash": true,
         "vacuum": true,
-        "wax": false
+        "wax": true
       },
       "prices": {
         "wash": 450,
@@ -12387,11 +12387,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 50,
       "discount": 0,
-      "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-27T05:52:47.036Z",
+      "subtotal": 1050,
+      "total": 1100,
+      "updatedAt": "2026-11-27T07:31:44.795Z",
       "updatedBy": "11"
     },
     {
