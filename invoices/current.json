@@ -13498,6 +13498,47 @@
       "total": 600,
       "updatedAt": "2026-11-27T09:11:48.812Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwyrirdy56gnkz",
+      "idempotencyKey": "5117ce6e-e37b-4269-8869-6297f2b0934a",
+      "status": "submitted",
+      "number": 382,
+      "createdAt": "2026-11-27T09:11:59.782Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-27T09:11:59.782Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa84vn1ns4",
+      "carName": "سمند",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "فروش شامپو",
+          "amount": 900
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 900,
+      "total": 900,
+      "updatedAt": "2026-11-27T09:11:59.782Z",
+      "updatedBy": "11"
     }
   ]
 }
