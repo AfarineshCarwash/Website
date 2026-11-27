@@ -12979,6 +12979,47 @@
       "total": 1000,
       "updatedAt": "2026-11-27T08:18:46.786Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwyptte1t3v2j7",
+      "idempotencyKey": "d45ee841-56c5-4ff8-af4e-3c6e5e5617db",
+      "status": "submitted",
+      "number": 369,
+      "createdAt": "2026-11-27T08:24:36.360Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-27T08:24:36.360Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpdoyi6llt3",
+      "carName": "پارس",
+      "workerId": "w_1",
+      "workerName": "پیمان",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "تیغه برف پاک کن و دستمال و ضربه گیر",
+          "amount": 1680
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1680,
+      "total": 1680,
+      "updatedAt": "2026-11-27T08:24:36.360Z",
+      "updatedBy": "11"
     }
   ]
 }
