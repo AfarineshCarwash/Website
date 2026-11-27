@@ -14299,12 +14299,12 @@
     {
       "id": "inv_mwz020euyabt5j",
       "idempotencyKey": "b5e3257d-be1e-46b2-b5bf-950cd17ce57d",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 415,
       "createdAt": "2026-11-27T13:10:54.869Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-27T13:51:50.280Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -14325,11 +14325,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 50,
       "discount": 0,
       "subtotal": 550,
-      "total": 550,
-      "updatedAt": "2026-11-27T13:10:54.869Z",
+      "total": 600,
+      "updatedAt": "2026-11-27T13:51:50.280Z",
       "updatedBy": "11"
     },
     {
