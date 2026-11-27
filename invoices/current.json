@@ -14295,6 +14295,42 @@
       "total": 450,
       "updatedAt": "2026-11-27T13:10:36.006Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwz020euyabt5j",
+      "idempotencyKey": "b5e3257d-be1e-46b2-b5bf-950cd17ce57d",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-27T13:10:54.869Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa41tm32s2",
+      "carTypeName": "تیپ 1",
+      "carId": "car_mwpdn22pv95p",
+      "carName": "ماتیز",
+      "workerId": "w_2",
+      "workerName": "علی",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 430,
+        "vacuum": 120,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 550,
+      "total": 550,
+      "updatedAt": "2026-11-27T13:10:54.869Z",
+      "updatedBy": "11"
     }
   ]
 }
