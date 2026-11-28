@@ -14655,6 +14655,47 @@
       "total": 900,
       "updatedAt": "2026-11-27T14:53:30.540Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mwzzboz2qu4zyo",
+      "idempotencyKey": "8d02049f-0b7d-460a-8510-c50829f01a40",
+      "status": "submitted",
+      "number": 423,
+      "createdAt": "2026-11-28T05:38:13.160Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-28T05:38:13.160Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa84vn1ns4",
+      "carName": "سمند",
+      "workerId": "w_mwpd3p7l4dge",
+      "workerName": "حسین",
+      "services": {
+        "wash": false,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [
+        {
+          "desc": "کلانتری",
+          "amount": 0
+        }
+      ],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 0,
+      "total": 0,
+      "updatedAt": "2026-11-28T05:38:13.160Z",
+      "updatedBy": "11"
     }
   ]
 }
