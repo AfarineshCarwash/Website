@@ -14700,12 +14700,12 @@
     {
       "id": "inv_mwzzc6alpjx5sc",
       "idempotencyKey": "69b58629-ee44-4ee1-8fc2-f7aa58025e1b",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 430,
       "createdAt": "2026-11-28T05:38:35.612Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-28T08:17:21.547Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -14718,19 +14718,24 @@
       "services": {
         "wash": true,
         "vacuum": true,
-        "wax": false
+        "wax": true
       },
       "prices": {
         "wash": 450,
         "vacuum": 150,
         "wax": 450
       },
-      "extras": [],
-      "tip": 0,
+      "extras": [
+        {
+          "desc": "صفر شویی صندلی",
+          "amount": 1200
+        }
+      ],
+      "tip": 450,
       "discount": 0,
-      "subtotal": 600,
-      "total": 600,
-      "updatedAt": "2026-11-28T05:38:35.612Z",
+      "subtotal": 2250,
+      "total": 2700,
+      "updatedAt": "2026-11-28T08:17:21.547Z",
       "updatedBy": "11"
     },
     {
