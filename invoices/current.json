@@ -15143,6 +15143,42 @@
       "total": 600,
       "updatedAt": "2026-11-28T08:19:33.105Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mx053mrwykydxa",
+      "idempotencyKey": "ede99a12-c160-4e0a-9e61-7f279521c79e",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-28T08:19:54.763Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpa4cpot6y6",
+      "carTypeName": "تیپ 2",
+      "carId": "car_mwpa7v7ekvka",
+      "carName": "پژو 206",
+      "workerId": "w_mwpd3v9wheg9",
+      "workerName": "فرید",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 450,
+        "vacuum": 150,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 600,
+      "total": 600,
+      "updatedAt": "2026-11-28T08:19:54.763Z",
+      "updatedBy": "11"
     }
   ]
 }
