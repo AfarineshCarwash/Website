@@ -14998,12 +14998,12 @@
     {
       "id": "inv_mx04lndig2nvok",
       "idempotencyKey": "eaf54949-08e6-4873-80af-dd826aa30c16",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 431,
       "createdAt": "2026-11-28T08:05:55.727Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-28T08:18:03.367Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -15014,8 +15014,8 @@
       "workerId": "w_1",
       "workerName": "پیمان",
       "services": {
-        "wash": true,
-        "vacuum": true,
+        "wash": false,
+        "vacuum": false,
         "wax": false
       },
       "prices": {
@@ -15023,12 +15023,17 @@
         "vacuum": 200,
         "wax": 450
       },
-      "extras": [],
+      "extras": [
+        {
+          "desc": "آب خالی",
+          "amount": 450
+        }
+      ],
       "tip": 0,
       "discount": 0,
-      "subtotal": 1000,
-      "total": 1000,
-      "updatedAt": "2026-11-28T08:05:55.727Z",
+      "subtotal": 450,
+      "total": 450,
+      "updatedAt": "2026-11-28T08:18:03.367Z",
       "updatedBy": "11"
     },
     {
