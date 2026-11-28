@@ -14840,6 +14840,42 @@
       "total": 550,
       "updatedAt": "2026-11-28T05:58:32.542Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mx00ev55lhcks1",
+      "idempotencyKey": "61016339-4e2f-44f1-9d67-f04f2330bf91",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-28T06:08:40.741Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwpcz6kwv3iu",
+      "carTypeName": "تیپ 3 پلاس",
+      "carId": "car_mwpds2dsy163",
+      "carName": "آریزو",
+      "workerId": "w_mwpdasvoj6qw",
+      "workerName": "اسد",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 550,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 750,
+      "total": 750,
+      "updatedAt": "2026-11-28T06:08:40.741Z",
+      "updatedBy": "11"
     }
   ]
 }
