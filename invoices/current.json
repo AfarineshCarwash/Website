@@ -15868,6 +15868,42 @@
       "total": 600,
       "updatedAt": "2026-11-28T13:19:16.889Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mx0ft3zn4siyv7",
+      "idempotencyKey": "41af0474-81e6-45e3-a0ae-2bc81b172ec4",
+      "status": "draft",
+      "number": null,
+      "createdAt": "2026-11-28T13:19:39.634Z",
+      "createdBy": "11",
+      "submittedAt": null,
+      "submittedBy": null,
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_shasi",
+      "carTypeName": "شاسی‌بلند",
+      "carId": "car_mwpe0slddxyf",
+      "carName": "دیگنیتی",
+      "workerId": "w_mwpd2z6ykeq1",
+      "workerName": "علیرضا",
+      "services": {
+        "wash": true,
+        "vacuum": true,
+        "wax": false
+      },
+      "prices": {
+        "wash": 800,
+        "vacuum": 200,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 1000,
+      "total": 1000,
+      "updatedAt": "2026-11-28T13:19:39.634Z",
+      "updatedBy": "11"
     }
   ]
 }
