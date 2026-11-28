@@ -15467,6 +15467,42 @@
       "total": 1000,
       "updatedAt": "2026-11-28T10:15:44.000Z",
       "updatedBy": "11"
+    },
+    {
+      "id": "inv_mx09957fubhjd4",
+      "idempotencyKey": "efa5b326-71fa-4fb9-a74e-55ea5f00b053",
+      "status": "submitted",
+      "number": 442,
+      "createdAt": "2026-11-28T10:16:10.394Z",
+      "createdBy": "11",
+      "submittedAt": "2026-11-28T10:16:10.394Z",
+      "submittedBy": "11",
+      "deletedAt": null,
+      "deletedBy": null,
+      "customer": "",
+      "carTypeId": "ct_mwq7h1v6abrv",
+      "carTypeName": "موتور سیکلت",
+      "carId": "car_mwq7hcai6duk",
+      "carName": "موتور سیکلت",
+      "workerId": "w_mwpd2mmq44k6",
+      "workerName": "بهرام",
+      "services": {
+        "wash": true,
+        "vacuum": false,
+        "wax": false
+      },
+      "prices": {
+        "wash": 250,
+        "vacuum": 0,
+        "wax": 450
+      },
+      "extras": [],
+      "tip": 0,
+      "discount": 0,
+      "subtotal": 250,
+      "total": 250,
+      "updatedAt": "2026-11-28T10:16:10.394Z",
+      "updatedBy": "11"
     }
   ]
 }
