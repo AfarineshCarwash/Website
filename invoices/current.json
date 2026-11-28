@@ -15291,12 +15291,12 @@
     {
       "id": "inv_mx063ovipl09wa",
       "idempotencyKey": "db5a3469-a439-4e33-98dd-29ec4e56c86c",
-      "status": "draft",
-      "number": null,
+      "status": "submitted",
+      "number": 435,
       "createdAt": "2026-11-28T08:47:57.102Z",
       "createdBy": "11",
-      "submittedAt": null,
-      "submittedBy": null,
+      "submittedAt": "2026-11-28T09:02:48.165Z",
+      "submittedBy": "11",
       "deletedAt": null,
       "deletedBy": null,
       "customer": "",
@@ -15317,11 +15317,11 @@
         "wax": 450
       },
       "extras": [],
-      "tip": 0,
+      "tip": 100,
       "discount": 0,
       "subtotal": 1000,
-      "total": 1000,
-      "updatedAt": "2026-11-28T08:47:57.102Z",
+      "total": 1100,
+      "updatedAt": "2026-11-28T09:02:48.165Z",
       "updatedBy": "11"
     },
     {
