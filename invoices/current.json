@@ -15664,8 +15664,8 @@
       "carTypeName": "تیپ 2",
       "carId": "car_mwpdp87xuvj5",
       "carName": "کوییک",
-      "workerId": "w_mwpd2z6ykeq1",
-      "workerName": "علیرضا",
+      "workerId": "w_mwpd44frbs5n",
+      "workerName": "محمد",
       "services": {
         "wash": true,
         "vacuum": true,
@@ -15681,7 +15681,7 @@
       "discount": 0,
       "subtotal": 600,
       "total": 600,
-      "updatedAt": "2026-11-28T12:41:36.277Z",
+      "updatedAt": "2026-11-28T12:55:10.975Z",
       "updatedBy": "11"
     },
     {
